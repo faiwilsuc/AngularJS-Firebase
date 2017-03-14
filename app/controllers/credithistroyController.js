@@ -309,7 +309,7 @@ app.controller('credithistroyController', function($firebaseObject, $firebaseArr
             applicant_id: index,
             amt: data.ccj_amt,
             is_satisfied: data.is_satisfied,
-            // register_date: data.ccj_register_date,
+            register_date: data.ccj_register_date,
             satisfied_date: data.satisfied_date
         };
         if (!$scope.customers.applicants[0].credit_histroy) {
