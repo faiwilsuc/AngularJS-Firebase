@@ -1,0 +1,1169 @@
+<div ng-controller="propertydetailsController">
+    <div class="tab-pane" id="etab12">
+
+        <div class="form-group">
+            <h3><img style="padding-right:5px;" src="images/ic-PropertyDetails.png">Property Details</h3>
+        </div>
+
+        <div class="tab-pane-border que-for ">
+
+            <div>
+
+
+                <ul id="fact-form-breadcrumb">
+
+                    <li><a ng-class="{active:customers.selected2}" href="javascript:;" ng-click="showAddproperty()">Add Property</a></li>
+
+                    <li><a ng-class="{active:customers.selected3}" href="javascript:;" ng-click="firsthalfproperty()">Property
+                            Details</a></li>
+
+                    <li><a ng-class="{active:customers.selected4}" href="javascript:;" ng-click="secondhalfproperty()">Additional
+                            Property Details</a></li>
+                </ul>
+
+                <div ng-switch="customers.showAddProperty">
+                    <div ng-switch-when="true">
+                        <form class="form-horizontal" ng-submit="createproperty(customers)">
+
+                            <div>
+                                <div class="form-group">
+                                    <span class="step-heading step-heading-small">Mortgage Property Address</span>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group question" id="t202" data-title="Lift ">
+                                        <label>Post Code</label>
+
+                                        <div>
+                                            <div class="row">
+                                                <div class="col-sm-12"><span class="checkboxes">  <input type="text"
+                                                                                                         class="form-control"
+                                                                                                         ng-model="customers.property_details.post_code"
+                                                                                                         ng-focus="showTyping('post_code')" ng-blur="hideTyping('post_code')"></span>
+                                                </div>
+                                                <div class="col-sm-12"><span class="checkboxes nohelp"><button type="submit"
+                                                                                                               class="btn btn-success btn-sm "
+                                                                                                               ng-click="searchpostcode()">
+                                                            Find Address
+                                                        </button> </span></div>
+
+                                                <div>
+                                                    <div class="typing helptip icon-sprite speech" ng-show="customer.property.post_code.typing && !local.customer.property.post_code.typing" >
+                                                        Typing ...
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="clearfix"></div>
+
+
+                                <div ng-repeat="resl in getPostCode" ng-show="hideaddresslist" class="form-group question"
+                                     style="max-height:100px; overflow-y:scroll;  background: #d0dfea; padding: 0 15px;">
+                                    <div ng-repeat="post in resl.Results">
+                                        <div><span class="checkboxes nohelp">
+                                                <input type="radio" ng-model="customers.property_details.add_property_address.value"
+                                                       name="postcodeid" value="{{post.Id}}"
+                                                       ng-change='selectpostcode(customers.property_details.add_property_address.value)'>
+                                                {{post.Description}} </span></div>
+
+
+                                    </div>
+
+
+                                </div>
+
+                                <div ng-if="customers.getPostCodeid">
+                                    <div ng-repeat="Address in customers.getPostCodeid">
+                                        <div ng-repeat="Address in Address.Results">
+                                            <div class="col-sm-6">
+                                                <div class="form-group question" id="t203">
+                                                    <label>Address1 </label>
+
+                                                    <div>
+                                                        <span class="checkboxes"> <input type="text" class="form-control"
+                                                                                         ng-model="Address.Line1"
+                                                                                         ng-focus="showTyping('Line1')" ng-blur="hideTyping('Line1')"></span>
+                                                        <div>
+                                                            <div class="typing helptip icon-sprite speech" ng-show="customer.property.Line1.typing && !local.customer.property.Line1.typing" >
+                                                                Typing ...
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="form-group question" id="t204">
+                                                    <label>Address2 </label>
+
+                                                    <div>
+                                                        <span class="checkboxes"> <input type="text" class="form-control"
+                                                                                         ng-model="Address.Line2"
+                                                                                         ng-focus="showTyping('Line2')" ng-blur="hideTyping('Line2')"></span>
+                                                        <div>
+                                                            <div class="typing helptip icon-sprite speech" ng-show="customer.property.Line2.typing && !local.customer.property.Line2.typing" >
+                                                                Typing ...
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="form-group question" id="t204">
+                                                    <label>Address3 </label>
+
+                                                    <div>
+                                                        <span class="checkboxes"> <input type="text" class="form-control"
+                                                                                         ng-model="Address.Line3"
+                                                                                         ng-focus="showTyping('Line3')" ng-blur="hideTyping('Line3')"></span>
+                                                        <div>
+                                                            <div class="typing helptip icon-sprite speech" ng-show="customer.property.Line3.typing && !local.customer.property.Line3.typing" >
+                                                                Typing ...
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="form-group question" id="t205">
+                                                    <label>Town/City</label>
+
+                                                    <div>
+                                                        <span class="checkboxes"> <input type="text" class="form-control"
+                                                                                         ng-model="Address.Town"
+                                                                                         ng-focus="showTyping('Town')" ng-blur="hideTyping('Town')"></span>
+                                                        <div>
+                                                            <div class="typing helptip icon-sprite speech" ng-show="customer.property.Town.typing && !local.customer.property.Town.typing" >
+                                                                Typing ...
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="form-group question" id="t206">
+                                                    <label>County</label>
+
+                                                    <div>
+                                                        <span class="checkboxes"> <input type="text" class="form-control"
+                                                                                         ng-model="Address.County"
+                                                                                         ng-focus="showTyping('County')" ng-blur="hideTyping('County')"></span>
+                                                        <div>
+                                                            <div class="typing helptip icon-sprite speech" ng-show="customer.property.County.typing && !local.customer.property.County.typing" >
+                                                                Typing ...
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="form-group question" id="t206">
+                                                    <label>Country </label>
+
+                                                    <div>
+                                                        <span class="checkboxes"> <input type="text" class="form-control"
+                                                                                         ng-model="Address.Country"
+                                                                                         ng-init="Address.Country = 'United Kingdom'"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="form-group question" id="t206">
+                                                    <label>Postcode </label>
+
+                                                    <div>
+                                                        <span class="checkboxes"> <input type="text" class="form-control"
+                                                                                         ng-model="Address.Postcode"
+                                                                                         value="{{Address.Postcode}}"
+                                                                                         ng-focus="showTyping('Postcode')" ng-blur="hideTyping('Postcode')"></span>
+                                                        <div>
+                                                            <div class="typing helptip icon-sprite speech" ng-show="customer.property.Postcode.typing && !local.customer.property.Postcode.typing" >
+                                                                Typing ...
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                            <div class="form-group">
+                                                <div class="pull-right">
+                                                    <button type="button" class="btn custom-btn "
+                                                            ng-click="createaddress(Address, true)">Save
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div ng-if="!customers.getPostCodeid">
+
+                                    <div class="col-sm-6">
+                                        <div class="form-group question" id="t203">
+                                            <label>Address1 </label>
+
+                                            <div>
+                                                <span class="checkboxes">  <input type="text" class="form-control"
+                                                                                  ng-model="Address.Address1"
+                                                                                  ng-init="Address.Address1 = ''"
+                                                                                  ng-focus="showTyping('Address1')" ng-blur="hideTyping('Address1')"></span>
+                                                <div>
+                                                    <div class="typing helptip icon-sprite speech" ng-show="customer.property.Address1.typing && !local.customer.property.Address1.typing" >
+                                                        Typing ...
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group question" id="t204">
+                                            <label>Address2 </label>
+
+                                            <div>
+                                                <span class="checkboxes">  <input type="text" class="form-control"
+                                                                                  ng-model="Address.Address2"
+                                                                                  ng-init="Address.Address2 = ''"
+                                                                                  ng-focus="showTyping('Address2')" ng-blur="hideTyping('Address2')"></span>
+                                                <div>
+                                                    <div class="typing helptip icon-sprite speech" ng-show="customer.property.Address2.typing && !local.customer.property.Address2.typing" >
+                                                        Typing ...
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group question" id="t204">
+                                            <label>Address3 </label>
+
+                                            <div>
+                                                <span class="checkboxes">  <input type="text" class="form-control"
+                                                                                  ng-model="Address.Address3"
+                                                                                  ng-init="Address.Address3 = ''"
+                                                                                  ng-focus="showTyping('Address3')" ng-blur="hideTyping('Address3')"></span>
+                                                <div>
+                                                    <div class="typing helptip icon-sprite speech" ng-show="customer.property.Address3.typing && !local.customer.property.Address3.typing" >
+                                                        Typing ...
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group question" id="t205">
+                                            <label>Town/City</label>
+
+                                            <div>
+                                                <span class="checkboxes">  <input type="text" class="form-control"
+                                                                                  ng-model="Address.Town"
+                                                                                  ng-init="Address.Town = ''"
+                                                                                  ng-focus="showTyping('Town')" ng-blur="hideTyping('Town')"></span>
+                                                <div>
+                                                    <div class="typing helptip icon-sprite speech" ng-show="customer.property.Town.typing && !local.customer.property.Town.typing" >
+                                                        Typing ...
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group question" id="t206">
+                                            <label>County</label>
+
+                                            <div>
+                                                <span class="checkboxes">  <input type="text" class="form-control"
+                                                                                  ng-model="Address.County"
+                                                                                  value="{{Address.County}}"
+                                                                                  ng-focus="showTyping('County')" ng-blur="hideTyping('County')"></span>
+                                                <div>
+                                                    <div class="typing helptip icon-sprite speech" ng-show="customer.property.County.typing && !local.customer.property.County.typing" >
+                                                        Typing ...
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group question" id="t206">
+                                            <label>Country </label>
+
+                                            <div>
+                                                <span class="checkboxes">  <input type="text" class="form-control"
+                                                                                  ng-model="Address.Country"
+                                                                                  ng-init="Address.Country = 'United Kingdom'"
+                                                                                  ng-focus="showTyping('Country')" ng-blur="hideTyping('Country')"></span>
+                                                <div>
+                                                    <div class="typing helptip icon-sprite speech" ng-show="customer.property.Country.typing && !local.customer.property.Country.typing" >
+                                                        Typing ...
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group question" id="t206">
+                                            <label>Postcode </label>
+
+                                            <div>
+                                                <span class="checkboxes">  <input type="text" class="form-control"
+                                                                                  ng-model="Address.Postcode"
+                                                                                  value="{{Address.Postcode}}"
+                                                                                  ng-focus="showTyping('Postcode')" ng-blur="hideTyping('Postcode')"></span>
+                                                <div>
+                                                    <div class="typing helptip icon-sprite speech" ng-show="customer.property.Postcode.typing && !local.customer.property.Postcode.typing" >
+                                                        Typing ...
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                    <div class="form-group">
+                                        <div class="pull-right">
+                                            <button type="button" class="btn custom-btn " ng-click="createaddress(Address, true)">
+                                                Save
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div ng-switch="customers.showfirsthalfproperty">
+                    <div ng-switch-when="true">
+                        <input type="hidden" ng-model="property.secondhalfproperty"
+                               ng-init="property.secondhalfproperty = '0'">
+
+
+						<div class="col-sm-6">
+							<div class="form-group question" id="t203">
+								<label>Address1 </label>
+								<div>
+									<span class="checkboxes"> <input type="text" class="form-control"
+																	 ng-model="customers.getPostCodeid[0].Results[0].Line1"
+																	 ng-focus="showTyping('customers.getPostCodeid.Results.Line1')" ng-blur="hideTyping('customers.getPostCodeid.Results.Line1')"></span>
+									<div>
+										<div class="typing helptip icon-sprite speech" ng-show="customers.getPostCodeid.Results.Line1 && !local.customers.getPostCodeid.Results.Line1.typing" >
+											Typing ...
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-sm-6">
+							<div class="form-group question" id="t203">
+								<label>Address2 </label>
+								<div>
+									<span class="checkboxes"> <input type="text" class="form-control"
+																	 ng-model="customers.getPostCodeid[0].Results[0].Line2"
+																	 ng-focus="showTyping('customers.getPostCodeid.Results.Line2')" ng-blur="hideTyping('customers.getPostCodeid.Results.Line2')"></span>
+									<div>
+										<div class="typing helptip icon-sprite speech" ng-show="customers.getPostCodeid.Results.Line2 && !local.customers.getPostCodeid.Results.Line2.typing" >
+											Typing ...
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-sm-6">
+							<div class="form-group question" id="t203">
+								<label>County </label>
+								<div>
+									<span class="checkboxes"> <input type="text" class="form-control"
+																	 ng-model="customers.getPostCodeid[0].Results[0].County"
+																	 ng-focus="showTyping('customers.getPostCodeid.Results.County')" ng-blur="hideTyping('customers.getPostCodeid.Results.County')"></span>
+									<div>
+										<div class="typing helptip icon-sprite speech" ng-show="customers.getPostCodeid.Results.County && !local.customers.getPostCodeid.Results.County.typing" >
+											Typing ...
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-sm-6">
+							<div class="form-group question" id="t203">
+								<label>Country </label>
+								<div>
+									<span class="checkboxes"> <input type="text" class="form-control"
+																	 ng-model="customers.getPostCodeid[0].Results[0].Country"
+																	 ng-focus="showTyping('customers.getPostCodeid.Results.Country')" ng-blur="hideTyping('customers.getPostCodeid.Results.Country')"></span>
+									<div>
+										<div class="typing helptip icon-sprite speech" ng-show="customers.getPostCodeid.Results.Country && !local.customers.getPostCodeid.Results.Country.typing" >
+											Typing ...
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-sm-6">
+							<div class="form-group question" id="t203">
+								<label>Postcode </label>
+								<div>
+									<span class="checkboxes"> <input type="text" class="form-control"
+																	 ng-model="customers.getPostCodeid[0].Results[0].Postcode"
+																	 ng-focus="showTyping('customers.getPostCodeid.Results.Postcode')" ng-blur="hideTyping('customers.getPostCodeid.Results.Postcode')"></span>
+									<div>
+										<div class="typing helptip icon-sprite speech" ng-show="customers.getPostCodeid.Results.Postcode && !local.customers.getPostCodeid.Results.Postcode.typing" >
+											Typing ...
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+                        <div class="col-sm-6">
+                            <div class="form-group question" id="t93" data-title="Property Type">
+                                <label>Property Type </label>
+
+                                <div>
+                                    <span class="checkboxes">   
+                                        <select class="form-control" id="options1" ng-model="customers.property_details.property_detail.property_type"
+                                                name="customers.property_details.property_detail.property_type" required>
+                                            <option value="">Please Select</option>
+                                            <option value="4">Bungalow</option>
+                                            <option value="2">Flat</option>
+                                            <option value="1">House</option>
+                                            <option value="3">Maisonette</option>
+
+                                        </select>
+                                    </span>
+                                </div>
+
+                                <!-- help text -->
+
+                                <div class="helptip icon-sprite speech" id="boxt93">
+                                    <h5>Help</h5>
+                                </div>
+
+                                <!-- help text end -->
+                            </div>
+                        </div>
+                        <!-- Additional Flat Questions -->
+                        <div ng-switch="customers.property_details.property_detail.property_type == '2'">
+
+                            <div ng-switch-when="true">
+                                <div class="col-sm-12">
+                                    <div class="form-group">
+                                        <span class="step-heading step-heading-small">Additional Flat questions: </span>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group question" id="t202" data-title="Lift ">
+                                        <label>Lift </label>
+
+                                        <div>
+                                            <span class="checkboxes"
+                                                  ng-init="customers.property_details.property_detail.lift = false">  <input
+                                                    type="radio"
+                                                    ng-model="customers.property_details.property_detail.lift"
+                                                    ng-value="true"> Yes <input type="radio"
+                                                    ng-model="customers.property_details.property_detail.lift"
+                                                    ng-value="false"> No </span>
+                                        </div>
+
+                                        <!-- help text -->
+
+                                        <div class="helptip icon-sprite speech" id="boxt202">
+                                            <h5>Help</h5>
+                                        </div>
+
+                                        <!-- help text end -->
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group question" id="t203" data-title="Studio Flat">
+                                        <label>Studio Flat </label>
+
+                                        <div>
+                                            <span class="checkboxes"
+                                                  ng-init="property.StudioFlat = false">  <input type="radio"
+                                                                                         ng-model="customers.property_details.property_detail.studio_flat"
+                                                                                         ng-value="true"> Yes <input
+                                                                                         type="radio"
+                                                                                         ng-model="customers.property_details.property_detail.studio_flat"
+                                                                                         ng-value="false"> No </span>
+                                        </div>
+
+                                        <!-- help text -->
+
+                                        <div class="helptip icon-sprite speech" id="boxt203">
+                                            <h5>Help</h5>
+                                        </div>
+
+                                        <!-- help text end -->
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group question" id="t204" data-title="Converted">
+                                        <label>Converted</label>
+
+                                        <div>
+                                            <span class="checkboxes"
+                                                  ng-init="customers.property_details.property_detail.converted = false">  <input
+                                                    type="radio"
+                                                    ng-model="customers.property_details.property_detail.converted"
+                                                    ng-value="true"> Yes <input type="radio"
+                                                    ng-model="customers.property_details.property_detail.converted"
+                                                    ng-value="false"> No </span>
+                                        </div>
+
+                                        <!-- help text -->
+
+                                        <div class="helptip icon-sprite speech" id="boxt204">
+                                            <h5>Help</h5>
+                                        </div>
+
+                                        <!-- help text end -->
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group question" id="t205" data-title="Balcony Access ">
+                                        <label>Balcony Access</label>
+
+                                        <div>
+                                            <span class="checkboxes"
+                                                  ng-init="customers.property_details.property_detail.balcony_access = false">  <input
+                                                    type="radio"
+                                                    ng-model="customers.property_details.property_detail.balcony_access"
+                                                    ng-value="true"> Yes <input type="radio"
+                                                    ng-model="customers.property_details.property_detail.balcony_access"
+                                                    ng-value="false"> No </span>
+                                        </div>
+
+                                        <!-- help text -->
+
+                                        <div class="helptip icon-sprite speech" id="boxt205">
+                                            <h5>Help</h5>
+                                        </div>
+
+                                        <!-- help text end -->
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group question" id="t207" data-title="Purpose Built">
+                                        <label>Purpose Built </label>
+
+                                        <div>
+                                            <span class="checkboxes"
+                                                  ng-init="customers.property_details.property_detail.purpose_built = false">  <input
+                                                    type="radio"
+                                                    ng-model="customers.property_details.property_detail.purpose_built"
+                                                    ng-value="true"> Yes <input type="radio"
+                                                    ng-model="customers.property_details.property_detail.purpose_built"
+                                                    ng-value="false"> No </span>
+                                        </div>
+
+                                        <!-- help text -->
+
+                                        <div class="helptip icon-sprite speech" id="boxt207">
+                                            <h5>Help</h5>
+                                        </div>
+
+                                        <!-- help text end -->
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group question" id="t206"
+                                         data-title="Which floor is flat on?"
+                                         ng-class="{ 'has-error' :   addproperty.Floor.$invalid && !addproperty.Floor.$pristine }">
+                                        <label>Which floor is flat on?</label>
+
+                                        <div>
+                                            <span class="checkboxes">  <input type="text" class="form-control"
+                                                                              ng-model="customers.property_details.property_detail.floor_on"
+                                                                              name="Floor" required></span>
+                                        </div>
+
+                                        <!-- help text -->
+
+                                        <div class="helptip icon-sprite speech" id="boxt206">
+                                            <h5>Help</h5>
+                                        </div>
+
+                                        <!-- help text end -->
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group question" id="t208"
+                                         data-title="Number of floors in whole block ">
+                                        <label>Number of floors in whole block </label>
+
+                                        <div>
+                                            <span class="checkboxes">  <input type="text" class="form-control"
+                                                                              ng-model="customers.property_details.property_detail.no_of_floor"
+                                                                              ng-focus="showTyping('no_of_floor')" ng-blur="hideTyping('no_of_floor')"></span>
+                                        </div>
+
+                                        <!-- help text -->
+
+                                        <div>
+                                            <div class="typing helptip icon-sprite speech" ng-show="customer.property.no_of_floor.typing && !local.customer.property.no_of_floor.typing" >
+                                                Typing ...
+                                            </div>
+                                            <div class="helptip icon-sprite speech" id="boxt10" ng-hide="customer.property.no_of_floor.typing && !local.customer.property.no_of_floor.typing">
+                                                <h5>Help</h5>
+                                            </div>
+                                        </div>
+
+                                        <!-- help text end -->
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+                        <!-- End Additional Flat Questions -->
+                        <div class="col-sm-6">
+                            <div class="form-group question" id="t93">
+                                <label>Property Status </label>
+
+                                <div>
+                                    <span class="checkboxes">   
+                                        <select ng-model="customers.property_details.property_detail.property_status" class="form-control"
+                                                name="customers.property_details.property_detail.property_status" required>
+                                            <option value="">Please Select</option>
+                                            <option value="1">Detached</option>
+                                            <option value="4">End Terrace</option>
+                                            <option value="5">House + Shop</option>
+                                            <option value="2">Semi</option>
+                                            <option value="3">Terrace</option>
+
+                                        </select>
+                                    </span>
+                                </div>
+
+                                <!-- help text -->
+
+                                <div class="helptip icon-sprite speech" id="boxt93">
+                                    <h5>Help</h5>
+                                </div>
+
+                                <!-- help text end -->
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group question" id="t93">
+                                <label>Residency Type </label>
+
+                                <div>
+                                    <span class="checkboxes">  
+
+                                        <select ng-model="customers.property_details.property_detail.property_status" class="form-control"
+                                                name="customers.property_details.property_detail.property_status" required>
+                                            <option value="">Please Select</option>
+                                            <option value="2">Holiday Home</option>
+                                            <option value="1">Main Residence</option>
+                                            <option value="3">Second Home</option>
+                                            <option value="4">Sitting Tennant</option>
+
+                                        </select>
+                                    </span>
+                                </div>
+
+                                <!-- help text -->
+
+                                <div class="helptip icon-sprite speech" id="boxt93">
+                                    <h5>Help</h5>
+                                </div>
+
+                                <!-- help text end -->
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group question" id="t97" data-title="Tenure">
+                                <label>Tenure </label>
+
+                                <div>
+                                    <span class="checkboxes">  <select class="form-control"
+                                                                       ng-model="customers.property_details.property_detail.tenure"
+                                                                       name="customers.property_details.property_detail.tenure" required>
+                                            <option value="">Please Select</option>
+                                            <option value="5">Commonhold</option>
+                                            <option value="3">Feudal</option>
+                                            <option value="4">Flying Freehold</option>
+                                            <option value="1">Freehold</option>
+                                            <option value="2">Leasehold</option>
+
+                                        </select>
+                                    </span>
+                                </div>
+
+                                <!-- help text -->
+
+                                <div class="helptip icon-sprite speech" id="boxt97">
+                                    <h5>Help</h5>
+                                </div>
+
+                                <!-- help text end -->
+                            </div>
+                        </div>
+                        <div ng-switch="customers.property_details.property_detail.property_type == '4' || customers.property_details.property_detail.property_type == '1' || customers.property_details.property_detail.property_type == '3' || !customers.property_details.property_detail.property_type">
+                            <div ng-switch-when="true">
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group question" id="t107"
+                                 ng-class="{ 'has-error' :   addproperty.YearBuiltIn.$invalid && !addproperty.YearBuiltIn.$pristine }">
+                                <label>Built Year </label>
+
+                                <div>
+                                    <span class="checkboxes">  <input type="text" class="form-control"
+                                                                      ng-model="customers.property_details.property_detail.built_yr"
+                                                                      style="width:25%;"
+                                                                      name="customers.property_details.property_detail.built_yr"
+                                                                      required maxlength="4"
+                                                                      numbers-only
+                                                                      ng-focus="showTyping('built_yr')" ng-blur="hideTyping('built_yr')">  </span>
+                                    <div>
+                                        <div class="typing helptip icon-sprite speech" ng-show="customer.property.built_yr.typing && !local.customer.property.built_yr.typing" >
+                                            Typing ...
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group question" id="t101" data-title="Property Age">
+                                <label>Property Age </label>
+
+                                <div>
+                                    <span class="checkboxes" style=" height: 35px;"> 
+
+                                        <span style="position:relative; width:25%; display:inline-block">
+                                            <input type="text" class="form-control"
+                                                   ng-model="customers.property_details.property_detail.property_age_yr" name="AgeYears"
+                                                   value="{{currentyear - customers.property_details.property_detail.built_yr}}" readonly>
+                                            <span style="position:absolute; right:18px;
+                                                  top:6px;">Years </span></span>
+                                        <span style="position:relative; width:25%; display:inline-block">
+                                            <input type="text" class="form-control"
+                                                   ng-model="customers.property_details.property_detail.property_age_mn" name="AgeMonths"
+                                                   ng-init="property.AgeMonths = '0'" min="0" max="12" numbers-only maxlength="2">
+                                            <span style="position:absolute; right:18px;
+                                                  top:6px;">Month </span></span>
+                                    </span>
+                                </div>
+
+                                <!-- help text -->
+
+                                <div class="helptip icon-sprite speech" id="boxt101">
+                                    <h5>Help</h5>
+                                </div>
+
+                                <!-- help text end -->
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+
+                        <div class="form-group">
+
+                            <div class="pull-right">
+                                <button type="submit" class="blue-btn5" ng-click="secondhalfproperty()">
+                                    save
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div ng-switch="customers.showsecondhalfproperty">
+                    <div ng-switch-when="true">
+
+                        <form class="form-horizontal" name="showSecondHalf">
+                            <input type="hidden" ng-model="property.secondhalfproperty"
+                                   ng-init="property.secondhalfproperty = '1'">
+
+                            <div class="col-sm-6">
+                                <div class="form-group question" id="t98" data-title="Construction Type">
+                                    <label>Construction Type</label>
+
+                                    <div>
+                                        <span class="checkboxes">   
+                                            <select class="form-control"
+                                                    ng-model="customers.property_details.additional_property_details.construction_type"
+                                                    name="construction_type" required>
+                                                <option value="">Please Select</option>
+                                                <option value="2">Non-Standard</option>
+                                                <option value="1">Standard</option>
+
+                                            </select>
+                                        </span>
+                                    </div>
+
+                                    <!-- help text -->
+
+                                    <div class="helptip icon-sprite speech" id="boxt98">
+                                        <h5>Help</h5>
+                                    </div>
+
+                                    <!-- help text end -->
+                                </div>
+                            </div>
+
+                            <div ng-switch="customers.property_details.additional_property_details.construction_type == '2'">
+                                <div ng-switch-when="true">
+                                    <div class="col-sm-6">
+                                        <div class="form-group question" id="t104"
+                                             data-title="Wall Construction Type">
+                                            <label>Non Standard Construction Type </label>
+
+                                            <div>
+                                                <span class="checkboxes"> 
+
+                                                    <select ng-model="customers.property_details.additional_property_details.non_std_constr_type"
+                                                            class="form-control" name="eNonStdConstructionTypeID" required>
+                                                        <option value="">Please Select</option>
+                                                        <option value="1">Concrete</option>
+                                                        <option value="2">Laing Easi Form</option>
+                                                        <option value="8">Other</option>
+                                                        <option value="3">PRC Repair with certificate</option>
+                                                        <option value="4">Steel Frame</option>
+                                                        <option value="5">Thatched</option>
+                                                        <option value="6">Timber Frame</option>
+                                                        <option value="7">Wimpey No Fines</option>
+
+                                                    </select>
+                                                </span>
+                                            </div>
+
+                                            <!-- help text -->
+
+                                            <div class="helptip icon-sprite speech" id="boxt104">
+                                                <h5>Help</h5>
+                                            </div>
+
+                                            <!-- help text end -->
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div ng-switch="customers.property_details.additional_property_details.construction_type == '1' || !customers.property_details.additional_property_details.construction_type">
+                                <div ng-switch-when="true">
+                                    <div class="clearfix"></div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group question" id="t107" data-title="Number of bedrooms "
+                                     ng-class="{ 'has-error' :   addproperty.NumBedrooms.$invalid && !addproperty.NumBedrooms.$pristine }">
+                                    <label>Number of bedrooms </label>
+
+                                    <div>
+                                        <span class="checkboxes">  <input type="text" class="form-control"
+                                                                          ng-model="customers.property_details.additional_property_details.bedrooms"
+                                                                          style="width:25%;" name="NumBedrooms"
+                                                                          required numbers-only
+                                                                          maxlength="2"
+                                                                          ng-focus="showTyping('bedrooms')" ng-blur="hideTyping('bedrooms')">  </span>
+                                    </div>
+
+                                    <!-- help text -->
+
+                                    <div>
+                                        <div class="typing helptip icon-sprite speech" ng-show="customer.property.bedrooms.typing && !local.customer.property.bedrooms.typing" >
+                                            Typing ...
+                                        </div>
+                                        <div class="helptip icon-sprite speech" id="boxt10" ng-hide="customer.property.bedrooms.typing && !local.customer.property.bedrooms.typing">
+                                            <h5>Help</h5>
+                                        </div>
+                                    </div>
+
+                                    <!-- help text end -->
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group question" id="t109" data-title="Number of Kitchen(s)">
+                                    <label>Number of Kitchen(s)</label>
+
+                                    <div>
+                                        <span class="checkboxes">  <input type="text" class="form-control"
+                                                                          ng-model="customers.property_details.additional_property_details.kitchen"
+                                                                          style="width:25%;" name="NumKitchens"
+                                                                          required
+                                                                          ng-focus="showTyping('kitchen')" ng-blur="hideTyping('kitchen')">  </span>
+                                    </div>
+
+                                    <!-- help text -->
+
+                                    <div>
+                                        <div class="typing helptip icon-sprite speech" ng-show="customer.property.kitchen.typing && !local.customer.property.kitchen.typing" >
+                                            Typing ...
+                                        </div>
+                                        <div class="helptip icon-sprite speech" id="boxt10" ng-hide="customer.property.kitchen.typing && !local.customer.property.kitchen.typing">
+                                            <h5>Help</h5>
+                                        </div>
+                                    </div>
+
+                                    <!-- help text end -->
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group question" id="t103" data-title="Ex Local Authority?">
+                                    <label>Ex Local Authority?</label>
+
+                                    <div>
+                                        <span class="checkboxes">  <input
+                                                ng-model="customers.property_details.additional_property_details.ex_local_authority"
+                                                type="radio" ng-value="true"> Yes <input
+                                                ng-model="customers.property_details.additional_property_details.ex_local_authority"
+                                                type="radio" ng-value="false"> No </span>
+                                    </div>
+
+                                    <!-- help text -->
+
+                                    <div class="helptip icon-sprite speech" id="box103">
+                                        <h5>Help</h5>
+                                    </div>
+
+                                    <!-- help text end -->
+                                </div>
+                            </div>
+                            <!--ng-repeat="cmortgage in GetMortAppDetails"-->
+                            <div>
+
+                                <div ng-if="customers.your_mortgage_rquirement.mortgage_type == '1' || customers.your_mortgage_rquirement.mortgage_type == '2' || customers.your_mortgage_rquirement.mortgage_type == '3' || customers.your_mortgage_rquirement.mortgage_type == '4' || customers.your_mortgage_rquirement.mortgage_type == '5'">
+                                    <div class="col-sm-6">
+                                        <div class="form-group question" id="st106" data-title="Self Build">
+                                            <label>Self Build </label>
+
+                                            <div>
+                                                <span class="checkboxes"
+                                                      ng-init="customers.property_details.additional_property_details.self_build = false">  <input
+                                                        ng-model="customers.property_details.additional_property_details.self_build"
+                                                        type="radio" ng-value="true"> Yes <input
+                                                        ng-model="customers.property_details.additional_property_details.self_build"
+                                                        type="radio" ng-value="false"> No </span>
+                                            </div>
+
+                                            <!-- help text -->
+
+                                            <div class="helptip icon-sprite speech" id="boxt106">
+                                                <h5>Help</h5>
+                                            </div>
+
+                                            <!-- help text end -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group question" id="t106" data-title="Agricultural tie">
+                                    <label>Agricultural tie </label>
+
+                                    <div>
+                                        <span class="checkboxes">  <input
+                                                ng-model="customers.property_details.additional_property_details.agricultural_tie"
+                                                type="radio" ng-value="true"> Yes <input
+                                                ng-model="customers.property_details.additional_property_details.agricultural_tie"
+                                                type="radio" ng-value="false"> No </span>
+                                    </div>
+
+                                    <!-- help text -->
+
+                                    <div class="helptip icon-sprite speech" id="boxt106">
+                                        <h5>Help</h5>
+                                    </div>
+
+                                    <!-- help text end -->
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group question" id="t111" data-title="Semi Commercial ">
+                                    <label>Semi Commercial </label>
+
+                                    <div>
+                                        <span class="checkboxes">  <input
+                                                ng-model="customers.property_details.additional_property_details.semi_commercial"
+                                                type="radio" ng-value="true"> Yes <input
+                                                ng-model="customers.property_details.additional_property_details.semi_commercial"
+                                                type="radio" ng-value="false"> No </span>
+                                    </div>
+
+                                    <!-- help text -->
+
+                                    <div class="helptip icon-sprite speech" id="boxt111">
+                                        <h5>Help</h5>
+                                    </div>
+
+                                    <!-- help text end -->
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group question" id="t114"
+                                     data-title="Less than 10 years old (No architect cert) ">
+                                    <label>Less than 10 years old (no architect cert) </label>
+
+                                    <div>
+                                        <span class="checkboxes">  <input
+                                                ng-model="customers.property_details.additional_property_details.less_than_yr"
+                                                type="radio" ng-value="true"> Yes <input
+                                                ng-model="customers.property_details.additional_property_details.less_than_yr"
+                                                type="radio" ng-value="false"> No </span>
+                                    </div>
+
+                                    <!-- help text -->
+
+                                    <div class="helptip icon-sprite speech" id="boxt114">
+                                        <h5>Help</h5>
+                                    </div>
+
+                                    <!-- help text end -->
+                                </div>
+                            </div>
+                            <!--ng-repeat="cmortgage in GetMortAppDetails"-->
+                            <div>
+
+                                <div ng-if="customers.your_mortgage_rquirement.mortgage_type == '1' || customers.your_mortgage_rquirement.mortgage_type == '7'">
+                                    <div class="col-sm-6">
+                                        <div class="form-group question" id="t115"
+                                             data-title="Is this a family let?">
+                                            <label>Is this a family let? </label>
+
+                                            <div>
+                                                <span class="checkboxes" ng-init="property.IsFamilyLet = 0">  <input
+                                                        type="radio" ng-value="1"
+                                                        ng-model="customers.property_details.additional_property_details.family"> Yes <input
+                                                        type="radio" ng-value="0"
+                                                        ng-model="customers.property_details.additional_property_details.family"> No </span>
+                                            </div>
+
+                                            <!-- help text -->
+
+                                            <div class="helptip icon-sprite speech" id="boxt115">
+                                                <h5>Help</h5>
+                                            </div>
+
+                                            <!-- help text end -->
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group question" id="t116"
+                                             data-title="Is this a student let? ">
+                                            <label>Is this a student let? </label>
+
+                                            <div>
+                                                <span class="checkboxes" ng-init="property.IsStudentLet = 0">  <input
+                                                        type="radio" ng-value="1"
+                                                        ng-model="customers.property_details.additional_property_details.student_let"> Yes <input
+                                                        type="radio" ng-value="0"
+                                                        ng-model="customers.property_details.additional_property_details.student_let"> No </span>
+                                            </div>
+
+                                            <!-- help text -->
+
+                                            <div class="helptip icon-sprite speech" id="boxt116">
+                                                <h5>Help</h5>
+                                            </div>
+
+                                            <!-- help text end -->
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group question" id="t114">
+                                    <label>Multiple Occupancy</label>
+
+                                    <div>
+                                        <span class="checkboxes">  <input
+                                                ng-model="customers.property_details.additional_property_details.multiple_occupancy"
+                                                type="radio" ng-value="true"> Yes <input
+                                                ng-model="customers.property_details.additional_property_details.multiple_occupancy"
+                                                type="radio" ng-value="false"> No </span>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div ng-switch="customers.property_details.property_detail.property_detail.tenure == '2'">
+                                <div ng-switch-when="true">
+
+                                    <div class="col-sm-6">
+                                        <div class="form-group question" id=""
+                                             data-title="Number of lease years remaining"
+                                             ng-class="{ 'has-error' :   addproperty.LeaseYearsRemaining.$invalid && !addproperty.LeaseYearsRemaining.$pristine }">
+                                            <label>Number of lease years remaining</label>
+
+                                            <div>
+                                                <span class="checkboxes">  <input type="text" class="form-control"
+                                                                                  ng-model="customers.property_details.additional_property_details.multiple_occupancy"
+                                                                                  style="width:25%;"
+                                                                                  name="LeaseYearsRemaining"
+                                                                                  required> </span>
+                                            </div>
+
+                                            <!-- help text -->
+
+                                            <div class="helptip icon-sprite speech" id="">
+                                                <h5>Help</h5>
+                                            </div>
+
+                                            <!-- help text end -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div ng-switch="customers.property_details.additional_property_details.semi_commercial">
+                                <div ng-switch-when="true">
+
+                                    <div class="col-sm-6">
+                                        <div class="form-group question" id="" data-title="Ownership Percentage %"
+                                             ng-class="{ 'has-error' :   addproperty.SemicommericalPercentage.$invalid && !addproperty.SemicommericalPercentage.$pristine }">
+                                            <label>Ownership Percentage %</label>
+
+                                            <div>
+                                                <span class="checkboxes">  <input type="text" class="form-control"
+                                                                                  ng-model="customers.property_details.additional_property_details.ownership_pertcent"
+                                                                                  style="width:25%;"
+                                                                                  name="customers.property_details.additional_property_details.ownership_pertcent"
+                                                                                  required></span>
+                                            </div>
+
+                                            <!-- help text -->
+
+                                            <div class="helptip icon-sprite speech" id="">
+                                                <h5>Help</h5>
+                                            </div>
+
+                                            <!-- help text end -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                            <div class="form-group">
+
+                                <div class="pull-right">
+                                    <input type="button" class="whi-btn2 btnPrevious" ng-click="firsthalfproperty()"
+                                           value="&lt; BACK">
+                                    <button type="submit" class="blue-btn5" ng-click="showSecondHalf.$valid && submitForm(addproperty)">
+                                        save
+                                    </button>
+                                </div>
+                            </div>
+
+
+                        </form></div>
+                </div>
+            </div>
+
+
+        </div>
+
+    </div>
+</div>

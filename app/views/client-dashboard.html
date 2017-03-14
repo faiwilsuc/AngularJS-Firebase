@@ -1,0 +1,141 @@
+<style>
+
+[animate-on-change] {
+  transition: all 1s;
+  -webkit-transition: all 1s;
+}
+.changed {
+    background-color: red;
+    transition: none;
+    -webkit-transition: none;
+}
+
+#chatbox
+{
+width:225px;
+height:80px;
+/*margin-left:-50px;*/
+padding:0px;
+border-color:white;
+
+}
+.minimize-color
+{
+background-color:#1c2833;	
+}
+.typing_sel
+{
+/*background:red;*/
+    width: 50%;
+}
+.chat_edit{
+	background-color:yellow;
+}
+
+.chat_edit_unselect{
+	background-color:#ffe0f0;
+}
+.activetab:
+{
+background-color:#ffe0f0;
+}
+
+[scroll-glue-top],
+      [scroll-glue-bottom],
+      [scroll-glue]{
+		  width:100%;
+    height: 350px;
+        overflow-y: scroll;
+       /* border: 0px solid gray;*/
+      }
+
+div.filp {
+	display: none;
+}	
+.name {
+
+  background: transparent none repeat scroll 0 0;
+    border: 1px solid #fff;
+    border-radius: 5px;
+    font-size: 15px;
+    height: 26px;
+    opacity: 0.9;
+    padding: 0;
+    text-align: center;
+    width: 26px;
+background:#1c2b36;
+}
+
+</style>
+<div ng-controller="ClientDashboardController"><!--BEGIN PAGE WRAPPER-->
+          <!--BEGIN Fact finding Form-->
+     <!--<pre>{{customers |json}}</pre>-->
+    
+        <div class="row">
+         <div id="rootwizard1" class="tabbable tabs-left">
+            <ul class="nav  nav-pills nav-stacked col-md-3 col-sm-2 col-xs-2 quest-left" >       
+              <li ng-class="{active: tabsStats.currentTabId==tab.id}" ng-repeat="tab in tabs">
+                <a href="" ng-click="changeActiveTab(tab.id)" data-toggle="tab">
+                    {{tab.title}}
+                    <img style="float: right;" src="images/tick4.png" ng-if="tabsStats[tab.id].enableTick" class="ng-scope">
+                </a>
+              </li>
+             </ul>
+            
+              <div class="tab-content col-md-9 quest-rit" id="mirror_client">
+                  
+            <div class="tab-pane" ng-class="{'in active': tabsStats.currentTabId==tab.id}" ng-repeat="tab in tabs"
+               ng-include="tab.templateUrl">
+                 </div>        
+               
+  </div>
+ 
+ </div>
+</div>
+</div>
+<!--END Fact finding Form-->
+ <div class="round hollow text-center">
+        <a style="cursor:pointer" ng-click="livechat()" class="cdeals-chat-box-open-btn" id="addClass"><i class="fa fa-whatsapp" aria-hidden="true"></i>Click here to chat with consultant</a> 
+        </div>
+<!-- chat  start -->    
+<div ng-controller="chatClientController">    
+<div ng-include="'app/views/chatbox_client.html'" ></div></div>
+<!-- chat end -->
+
+</div>
+
+<script>
+    $(document).on('click', '.panel-heading span.icon_minim', function (e) {
+    var $this = $(this);
+    if (!$this.hasClass('panel-collapsed')) {
+        $this.parents('.panel').find('.panel-body').slideUp();
+        $this.addClass('panel-collapsed');
+        $this.removeClass('glyphicon-minus').addClass('glyphicon-plus');
+    } else {
+        $this.parents('.panel').find('.panel-body').slideDown();
+        $this.removeClass('panel-collapsed');
+        $this.removeClass('glyphicon-plus').addClass('glyphicon-minus');
+    }
+});
+$(document).on('focus', '.panel-footer input.chat_input', function (e) {
+    var $this = $(this);
+    if ($('#minim_chat_window').hasClass('panel-collapsed')) {
+        $this.parents('.panel').find('.panel-body').slideDown();
+        $('#minim_chat_window').removeClass('panel-collapsed');
+        $('#minim_chat_window').removeClass('glyphicon-plus').addClass('glyphicon-minus');
+    }
+});
+$(document).on('click', '#new_chat', function (e) {
+    var size = $( ".chat-window:last-child" ).css("margin-left");
+     size_total = parseInt(size) + 400;
+    alert(size_total);
+    var clone = $( "#chat_window_1" ).clone().appendTo( ".container" );
+    clone.css("margin-left", size_total);
+});
+$(document).on('click', '.icon_close', function (e) {
+    //$(this).parent().parent().parent().parent().remove();
+    $( "#chat_window_1" ).remove();
+});
+ // $("#new_chat").draggable({ handle: ".modal-header" });
+
+</script>

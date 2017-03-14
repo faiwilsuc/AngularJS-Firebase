@@ -1,0 +1,42 @@
+ <a id="totop" href="#"><i class="fa fa-angle-up"></i></a><!--END BACK TO TOP--><!--BEGIN TOPBAR-->
+  <div id="header-topbar-option-demo" class="page-header-topbar">
+    <nav id="topbar" role="navigation" style="margin-bottom: 0;"  class="navbar  navbar-static-top">
+      <div class="navbar-header">
+        <button type="button" data-toggle="collapse" data-target=".sidebar-collapse" class="navbar-toggle"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span></button>
+        <a id="logo" href="index.html" class="navbar-brand"><img src="images/logo.png" alt="Cdeals" class="img-responsive pull-left mrm" /></a></div>
+      <div class="topbar-main" > <a id="menu-toggle" href="#" class="hidden-xs"><i class="fa fa-bars"></i></a>
+        <ul class="nav navbar navbar-top-links navbar-right mbn" ng-show="login == 'true'">
+          <li class="dropdown"><a data-hover="dropdown" href="#" class="dropdown-toggle"><i class="fa fa-bell fa-fw"></i><span class="badge badge-green">3</span></a> </li>
+          <li class="dropdown"><a data-hover="dropdown" href="#" class="dropdown-toggle"><i class="fa fa-envelope fa-fw"></i><span class="badge badge-orange">7</span></a> </li>
+          <li id="topbar-chat" class="hidden-xs"><a href="javascript:void(0)"  class="btn-chat"><i class="fa fa-comments"></i><span class="badge badge-info">3</span></a></li>
+          <li class="dropdown topbar-user"><a data-hover="dropdown" href="#" class="dropdown-toggle"><img src="https://s3.amazonaws.com/uifaces/faces/twitter/kolage/48.jpg" alt="" class="img-responsive img-circle"/>&nbsp;<span class="hidden-xs">Client1</span>&nbsp;<span class="caret"></span></a>
+            <ul class="dropdown-menu dropdown-user pull-right">
+              <li><a href="extra-profile.html"><i class="fa fa-user"></i>My Profile</a></li>
+              <li><a href="extra-signin.html"><i class="fa fa-key"></i>Log Out</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+  <!--END TOPBAR-->
+  <div id="wrapper" class="right-sidebar" ><!--BEGIN SIDEBAR MENU-->
+    <nav id="sidebar" role="navigation" data-step="2" data-intro="Template has &lt;b&gt;many navigation styles&lt;/b&gt;" data-position="right" class="navbar-default navbar-static-side" ng-show="login == 'true'"  >
+      <div class="sidebar-collapse menu-scroll">
+        <ul id="side-menu" class="nav">
+          <li class="user-panel"> Video Chat
+            <div class="clearfix"></div>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    
+    <!--END SIDEBAR MENU--><!--BEGIN CHAT FORM-->
+    <div id="chat-form" class="fixed" >
+      <div class="chat-inner" ng-show="login == 'true'" >
+        <h2 class="chat-header"><a href="javascript:;" class="chat-form-close pull-right"><i class="glyphicon glyphicon-remove"></i></a><i class="fa fa-user"></i>&nbsp;
+          Video Chat
+          &nbsp;<span class="badge badge-info">3</span></h2>
+      </div>
+      
+    </div>

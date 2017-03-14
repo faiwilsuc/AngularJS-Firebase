@@ -1,0 +1,98 @@
+<!--<div ng-if="employment.AddedBenefits.length === 0">no array from list</div> --> 
+qwert
+<pre>{{benefitsdata|json}}</pre>
+<div ng-repeat="benefits1 in benefitsdata">  
+<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+  <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="headingOne">
+      <h4 class="panel-title">
+        <a role="button" data-toggle="collapse" data-parent="#accordion" data-target="#collapse{{benefits1.benefit_id}}" aria-expanded="true" aria-controls="benefits1{{benefits1.benefit_id}}">
+          {{getBenefitType(benefits1.benefits)}} &#47; &#163; {{benefits1.amount}} 
+        </a>
+      </h4>
+    </div>
+    <div id="collapse{{benefits1.benefit_id}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+      <div class="panel-body">
+           
+        
+                         <form class="form-horizontal" name="editbenefits1">
+  
+
+ <input type="hidden" ng-model="benefits1.benefit_id" class="form-control"  >
+<div id="benefits">
+ 
+<div class="col-sm-6">   
+ <div class="form-group question" id=""  data-title="Benefit "  ng-class="{ 'has-error' : editbenefits1.benefit.$invalid && !editbenefits1.benefit.$pristine }">
+    <label   >Benefit </label>
+    <div >
+         <span class="checkboxes"> 
+             <select class="form-control" ng-model="benefits1.benefits" name="benefits" required>
+				 
+											<option value="">Please Select</option>
+											<option value="26">Child Benefit</option>
+											<option value="13">Child Tax Credit</option>
+											<option value="25">Court Order Maintenance</option>
+											<option value="14">Disability Living Allowance</option>
+											<option value="15">Foster Parent Income</option>
+											<option value="16">Housing Benefit</option>
+											<option value="17">Incapacity Benefit</option>
+											<option value="18">Pension Credit</option>
+											<option value="19">Severe Disability Allowance</option>
+											<option value="20">Statutory Maternity Pay</option>
+											<option value="21">Statutory Paternity Pay</option>
+											<option value="22">Statutory Sick Pay</option>
+											<option value="27">Widow Benefit</option>
+											<option value="23">Working Family Tax Credits</option>
+
+									 
+				</select>
+        </span> 
+    </div>
+      
+      <!-- help text -->
+    
+    <div class="helptip icon-sprite speech" id=""> 
+        <h5>Help</h5>
+    </div>
+    
+    <!-- help text end -->
+</div> 
+</div>
+<div class="col-sm-6">    
+    <div class="form-group question" id=""  data-title="Amount (£) "  ng-class="{ 'has-error' : editbenefits1.Amount.$invalid && !editbenefits1.Amount.$pristine }">
+    <label   >Amount (£)  </label>
+    <div >
+         <span class="checkboxes pound">  <input type="text" numbers-only class="form-control"  ng-model="benefits1.amount" name="amount" required> </span> 
+    </div>
+      
+      <!-- help text -->
+    
+    <div class="helptip icon-sprite speech" id=""> 
+        <h5>Help</h5>
+    </div>
+    
+    <!-- help text end -->
+</div> 
+ </div> 
+     <div class="form-group"> 
+    <div class="pull-right">
+
+<button type="submit" class="blue-btn5"  ng-click="editbenefits1.$valid && update_empbenefits(benefits1,parentIndex)">update </button> 
+
+<button class="blue-btn5 " type="button"   ng-click="deletebenefits($index)" tooltip="Delete"><i class="glyphicon glyphicon-trash"></i></button>
+
+   <div></div>
+    </div>
+                        </div>
+    
+                    
+</div>                   
+                    
+                   </form> 
+        </div>
+          
+      </div>
+    </div>
+  </div>
+                 
+                   </div>

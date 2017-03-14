@@ -1,0 +1,420 @@
+<div ng-controller="MonthlyoutgoingController">
+    <div class="tab-pane" id="etab7">
+
+        <div class="form-group">
+            <h3><img style="padding-right:5px;" src="images/ic-MonthlyOutgoing.png"> Monthly Outgoing
+                <small style="color:red; font-size:12px; text-transform: none">[ Leave blank if not applicable ]</small>
+            </h3>
+        </div>
+
+
+        <form class="form-horizontal" name="createcustomers.monthly_outgoing">
+
+
+            <div class="tab-pane-border que-for">
+                <div class="col-sm-6">
+                    <div class="form-group question" id="t49" data-title=" Council Tax">
+                        <label>Council Tax </label>
+
+                        <div>
+                            <span class="checkboxes pound"> 
+                                <input type="text" numbers-only
+                                                                    ng-model="customers.monthly_outgoing.council_tax"
+                                                                    class="form-control"
+                                                                    name="customers.monthly_outgoing.council_tax"
+                                                                    ng-focus="showTyping('council_tax')" ng-blur="hideTyping('council_tax')">
+                            </span>
+
+
+                        </div>
+
+                        <!-- help text -->
+
+                        <div>
+                            <div class="typing helptip icon-sprite speech" ng-show="customer.monthly.council_tax.typing && !local.customer.monthly.council_tax.typing" >
+                                Typing ...
+                            </div>
+                            <div class="helptip icon-sprite speech" id="boxt10" ng-hide="customer.monthly.council_tax.typing && !local.customer.monthly.council_tax.typing">
+                                <h5>Help</h5>
+                            </div>
+                        </div>
+
+                        <!-- help text end -->
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group question" id="t51" data-title="Telephone Bills">
+                        <label>Telephone & Internet Bills </label>
+
+                        <div>
+                            <span class="checkboxes pound">  <input type="text" numbers-only
+                                                                    ng-model="customers.monthly_outgoing.telephone_internet_bills"
+                                                                    class="form-control"
+                                                                    name="customers.monthly_outgoing.telephone_internet_bills"
+                                                                    ng-focus="showTyping('telephone_internet_bills')" ng-blur="hideTyping('telephone_internet_bills')">
+                            </span>
+
+                        </div>
+
+                        <!-- help text -->
+
+                        <div>
+                            <div class="typing helptip icon-sprite speech" ng-show="customer.monthly.telephone_internet_bills.typing && !local.customer.monthly.telephone_internet_bills.typing" >
+                                Typing ...
+                            </div>
+                            <div class="helptip icon-sprite speech" id="boxt10" ng-hide="customer.monthly.telephone_internet_bills.typing && !local.customer.monthly.telephone_internet_bills.typing">
+                                <h5>Help</h5>
+                            </div>
+                        </div>
+
+                        <!-- help text end -->
+                    </div>
+                </div>
+
+                <div class="col-sm-6">
+                    <div class="form-group question" id="t53" data-title=" TV Licence">
+                        <label>TV Licence</label>
+
+                        <div>
+                            <span class="checkboxes pound">  <input type="text" numbers-only
+                                                                    ng-model="customers.monthly_outgoing.tv_licence"
+                                                                    class="form-control"
+                                                                    name="customers.monthly_outgoing.tv_licence"
+                                                                    ng-focus="showTyping('tv_licence')" ng-blur="hideTyping('tv_licence')">
+                            </span>
+
+                        </div>
+
+                        <!-- help text -->
+
+                        <div>
+                            <div class="typing helptip icon-sprite speech" ng-show="customer.monthly.tv_licence.typing && !local.customer.monthly.tv_licence.typing" >
+                                Typing ...
+                            </div>
+                            <div class="helptip icon-sprite speech" id="boxt10" ng-hide="customer.monthly.tv_licence.typing && !local.customer.monthly.tv_licence.typing">
+                                <h5>Help</h5>
+                            </div>
+                        </div>
+
+                        <!-- help text end -->
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group question" id="t54" data-title=" Car/Travel Bills">
+                        <label>Car/Travel Bills</label>
+
+                        <div>
+                            <span class="checkboxes pound">  <input type="text" numbers-only
+                                                                    ng-model="customers.monthly_outgoing.car_travel_bills"
+                                                                    class="form-control"
+                                                                    name="customers.monthly_outgoing.car_travel_bills"
+                                                                    ng-focus="showTyping('car_travel_bills')" ng-blur="hideTyping('car_travel_bills')">
+                            </span>
+
+                        </div>
+
+                        <!-- help text -->
+
+                        <div>
+                            <div class="typing helptip icon-sprite speech" ng-show="customer.monthly.car_travel_bills.typing && !local.customer.monthly.car_travel_bills.typing" >
+                                Typing ...
+                            </div>
+                            <div class="helptip icon-sprite speech" id="boxt10" ng-hide="customer.monthly.car_travel_bills.typing && !local.customer.monthly.car_travel_bills.typing">
+                                <h5>Help</h5>
+                            </div>
+                        </div>
+
+                        <!-- help text end -->
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group question" id="t55" data-title="Food Bills">
+                        <label>Food Bills </label>
+
+                        <div>
+                            <span class="checkboxes pound">  <input type="text" numbers-only
+                                                                    ng-model="customers.monthly_outgoing.food_bills"
+                                                                    class="form-control"
+                                                                    ng-focus="showTyping('food_bills')" ng-blur="hideTyping('food_bills')">
+                            </span>
+
+                        </div>
+
+                        <!-- help text -->
+
+                        <div>
+                            <div class="typing helptip icon-sprite speech" ng-show="customer.monthly.food_bills.typing && !local.customer.monthly.food_bills.typing" >
+                                Typing ...
+                            </div>
+                            <div class="helptip icon-sprite speech" id="boxt10" ng-hide="customer.monthly.food_bills.typing && !local.customer.monthly.food_bills.typing">
+                                <h5>Help</h5>
+                            </div>
+                        </div>
+
+                        <!-- help text end -->
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group question" id="t56" data-title="Utilities">
+                        <label>Utilities </label>
+
+                        <div>
+                            <span class="checkboxes pound">  <input type="text" numbers-only
+                                                                    ng-model="customers.monthly_outgoing.utilities"
+                                                                    class="form-control"
+                                                                    name="customers.monthly_outgoing.utilities"
+                                                                    ng-focus="showTyping('utilities')" ng-blur="hideTyping('utilities')">
+                            </span>
+
+                        </div>
+
+                        <!-- help text -->
+
+                        <div>
+                            <div class="typing helptip icon-sprite speech" ng-show="customer.monthly.utilities.typing && !local.customer.monthly.utilities.typing" >
+                                Typing ...
+                            </div>
+                            <div class="helptip icon-sprite speech" id="boxt10" ng-hide="customer.monthly.utilities.typing && !local.customer.monthly.utilities.typing">
+                                <h5>Help</h5>
+                            </div>
+                        </div>
+
+                        <!-- help text end -->
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group question" id="t57" data-title="Life Insurance">
+                        <label>Life Insurance </label>
+
+                        <div>
+                            <span class="checkboxes pound">  <input type="text" numbers-only
+                                                                    ng-model="customers.monthly_outgoing.life_insurance"
+                                                                    class="form-control"
+                                                                    name="customers.monthly_outgoing.life_insurance"
+                                                                    ng-focus="showTyping('life_insurance')" ng-blur="hideTyping('life_insurance')">
+                            </span>
+
+                        </div>
+
+                        <!-- help text -->
+
+                        <div>
+                            <div class="typing helptip icon-sprite speech" ng-show="customer.monthly.life_insurance.typing && !local.customer.monthly.life_insurance.typing" >
+                                Typing ...
+                            </div>
+                            <div class="helptip icon-sprite speech" id="boxt10" ng-hide="customer.monthly.life_insurance.typing && !local.customer.monthly.life_insurance.typing">
+                                <h5>Help</h5>
+                            </div>
+                        </div>
+
+                        <!-- help text end -->
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group question" id="t59" data-title="Critical Illness Policies">
+                        <label>Critical Illness Policies </label>
+
+                        <div>
+                            <span class="checkboxes pound">  <input type="text" numbers-only
+                                                                    ng-model="customers.monthly_outgoing.critical_illness_policies"
+                                                                    class="form-control"
+                                                                    name="customers.monthly_outgoing.critical_illness_policies"
+                                                                    ng-focus="showTyping('critical_illness_policies')" ng-blur="hideTyping('critical_illness_policies')">
+                            </span>
+
+                        </div>
+
+                        <!-- help text -->
+
+                        <div>
+                            <div class="typing helptip icon-sprite speech" ng-show="customer.monthly.critical_illness_policies.typing && !local.customer.monthly.critical_illness_policies.typing" >
+                                Typing ...
+                            </div>
+                            <div class="helptip icon-sprite speech" id="boxt10" ng-hide="customer.monthly.critical_illness_policies.typing && !local.customer.monthly.critical_illness_policies.typing">
+                                <h5>Help</h5>
+                            </div>
+                        </div>
+
+                        <!-- help text end -->
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group question" id="t60" data-title="Pension Policy">
+                        <label>Pension Policy</label>
+
+                        <div>
+                            <span class="checkboxes pound">  <input type="text" numbers-only
+                                                                    ng-model="customers.monthly_outgoing.pension_policy"
+                                                                    class="form-control"
+                                                                    name="customers.monthly_outgoing.pension_policy"
+                                                                    ng-focus="showTyping('pension_policy')" ng-blur="hideTyping('pension_policy')">  </span>
+
+                        </div>
+
+                        <!-- help text -->
+
+                        <div>
+                            <div class="typing helptip icon-sprite speech" ng-show="customer.monthly.pension_policy.typing && !local.customer.monthly.pension_policy.typing" >
+                                Typing ...
+                            </div>
+                            <div class="helptip icon-sprite speech" id="boxt10" ng-hide="customer.monthly.pension_policy.typing && !local.customer.monthly.pension_policy.typing">
+                                <h5>Help</h5>
+                            </div>
+                        </div>
+
+                        <!-- help text end -->
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group question" id="t61" data-title="Home Insurance">
+                        <label>Home Insurance </label>
+
+                        <div>
+                            <span class="checkboxes pound">  <input type="text" numbers-only
+                                                                    ng-model="customers.monthly_outgoing.home_insurance"
+                                                                    class="form-control"
+                                                                    name="customers.monthly_outgoing.home_insurance"
+                                                                    ng-focus="showTyping('home_insurance')" ng-blur="hideTyping('home_insurance')">
+                            </span>
+
+                        </div>
+
+                        <!-- help text -->
+
+                        <div>
+                            <div class="typing helptip icon-sprite speech" ng-show="customer.monthly.home_insurance.typing && !local.customer.monthly.home_insurance.typing" >
+                                Typing ...
+                            </div>
+                            <div class="helptip icon-sprite speech" id="boxt10" ng-hide="customer.monthly.home_insurance.typing && !local.customer.monthly.home_insurance.typing">
+                                <h5>Help</h5>
+                            </div>
+                        </div>
+
+                        <!-- help text end -->
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group question" id="t62" data-title="Regular Savings">
+                        <label>Regular Savings</label>
+
+                        <div>
+                            <span class="checkboxes pound">  <input type="text" numbers-only
+                                                                    ng-model="customers.monthly_outgoing.regular_savings"
+                                                                    class="form-control"
+                                                                    name="customers.monthly_outgoing.regular_savings"
+                                                                    ng-focus="showTyping('regular_savings')" ng-blur="hideTyping('regular_savings')">  </span>
+
+                        </div>
+
+                        <!-- help text -->
+
+                        <div>
+                            <div class="typing helptip icon-sprite speech" ng-show="customer.monthly.regular_savings.typing && !local.customer.monthly.regular_savings.typing" >
+                                Typing ...
+                            </div>
+                            <div class="helptip icon-sprite speech" id="boxt10" ng-hide="customer.monthly.regular_savings.typing && !local.customer.monthly.regular_savings.typing">
+                                <h5>Help</h5>
+                            </div>
+                        </div>
+
+                        <!-- help text end -->
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group question" id="t63" data-title="Maintenance Payments">
+                        <label>Maintenance Payments </label>
+
+                        <div>
+                            <span class="checkboxes pound">  <input type="text" numbers-only
+                                                                    ng-model="customers.monthly_outgoing.maintenance_payments"
+                                                                    class="form-control"
+                                                                    name="customers.monthly_outgoing.maintenance_payments"
+                                                                    ng-focus="showTyping('maintenance_payments')" ng-blur="hideTyping('maintenance_payments')">  </span>
+
+                        </div>
+
+                        <!-- help text -->
+
+                        <div>
+                            <div class="typing helptip icon-sprite speech" ng-show="customer.monthly.maintenance_payments.typing && !local.customer.monthly.maintenance_payments.typing" >
+                                Typing ...
+                            </div>
+                            <div class="helptip icon-sprite speech" id="boxt10" ng-hide="customer.monthly.maintenance_payments.typing && !local.customer.monthly.maintenance_payments.typing">
+                                <h5>Help</h5>
+                            </div>
+                        </div>
+
+                        <!-- help text end -->
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group question" id="t64" data-title="Others"
+                         ng-class="{ 'has-error' : editcustomers.monthly_outgoing.Other.$invalid && !editcustomers.monthly_outgoing.Other.$pristine }">
+                        <label>Others </label>
+
+                        <div>
+                            <span class="checkboxes pound">  <input type="text" numbers-only
+                                                                    ng-model="customers.monthly_outgoing.others"
+                                                                    class="form-control"
+                                                                    name="customers.monthly_outgoing.others"
+                                                                    ng-focus="showTyping('others')" ng-blur="hideTyping('others')">  </span>
+
+                        </div>
+
+                        <!-- help text -->
+
+                        <div>
+                            <div class="typing helptip icon-sprite speech" ng-show="customer.monthly.others.typing && !local.customer.monthly.others.typing" >
+                                Typing ...
+                            </div>
+                            <div class="helptip icon-sprite speech" id="boxt10" ng-hide="customer.monthly.others.typing && !local.customer.monthly.others.typing">
+                                <h5>Help</h5>
+                            </div>
+                        </div>
+
+                        <!-- help text end -->
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group question" id="t64" data-title="Others">
+                        <label>Continuing rent</label>
+
+                        <div>
+                            <span class="checkboxes pound">  <input type="text" numbers-only
+                                                                    ng-model="customers.monthly_outgoing.continuing_rent"
+                                                                    class="form-control"
+                                                                    name="customers.monthly_outgoing.continuing_rent"
+                                                                    ng-focus="showTyping('continuing_rent')" ng-blur="hideTyping('continuing_rent')">  </span>
+
+                        </div>
+
+                        <!-- help text -->
+
+                        <div>
+                            <div class="typing helptip icon-sprite speech" ng-show="customer.monthly.continuing_rent.typing && !local.customer.monthly.continuing_rent.typing" >
+                                Typing ...
+                            </div>
+                            <div class="helptip icon-sprite speech" id="boxt10" ng-hide="customer.monthly.continuing_rent.typing && !local.customer.monthly.continuing_rent.typing">
+                                <h5>Help</h5>
+                            </div>
+                        </div>
+
+                        <!-- help text end -->
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+                <div class="form-group">
+                    <div class="pull-right">
+                        <input type="button" ng-controller="ClientDashboardController" class="whi-btn2 btnPrevious"
+                               ng-click="changeActiveTab('liabilities')" value="&lt; BACK">
+                        <button type="submit" class="blue-btn5"
+                                ng-click="createexpenditure(customers.monthly_outgoing);"> Save
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+
+    </div>
+</div>    

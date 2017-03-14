@@ -1,0 +1,281 @@
+<form class="form-horizontal" name="addapp0">  		
+<div class="form-group">
+<div class="col-sm-6">  
+                
+          
+                 <input type="hidden" class="form-control"  ng-model="applicant.id"  />
+       <input type="hidden" class="form-control"  ng-model="applicant.title"  />
+       
+<div class="form-group question" id="t7"  data-title="Enter Your Title">
+    <label>Title</label>
+    <div>
+         <span class="checkboxes">   
+        <select class="form-control" ng-model="applicant.title"  required>
+													<option value="">Please Select</option>
+													<option value="5">Dr</option>
+													<option value="4">Miss</option>
+													<option value="1" >Mr</option>
+													<option value="2">Mrs</option>
+													<option value="3">Ms</option>
+
+												</select>
+         </span> 
+    </div>
+       
+      <!-- help text -->
+    
+    <div class="helptip icon-sprite speech" id="boxt7"> 
+        <h5>Help</h5>
+    </div>
+    
+    <!-- help text end -->
+</div>
+</div>
+<div class="col-sm-6">
+<div class="form-group question" id="t10"  data-title="Enter Your Name">
+    <label   >Forename</label>
+    
+    <div>
+         <span class="checkboxes">  
+       <input type="text" class="form-control"  ng-model="applicant.forename" name="forename"   required only-alphabets>
+         </span> 
+       
+    </div>
+   
+      
+      <!-- help text -->
+    
+    <div class="helptip icon-sprite speech" id="boxt10"> 
+        <h5>Help</h5>
+    </div>
+    
+    <!-- help text end -->
+</div> 
+</div>
+<div class="col-sm-6">      
+<div class="form-group question" id="t10"  data-title="Enter Your Middlename">
+    <label   >Middle Name (s)</label>
+    <div >
+         <span class="checkboxes">  
+       <input type="text" class="form-control"ng-model="applicant.middlenames" name="middlenames"  only-alphabets>
+         </span> 
+    </div>
+     
+      <!-- help text -->
+    
+    <div class="helptip icon-sprite speech" id="boxt10"> 
+        <h5>Help</h5>
+    </div>
+    
+    <!-- help text end -->
+</div>
+</div>
+<div class="col-sm-6">      
+<div class="form-group question" id="t10"  data-title="Enter Your surname" >
+    <label   >Surname</label>
+    <div >
+         <span class="checkboxes">  
+       <input type="text" class="form-control" ng-model="applicant.surname" name="surname" required only-alphabets>
+         </span> 
+    </div>
+   
+      <!-- help text -->
+    
+    <div class="helptip icon-sprite speech" id="boxt10"> 
+        <h5>Help</h5>
+    </div>
+    
+    <!-- help text end -->
+</div> 
+</div>
+<div class="col-sm-6">
+<div class="form-group question" id="t13"  data-title="Select Voters Roll">
+    <label   >Voters Roll</label>
+   <div >
+         <span class="checkboxes"><input type="radio" ng-model="applicant.voters_roll" value="1" name="rblOnVotersRoll" > Yes <input type="radio" ng-model="applicant.voters_roll" value="0" name="rblOnVotersRoll"> No </span>
+    </div>
+      
+    
+      <!-- help text -->
+    
+    <div class="helptip icon-sprite speech" id="boxt13"> 
+        <h5>Help</h5>
+    </div>
+    
+    <!-- help text end -->
+</div>
+</div>
+<div class="col-sm-6">
+<div class="form-group question" id="t14"  data-title="Enter Your Date of Birth">
+    <label   >Date of Birth [dd/mm/yyyy]</label>
+    <div >
+         <span class="checkboxes">  
+         
+             
+             <input  class="form-control"  type="text"  ng-model="applicant.dob" name="dob" required >
+              <span class="form error" ng-show="addapp0.txtDateofBirth.$error.wizValDateOfBirth">
+        Please enter age above 18</span> 
+         </span> 
+    </div>
+
+      
+      <!-- help text -->
+    
+    <div class="helptip icon-sprite speech" id="boxt14"> 
+        <h5>Help</h5>
+    </div>
+    
+    <!-- help text end -->
+</div> 
+</div>
+<div class="col-sm-6">      
+<div class="form-group question" id="t14">
+    <label   >Gender</label>
+    <div >
+         <span class="checkboxes">  
+	<select  class="form-control" ng-model="applicant.gender" name="gender"  required>
+												<option value="">Please Select</option>
+												<option value="1">Male</option>
+												<option value="2">Female</option>
+
+	</select>
+         </span> 
+    </div>
+      
+      <!-- help text -->
+    
+    <div class="helptip icon-sprite speech" id="boxt14"> 
+        <h5>Help</h5>
+    </div>
+    
+    <!-- help text end -->
+</div> 
+</div>
+<div class="col-sm-6">
+<div class="form-group question" id="t15"  data-title="Select Marital Status">
+    <label   >Marital Status </label>
+    <div >
+         <span class="checkboxes">  
+      <select class="form-control" ng-model="applicant.marital_status" name="marital_status"  required>
+													<option value="">Please Select</option>
+													<option value="4">Divorced</option>
+													<option value="1">Married</option>
+													<option value="5">Separated</option>
+													<option value="2" >Single</option>
+													<option value="3">Widowed</option>
+
+												</select>
+         </span> 
+    </div>
+       
+      <!-- help text -->
+    
+    <div class="helptip icon-sprite speech" id="boxt15"> 
+        <h5>Help</h5>
+    </div>
+    
+    <!-- help text end -->
+</div>
+</div>
+<div class="col-sm-6">
+<div class="form-group question" id="t16"  data-title="Enter Nationality">
+    <label   >Nationality</label>
+    <div >
+         <span class="checkboxes">  
+      <select class="form-control" ng-model="applicant.nationality" name="nationality"  required>
+													<option value="">Please Select</option>
+													<option value="1">British</option>
+													<option value="2">EEC</option>
+													<option value="3">New EEC</option>
+													<option value="4">Non EEC</option>
+
+												</select>
+         </span> 
+    </div>
+     
+      <!-- help text -->
+    
+    <div class="helptip icon-sprite speech" id="boxt16"> 
+        <h5>Help</h5>
+    </div>
+    
+    <!-- help text end -->
+</div>
+</div>
+<div class="col-sm-6">
+<div class="form-group question" id="t19"  data-title="Residency Proof?">
+    <label   >Residency Proof</label>
+    <div >
+           <span class="checkboxes">  
+        <select class="form-control"  ng-model="applicant.residency_proof" name="residency_proof"  required>
+													<option value="">Please Select</option>
+													<option value="2">12 Months</option>
+													<option value="3">24 Months</option>
+													<option value="1">3 Months</option>
+													<option value="4" selected="selected">36 Months or More</option>
+
+												</select>
+        </span> 
+    </div>
+      
+      <!-- help text -->
+    
+    <div class="helptip icon-sprite speech" id="boxt19"> 
+        <h5>Help</h5>
+    </div>
+    
+    <!-- help text end -->
+</div>
+</div> 
+<div class="col-sm-6">                     
+<div class="form-group question" id="t8"  data-title="Enter Email Address">
+    <label>Email Address</label>
+    <div >
+         <span class="checkboxes">  
+        <input type="email" class="form-control" ng-model="applicant.email_address" name="email_address" required> 
+         </span> 
+    </div>
+    
+      <!-- help text -->
+    
+    <div class="helptip icon-sprite speech" id="boxt8"> 
+        <h5>Help</h5>
+    </div>
+    
+    <!-- help text end -->
+</div>
+</div>
+
+<div class="col-sm-6">                     
+<div class="form-group question" id="t8"  data-title="Enter Mobile Number">
+    <label>Mobile Number</label>
+    <div >
+         <span class="checkboxes">  
+        <input type="text" class="form-control" ng-model="applicant.mobile_number" name="mobile_number" required  numbers-only> 
+        
+         </span> 
+    </div>
+        
+      <!-- help text -->
+    
+    <div class="helptip icon-sprite speech" id="boxt8"> 
+        <h5>Help</h5>
+    </div>
+    
+    <!-- help text end -->
+</div>
+</div>
+
+      
+                      </div>
+                      </br>
+                      </br>
+     <div class="form-group"> 
+    <div class="pull-right">
+<input type="button" class="whi-btn2 btnPrevious"  value="&lt; BACK">
+<button type="submit" class="blue-btn5" ng-click="createapplicant(applicant);">Save</button> 
+		</div>
+          
+    </div>
+           </form>
+     

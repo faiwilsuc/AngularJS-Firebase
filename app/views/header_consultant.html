@@ -1,0 +1,87 @@
+<div id="header-topbar-option-demo" class="page-header-topbar">
+        <nav id="topbar" role="navigation" style="margin-bottom: 0;" data-step="3" data-intro="&lt;b&gt;Topbar&lt;/b&gt; has other styles with live demo. Go to &lt;b&gt;Layouts-&gt;Header&amp;Topbar&lt;/b&gt; and check it out." class="navbar navbar-default navbar-static-top">
+            <div class="navbar-header">
+                <button type="button" data-toggle="collapse" data-target=".sidebar-collapse" class="navbar-toggle"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
+                 <a id="logo" href="index.html" class="navbar-brand"><img src="images/logo.png" alt="Cdeals" class="img-responsive pull-left mrm" /></a></div>
+            <div class="topbar-main"><a id="menu-toggle" href="#" class="hidden-xs"><i class="fa fa-bars"></i></a>
+          <a href="#" ><img src="images/menu-1.png" alt="Cdeals" class="img-responsive pull-left mrm" /></a>
+          <a href="#"><img src="images/bookmark.png" alt="Cdeals" class="img-responsive pull-left mrm" /></a>
+          <a href="#"><img src="images/email.png" alt="Cdeals" class="img-responsive pull-left mrm" /></a>
+          <a href="#"><img src="images/Video.png" alt="Cdeals" class="img-responsive pull-left mrm" /></a>
+          <a href="#" ><img src="images/settings.png" alt="Cdeals" class="img-responsive pull-left mrm" /></a>
+          <a href="#"><img src="images/Waiting.png" alt="Cdeals" class="img-responsive pull-left mrm" /></a>
+          <a href="#" ><img src="images/History.png" alt="Cdeals" class="img-responsive pull-left mrm" /></a>
+           <a href="#"><img src="images/Time.png" alt="Cdeals" class="img-responsive pull-left mrm" /></a>
+            <a href="#"><img src="images/Help.png" alt="Cdeals" class="img-responsive pull-left mrm" /></a>
+             <a href="#"><img src="images/mess-con.png" alt="Cdeals" class="img-responsive pull-left mrm" /></a>
+              <a href="#" ng-click="logout()"><img src="images/Logout-h.png" alt="Cdeals" class="img-responsive pull-left mrm" /> logout {{session}}</a>
+             <ul class="nav navbar navbar-top-links navbar-right mbn">
+           
+                  
+                </ul>
+            </div>
+        </nav>
+     
+    <!--END TOPBAR-->
+    <div id="wrapper"><!--BEGIN SIDEBAR MENU-->
+        
+        <div  ng-if="session==1"><nav id="sidebar" role="navigation" data-step="2" data-intro="Template has &lt;b&gt;many navigation styles&lt;/b&gt;" data-position="right" class="navbar-default navbar-static-side">
+            <div class="sidebar-collapse menu-scroll">
+                <ul id="side-menu" class="nav">
+                    <li class="user-panel">
+                                    
+                        <div class="clearfix"></div>
+                    </li>
+                    <li class="active"><a href="index.html"><i class="fa fa-tachometer fa-fw">
+                        <div class="icon-bg bg-orange"></div>
+                    </i><span class="menu-title">Dashboard</span></a></li>
+                    <li><a href="#"><i class="fa fa-desktop fa-fw">
+                        <div class="icon-bg bg-pink"></div>
+                    </i><span class="menu-title">Consultants List</span><span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level" ng-repeat="consultname in check_consultantname" ng-if="consultname.client_id!=session">
+                            <li ng-class="{'cht-sel': consultname.client_id == selectedid}"><a style="cursor:pointer;"><span class="badge badge-orange">7</span><span class="submenu-title">{{consultname.client_name | capitalize }}</span></a></li>
+                          <!--  <li><a href="#"><span class="badge badge-orange">7</span></i><span class="submenu-title">Consultant2</span></a></li>
+                            <li><a href="#"><span class="badge badge-orange">7</span><span class="submenu-title">Consultant3</span></a></li>-->
+                      </ul>
+                    </li>
+                    <li><a href="#"><i class="fa fa-send-o fa-fw">
+                        <div class="icon-bg bg-green"></div>
+                    </i><span class="menu-title">Mirroring Clients</span><span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level" ng-repeat="client in client_det">
+                            <li ng-class="{'cht-sel': client.client_id == selectedid}"><a style="cursor:pointer;" ng-click="textchat(client)"><span class="badge badge-orange">7</span><span class="submenu-title">{{client.client_name | capitalize }}</span></a></li>
+                           <!-- <li><a href="#"><span class="badge badge-orange">7</span><span class="submenu-title">Client2</span></a></li>
+                            <li><a href="#"><span class="badge badge-orange">7</span></i><span class="submenu-title">Client3</span></a></li>-->
+                        </ul>
+                    </li>
+                    <li><a href="#"><i class="fa fa-edit fa-fw">
+                        <div class="icon-bg bg-violet"></div>
+                    </i><span class="menu-title">Clients List</span><span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li><a style="cursor:pointer;"><span class="badge badge-orange">3</span><span class="submenu-title">Client1</span></a></li>
+                            <li><a style="cursor:pointer;"><span class="badge badge-orange">4</span></i><span class="submenu-title">Client2</span></a></li>
+                            <li><a style="cursor:pointer;"><span class="badge badge-orange">5</span><span class="submenu-title">Client3</span></a></li>
+                        </ul>
+                    </li>
+                   
+                    <li><a href="#"><i class="fa fa-file-o fa-fw">
+                        <div class="icon-bg bg-yellow"></div>
+                    </i><span class="menu-title">Chats</span><span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li><a href="page-gallery.html"><span class="submenu-title">Client1 </span></a></li>
+                            <li><a href="page-timeline.html"><span class="submenu-title">Consultant1</span></a></li>
+                            <li><a href="page-blog.html"><span class="submenu-title">Client2</span></a></li>
+                           
+                        </ul>
+                    </li>
+                    
+                </ul>
+            </div>
+        </nav></div>
+        <!--END SIDEBAR MENU--><!--BEGIN CHAT FORM-->
+        <div id="chat-form" class="fixed">
+            <div class="chat-inner"><h2 class="chat-header"><a href="javascript:;" class="chat-form-close pull-right"><i class="glyphicon glyphicon-remove"></i></a><i class="fa fa-user"></i>&nbsp;
+                 Video Chat
+                &nbsp;<span class="badge badge-info">3</span></h2>
+</div>
+        </div>
+        <!--END CHAT FORM--><!--BEGIN PAGE WRAPPER-->

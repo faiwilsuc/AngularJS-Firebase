@@ -1,0 +1,1426 @@
+<!-- panel 2 Start-->
+<div ng-controller="ApplicantController">
+    <div class="form-group">
+        <h3><img style="padding-right:5px;" src="images/ic-Applicants.png">Applicants</h3>
+    </div>
+    <div>
+        <div class=" tab-pane-border que-for" style="margin-top:-5px; margin-bottom:8px;">
+            <div class="" style="display:inline-block" id="t13" data-title="Select Voters Roll">
+                <label>Choose how many applicants want to create ?</label>
+                <div>
+                    <span class="checkboxes">  
+                        <input type="radio" ng-model="customers.no_of_applicants" name="no_of_applicants" value="1" ng-click="add_applicants_tab(customers.no_of_applicants)"> 1
+                        <input type="radio" ng-model="customers.no_of_applicants" name="no_of_applicants" value="2" ng-click="add_applicants_tab(customers.no_of_applicants)"> 2
+                        <input type="radio" ng-model="customers.no_of_applicants" name="no_of_applicants" value="3" ng-click="add_applicants_tab(customers.no_of_applicants)"> 3
+                        <input type="radio" ng-model="customers.no_of_applicants" name="no_of_applicants" value="4" ng-click="add_applicants_tab(customers.no_of_applicants)"> 4
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="tab-pane-border que-for">
+            <div ng-switch="customers.no_of_applicants == '1' || customers.no_of_applicants == '2' || customers.no_of_applicants == '3' || customers.no_of_applicants == '4'">
+                <div ng-switch-when="true">
+                    <div class="tab-content">
+                        <ul class="nav nav-tabs nav-tabs-inside" id="myTab">
+                            <li ng-switch="customers.no_of_applicants == '1' || customers.no_of_applicants == '2' || customers.no_of_applicants == '3' || customers.no_of_applicants == '4'" ng-click="customers.activeApplicant = 1" ng-class="{active: isTabActive(1)}">
+                                <a ng-switch-when="true" data-target="#applicant1" data-toggle="tab" aria-expanded="true" > 
+                                    <span>{{(customers.applicants[0].forename)? customers.applicants[0].forename: 'Applicant 1'}} </span>
+                                </a>
+                            </li> 
+                            <li ng-switch="customers.no_of_applicants == '2' || customers.no_of_applicants == '3' || customers.no_of_applicants == '4'" ng-click="customers.activeApplicant = 2" ng-class="{active: isTabActive(2)}">
+                                <a ng-switch-when="true" data-target="#applicant2" data-toggle="tab" class="ng-scope" aria-expanded="true"> 
+                                    <!--                                    <span class="ng-scope"> Applicant 2 </span>-->
+                                    <span>{{(customers.applicants[1].forename)? customers.applicants[1].forename: 'Applicant 2'}} </span>
+                                </a>
+                            </li>    
+                            <li ng-switch="customers.no_of_applicants == '3' || customers.no_of_applicants == '4'" ng-class="{active: isTabActive(3)}" ng-click="customers.activeApplicant = 3">
+                                <a ng-switch-when="true" data-target="#applicant3" data-toggle="tab" class="ng-scope" aria-expanded="true" >  
+                                    <!--                                    <span class="ng-scope"> Applicant 3 </span>-->
+                                    <span>{{(customers.applicants[2].forename)? customers.applicants[2].forename: 'Applicant 3'}} </span>
+                                </a>
+                            </li>  
+                            <li ng-switch="customers.no_of_applicants == '4'" ng-class="{active: isTabActive(4)}" ng-click="customers.activeApplicant = 4">
+                                <a ng-switch-when="true" data-target="#applicant4" data-toggle="tab" class="ng-scope" aria-expanded="true" > 
+                                    <!--                                    <span class="ng-scope"> Applicant 4 </span>-->
+                                    <span>{{(customers.applicants[3].forename)? customers.applicants[3].forename: 'Applicant 4'}} </span>
+                                </a>
+                            </li>  
+                        </ul>
+                        <div class="tab-content">
+                            <div class="tab-pane" id="applicant1" ng-class="{active: isTabActive(1)}">
+                                <form class="form-horizontal" name="addapp0" ng-submit="addapp0.$valid && createapplicant(customers.applicants[0], 0)">
+                                    <div class="form-group">
+                                        <div class="col-sm-6">
+                                            <input type="hidden" class="form-control" ng-model="customers.applicants[0].id"/>
+                                            <div class="form-group question" id="t7" data-title="Enter Your Title">
+                                                <label>Title</label>
+                                                <div>
+                                                    <span class="checkboxes">   
+                                                        <select class="form-control" ng-model="customers.applicants[0].title" required>
+                                                            <option value="">Please Select</option>
+                                                            <option value="5">Dr</option>
+                                                            <option value="4">Miss</option>
+                                                            <option value="1">Mr</option>
+                                                            <option value="2">Mrs</option>
+                                                            <option value="3">Ms</option>
+                                                        </select>
+                                                    </span>
+                                                </div>
+                                                <!-- help text -->
+                                                <div class="helptip icon-sprite speech" id="boxt7">
+                                                    <h5>Help</h5>
+                                                </div>
+                                                <!-- help text end -->
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group question" id="t10" data-title="Enter Your Name">
+                                                <label>Forename</label>
+                                                <div>
+                                                    <span class="checkboxes">  
+                                                        <input type="text" class="form-control" ng-model="customers.applicants[0].forename" name="forename" required only-alphabets ng-focus="showTyping('forename')" ng-blur="hideTyping('forename')">
+                                                    </span>
+                                                </div>
+                                                <!-- help text -->
+                                                <div>
+                                                    <div class="typing helptip icon-sprite speech" ng-show="customer.applicant.forename.typing && !local.customer.applicant.forename.typing" >
+                                                        Typing ...
+                                                    </div>
+                                                    <div class="helptip icon-sprite speech" id="boxt10" ng-hide="customer.applicant.forename.typing && !local.customer.applicant.forename.typing">
+                                                        <h5>Help</h5>
+                                                    </div>
+                                                </div>
+                                                <!-- help text end -->
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group question" id="t10"
+                                                 data-title="Enter Your Middlename">
+                                                <label>Middle Name (s)</label>
+                                                <div>
+                                                    <span class="checkboxes">  
+                                                        <input type="text" class="form-control" ng-model="customers.applicants[0].middlenames" name="middlenames" only-alphabets ng-focus="showTyping('middlenames')" ng-blur="hideTyping('middlenames')" required>
+                                                    </span>
+                                                </div>
+                                                <!-- help text -->
+                                                <div>
+                                                    <div class="typing helptip icon-sprite speech" ng-show="customer.applicant.middlenames.typing && !local.customer.applicant.middlenames.typing" >
+                                                        Typing ...
+                                                    </div>
+                                                    <div class="helptip icon-sprite speech" id="boxt10" ng-hide="customer.applicant.middlenames.typing && !local.customer.applicant.middlenames.typing">
+                                                        <h5>Help</h5>
+                                                    </div>
+                                                </div>
+                                                <!-- help text end -->
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group question" id="t10" data-title="Enter Your surname">
+                                                <label>Surname</label>
+                                                <div>
+                                                    <span class="checkboxes">  
+                                                        <input type="text" class="form-control" ng-model="customers.applicants[0].surname" name="surname" required only-alphabets ng-focus="showTyping('surname')" ng-blur="hideTyping('surname')">
+                                                    </span>
+                                                </div>
+                                                <!-- help text -->
+                                                <div>
+                                                    <div class="typing helptip icon-sprite speech" ng-show="customer.applicant.surname.typing && !local.customer.applicant.surname.typing" >
+                                                        Typing ...
+                                                    </div>
+                                                    <div class="helptip icon-sprite speech" id="boxt10" ng-hide="customer.applicant.surname.typing && !local.customer.applicant.surname.typing">
+                                                        <h5>Help</h5>
+                                                    </div>
+                                                </div>
+                                                <!-- help text end -->
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group question" id="t13"
+                                                 data-title="Select Voters Roll">
+                                                <label>Voters Roll</label>
+                                                <div>
+                                                    <span class="checkboxes" ng-init="customers.applicants[0].voters_roll = false">
+                                                        <input type="radio" ng-model="customers.applicants[0].voters_roll" value="1" name="voters_roll"> Yes 
+                                                        <input type="radio" ng-model="customers.applicants[0].voters_roll" value="0" name="voters_roll"> No 
+                                                    </span>
+                                                </div>
+                                                <!-- help text -->
+                                                <div class="helptip icon-sprite speech" id="boxt13">
+                                                    <h5>Help</h5>
+                                                </div>
+                                                <!-- help text end -->
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group question" id="t14" data-title="Enter Your Date of Birth">
+                                                <label>Date of Birth [dd/mm/yyyy]</label>
+                                                <div>
+                                                    <span class="checkboxes">  
+                                                        <!--<input class="form-control" type="text" ng-model="customers.applicants[0].dob" name="dob"  onkeyup="ValidateDate(this, event.keyCode)" onkeydown="return DateFormat(this, event.keyCode)" required invalid-date="10" autocomplete="off" wiz-val-date-of-birth="18" >-->
+                                                        <input  class="form-control"  type="text" ng-model="customers.applicants[0].dob" name="dob" required  onkeyup = "ValidateDate(this, event.keyCode)" onkeydown="return DateFormat(this, event.keyCode)" invalid-Date="10" maxlength="10"  autocomplete="off" wiz-val-date-of-birth="18">
+
+                                                        <span class="form error" ng-show="addapp0.dob.$error.wizValDateOfBirth">
+                                                            Please enter age above 18
+                                                        </span> 
+                                                    </span>
+                                                </div>
+                                                <!-- help text -->
+                                                <div>
+                                                    <div class="typing helptip icon-sprite speech" ng-show="customer.applicant.dob.typing && !local.customer.applicant.dob.typing" >
+                                                        Typing ...
+                                                    </div>
+                                                    <div class="helptip icon-sprite speech" id="boxt10" ng-hide="customer.applicant.dob.typing && !local.customer.applicant.dob.typing">
+                                                        <h5>Help</h5>
+                                                    </div>
+                                                </div>
+                                                <!-- help text end -->
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group question" id="t14">
+                                                <label>Gender</label>
+                                                <div>
+                                                    <span class="checkboxes">  
+                                                        <select class="form-control" ng-model="customers.applicants[0].gender" name="gender" required>
+                                                            <option value="">Please Select</option>
+                                                            <option value="1">Male</option>
+                                                            <option value="2">Female</option>
+                                                        </select>
+                                                    </span>
+                                                </div>
+                                                <!-- help text -->
+                                                <div class="helptip icon-sprite speech" id="boxt14">
+                                                    <h5>Help</h5>
+                                                </div>
+                                                <!-- help text end -->
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group question" id="t15"
+                                                 data-title="Select Marital Status">
+                                                <label>Marital Status </label>
+                                                <div>
+                                                    <span class="checkboxes">  
+                                                        <select class="form-control" ng-model="customers.applicants[0].marital_status" name="marital_status" required>
+                                                            <option value="">Please Select</option>
+                                                            <option value="4">Divorced</option>
+                                                            <option value="1">Married</option>
+                                                            <option value="5">Separated</option>
+                                                            <option value="2">Single</option>
+                                                            <option value="3">Widowed</option>
+                                                        </select>
+                                                    </span>
+                                                </div>
+                                                <!-- help text -->
+                                                <div class="helptip icon-sprite speech" id="boxt15">
+                                                    <h5>Help</h5>
+                                                </div>
+
+                                                <!-- help text end -->
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group question" id="t16"
+                                                 data-title="Enter Nationality">
+                                                <label>Nationality</label>
+                                                <div>
+                                                    <span class="checkboxes">  
+                                                        <select class="form-control" ng-model="customers.applicants[0].nationality" name="nationality" required>
+                                                            <option value="">Please Select</option>
+                                                            <option value="1">British</option>
+                                                            <option value="2">EEC</option>
+                                                            <option value="3">New EEC</option>
+                                                            <option value="4">Non EEC</option>
+
+                                                        </select>
+                                                    </span>
+                                                </div>
+                                                <!-- help text -->
+                                                <div class="helptip icon-sprite speech" id="boxt16">
+                                                    <h5>Help</h5>
+                                                </div>
+                                                <!-- help text end -->
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group question" id="t19" data-title="Residency Proof?">
+                                                <label>Residency Proof</label>
+                                                <div>
+                                                    <span class="checkboxes">  
+                                                        <select class="form-control" ng-model="customers.applicants[0].residency_proof" name="residency_proof" required>
+                                                            <option value="">Please Select</option>
+                                                            <option value="2">12 Months</option>
+                                                            <option value="3">24 Months</option>
+                                                            <option value="1">3 Months</option>
+                                                            <option value="4" selected="selected">36 Months or More</option>
+                                                        </select>
+                                                    </span>
+                                                </div>
+                                                <!-- help text -->
+                                                <div class="helptip icon-sprite speech" id="boxt19">
+                                                    <h5>Help</h5>
+                                                </div>
+                                                <!-- help text end -->
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group question" id="t8"
+                                                 data-title="Enter Email Address">
+                                                <label>Email Address</label>
+                                                <div>
+                                                    <span class="checkboxes">  
+                                                        <input type="email" class="form-control" ng-model="customers.applicants[0].email_address" name="email_address" ng-pattern="/^[_a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/" ng-focus="showTyping('email_address')" ng-blur="hideTyping('email_address')" required >
+                                                    </span>
+                                                </div>
+                                                <!-- help text -->
+                                                <div>
+                                                    <div class="typing helptip icon-sprite speech" ng-show="customer.applicant.email_address.typing && !local.customer.applicant.email_address.typing" >
+                                                        Typing ...
+                                                    </div>
+                                                    <div class="helptip icon-sprite speech" id="boxt10" ng-hide="customer.applicant.email_address.typing && !local.customer.applicant.email_address.typing">
+                                                        <h5>Help</h5>
+                                                    </div>
+                                                </div>
+                                                <!-- help text end -->
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group question">
+                                                <label>Mobile Number</label>
+                                                <div>
+                                                    <span class="checkboxes">  
+                                                        <input type="text" class="form-control" ng-model="customers.applicants[0].mobile_number" name="mobile_number" ng-focus="showTyping('mobile_number')" ng-blur="hideTyping('mobile_number')" required="" maxlength="11" numbers-only="" minlength="10">
+                                                    </span>
+                                                </div>
+                                                <!-- help text -->
+                                                <div>
+                                                    <div class="typing helptip icon-sprite speech" ng-show="customer.applicant.mobile_number.typing && !local.customer.applicant.mobile_number.typing" >
+                                                        Typing ...
+                                                    </div>
+                                                    <div class="helptip icon-sprite speech" id="boxt10" ng-hide="customer.applicant.mobile_number.typing && !local.customer.applicant.mobile_number.typing">
+                                                        <h5>Help</h5>
+                                                    </div>
+                                                </div>
+                                                <!-- help text end -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                    </br>
+                                    </br>
+                                    <div class="form-group">
+                                        <div class="pull-right">
+                                            <button type="submit" class="blue-btn5">Save</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="tab-pane" id="applicant2" ng-class="{active: isTabActive(2)}">
+                                <form class="form-horizontal" name="addapp1" ng-submit="addapp1.$valid && createapplicant(customers.applicants[1], 1)">
+                                    <div class="form-group">
+                                        <div class="col-sm-6">
+                                            <input type="hidden" class="form-control" ng-model="customers.applicants[1].id"/>
+                                            <div class="form-group question" id="t7" data-title="Enter Your Title">
+                                                <label>Title</label>
+                                                <div>
+                                                    <span class="checkboxes">   
+                                                        <select class="form-control" ng-model="customers.applicants[1].title" required>
+                                                            <option value="">Please Select</option>
+                                                            <option value="5">Dr</option>
+                                                            <option value="4">Miss</option>
+                                                            <option value="1">Mr</option>
+                                                            <option value="2">Mrs</option>
+                                                            <option value="3">Ms</option>
+                                                        </select>
+                                                    </span>
+                                                </div>
+                                                <!-- help text -->
+                                                <div class="helptip icon-sprite speech" id="boxt7">
+                                                    <h5>Help</h5>
+                                                </div>
+                                                <!-- help text end -->
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group question" id="t10" data-title="Enter Your Name">
+                                                <label>Forename</label>
+                                                <div>
+                                                    <span class="checkboxes">  
+                                                        <input type="text" class="form-control" ng-model="customers.applicants[1].forename" name="forename" required only-alphabets ng-focus="showTyping('forename')" ng-blur="hideTyping('forename')">
+                                                    </span>
+                                                </div>
+                                                <!-- help text -->
+                                                <div>
+                                                    <div class="typing helptip icon-sprite speech" ng-show="customer.applicant.forename.typing && !local.customer.applicant.forename.typing" >
+                                                        Typing ...
+                                                    </div>
+                                                    <div class="helptip icon-sprite speech" id="boxt10" ng-hide="customer.applicant.forename.typing && !local.customer.applicant.forename.typing">
+                                                        <h5>Help</h5>
+                                                    </div>
+                                                </div>
+                                                <!-- help text end -->
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group question" id="t10"
+                                                 data-title="Enter Your Middlename">
+                                                <label>Middle Name (s)</label>
+                                                <div>
+                                                    <span class="checkboxes">  
+                                                        <input type="text" class="form-control" ng-model="customers.applicants[1].middlenames" name="middlenames" required only-alphabets ng-focus="showTyping('middlenames')" ng-blur="hideTyping('middlenames')">
+                                                    </span>
+                                                </div>
+                                                <!-- help text -->
+                                                <div>
+                                                    <div class="typing helptip icon-sprite speech" ng-show="customer.applicant.middlenames.typing && !local.customer.applicant.middlenames.typing" >
+                                                        Typing ...
+                                                    </div>
+                                                    <div class="helptip icon-sprite speech" id="boxt10" ng-hide="customer.applicant.middlenames.typing && !local.customer.applicant.middlenames.typing">
+                                                        <h5>Help</h5>
+                                                    </div>
+                                                </div>
+                                                <!-- help text end -->
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group question" id="t10" data-title="Enter Your surname">
+                                                <label>Surname</label>
+                                                <div>
+                                                    <span class="checkboxes">  
+                                                        <input type="text" class="form-control" ng-model="customers.applicants[1].surname" name="surname" required only-alphabets ng-focus="showTyping('surname')" ng-blur="hideTyping('surname')">
+                                                    </span>
+                                                </div>
+                                                <!-- help text -->
+                                                <div>
+                                                    <div class="typing helptip icon-sprite speech" ng-show="customer.applicant.surname.typing && !local.customer.applicant.surname.typing" >
+                                                        Typing ...
+                                                    </div>
+                                    
+                                                    <div class="helptip icon-sprite speech" id="boxt10" ng-hide="customer.applicant.surname.typing && !local.customer.applicant.surname.typing">
+                                                        <h5>Help</h5>
+                                                    </div>
+                                                </div>
+                                                <!-- help text end -->
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group question" id="t13"
+                                                 data-title="Select Voters Roll">
+                                                <label>Voters Roll</label>
+                                                <div>
+                                                    <span class="checkboxes" ng-init="customers.applicants[1].voters_roll = false">
+                                                        <input type="radio" ng-model="customers.applicants[1].voters_roll" value="1" name="voters_roll"> Yes 
+                                                        <input type="radio" ng-model="customers.applicants[1].voters_roll" value="0" name="voters_roll"> No 
+                                                    </span>
+                                                </div>
+                                                <!-- help text -->
+                                                <div class="helptip icon-sprite speech" id="boxt13">
+                                                    <h5>Help</h5>
+                                                </div>
+                                                <!-- help text end -->
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group question" id="t14" data-title="Enter Your Date of Birth">
+                                                <label>Date of Birth [dd/mm/yyyy]</label>
+                                                <div>
+                                                    <span class="checkboxes">  
+                                                        <input  class="form-control"  type="text" ng-model="customers.applicants[1].dob" name="dob" required  onkeyup = "ValidateDate(this, event.keyCode)" onkeydown="return DateFormat(this, event.keyCode)" invalid-Date="10" maxlength="10"  autocomplete="off" wiz-val-date-of-birth="18">
+                                                        <!--<input class="form-control" type="text" ng-model="customers.applicants[1].dob" name="dob" required="" onkeyup="ValidateDate(this, event.keyCode)" onkeydown="return DateFormat(this, event.keyCode)" invalid-date="10" maxlength="10" autocomplete="off" wiz-val-date-of-birth="18" >-->
+                                                        <span class="form error" ng-show="addapp1.dob.$error.wizValDateOfBirth">
+                                                            Please enter age above 18
+                                                        </span> 
+                                                    </span>
+                                                </div>
+                                                <!-- help text -->
+                                                <div>
+                                                    <div class="typing helptip icon-sprite speech" ng-show="customer.applicant.dob.typing && !local.customer.applicant.dob.typing" >
+                                                        Typing ...
+                                                    </div>
+                                                    <div class="helptip icon-sprite speech" id="boxt10" ng-hide="customer.applicant.dob.typing && !local.customer.applicant.dob.typing">
+                                                        <h5>Help</h5>
+                                                    </div>
+                                                </div>
+                                                <!-- help text end -->
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group question" id="t14">
+                                                <label>Gender</label>
+                                                <div>
+                                                    <span class="checkboxes">  
+                                                        <select class="form-control" ng-model="customers.applicants[1].gender" name="gender" required>
+                                                            <option value="">Please Select</option>
+                                                            <option value="1">Male</option>
+                                                            <option value="2">Female</option>
+                                                        </select>
+                                                    </span>
+                                                </div>
+                                                <!-- help text -->
+                                                <div class="helptip icon-sprite speech" id="boxt14">
+                                                    <h5>Help</h5>
+                                                </div>
+                                                <!-- help text end -->
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group question" id="t15"
+                                                 data-title="Select Marital Status">
+                                                <label>Marital Status </label>
+                                                <div>
+                                                    <span class="checkboxes">  
+                                                        <select class="form-control" ng-model="customers.applicants[1].marital_status" name="marital_status" required>
+                                                            <option value="">Please Select</option>
+                                                            <option value="4">Divorced</option>
+                                                            <option value="1">Married</option>
+                                                            <option value="5">Separated</option>
+                                                            <option value="2">Single</option>
+                                                            <option value="3">Widowed</option>
+                                                        </select>
+                                                    </span>
+                                                </div>
+                                                <!-- help text -->
+                                                <div class="helptip icon-sprite speech" id="boxt15">
+                                                    <h5>Help</h5>
+                                                </div>
+
+                                                <!-- help text end -->
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group question" id="t16"
+                                                 data-title="Enter Nationality">
+                                                <label>Nationality</label>
+                                                <div>
+                                                    <span class="checkboxes">  
+                                                        <select class="form-control" ng-model="customers.applicants[1].nationality" name="nationality" required>
+                                                            <option value="">Please Select</option>
+                                                            <option value="1">British</option>
+                                                            <option value="2">EEC</option>
+                                                            <option value="3">New EEC</option>
+                                                            <option value="4">Non EEC</option>
+
+                                                        </select>
+                                                    </span>
+                                                </div>
+                                                <!-- help text -->
+                                                <div class="helptip icon-sprite speech" id="boxt16">
+                                                    <h5>Help</h5>
+                                                </div>
+                                                <!-- help text end -->
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group question" id="t19" data-title="Residency Proof?">
+                                                <label>Residency Proof</label>
+                                                <div>
+                                                    <span class="checkboxes">  
+                                                        <select class="form-control" ng-model="customers.applicants[1].residency_proof" name="residency_proof" required>
+                                                            <option value="">Please Select</option>
+                                                            <option value="2">12 Months</option>
+                                                            <option value="3">24 Months</option>
+                                                            <option value="1">3 Months</option>
+                                                            <option value="4" selected="selected">36 Months or More</option>
+                                                        </select>
+                                                    </span>
+                                                </div>
+                                                <!-- help text -->
+                                                <div class="helptip icon-sprite speech" id="boxt19">
+                                                    <h5>Help</h5>
+                                                </div>
+                                                <!-- help text end -->
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group question" id="t8"
+                                                 data-title="Enter Email Address">
+                                                <label>Email Address</label>
+                                                <div>
+                                                    <span class="checkboxes">  
+                                                        <input type="email" class="form-control" ng-model="customers.applicants[1].email_address" name="email_address" required ng-focus="showTyping('email_address')" ng-blur="hideTyping('email_address')">
+                                                    </span>
+                                                </div>
+                                                <!-- help text -->
+                                                <div>
+                                                    <div class="typing helptip icon-sprite speech" ng-show="customer.applicant.email_address.typing && !local.customer.applicant.email_address.typing" >
+                                                        Typing ...
+                                                    </div>
+                                                    <div class="helptip icon-sprite speech" id="boxt10" ng-hide="customer.applicant.email_address.typing && !local.customer.applicant.email_address.typing">
+                                                        <h5>Help</h5>
+                                                    </div>
+                                                </div>
+                                                <!-- help text end -->
+                                            </div>
+                                        </div>
+
+                                        <div class="col-sm-6">
+                                            <div class="form-group question">
+                                                <label>Mobile Number</label>
+                                                <div>
+                                                    <span class="checkboxes">  
+                                                        <input type="text" class="form-control" ng-model="customers.applicants[1].mobile_number" name="mobile_number" ng-focus="showTyping('mobile_number')" ng-blur="hideTyping('mobile_number')" required="" maxlength="11" numbers-only="" minlength="10">
+                                                    </span>
+                                                </div>
+                                                <!-- help text -->
+                                                <div>
+                                                    <div class="typing helptip icon-sprite speech" ng-show="customer.applicant.mobile_number.typing && !local.customer.applicant.mobile_number.typing" >
+                                                        Typing ...
+                                                    </div>
+                                                    <div class="helptip icon-sprite speech" id="boxt10" ng-hide="customer.applicant.mobile_number.typing && !local.customer.applicant.mobile_number.typing">
+                                                        <h5>Help</h5>
+                                                    </div>
+                                                </div>
+                                                <!-- help text end -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                    </br>
+                                    </br>
+                                    <div class="form-group">
+                                        <div class="pull-right">
+                                            <input type="button" class="whi-btn2 btnPrevious" ng-click="changeTab(1)" value="&lt; BACK">
+                                            <button type="submit" class="blue-btn5">Save</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="tab-pane" id="applicant3" ng-class="{active: isTabActive(3)}">
+                                <form class="form-horizontal" name="addapp2" ng-submit="addapp2.$valid && createapplicant(customers.applicants[2], 2)">
+                                    <div class="form-group">
+                                        <div class="col-sm-6">
+                                            <input type="hidden" class="form-control" ng-model="customers.applicants[2].id"/>
+                                            <div class="form-group question" id="t7" data-title="Enter Your Title">
+                                                <label>Title</label>
+                                                <div>
+                                                    <span class="checkboxes">   
+                                                        <select class="form-control" ng-model="customers.applicants[2].title" required>
+                                                            <option value="">Please Select</option>
+                                                            <option value="5">Dr</option>
+                                                            <option value="4">Miss</option>
+                                                            <option value="1">Mr</option>
+                                                            <option value="2">Mrs</option>
+                                                            <option value="3">Ms</option>
+                                                        </select>
+                                                    </span>
+                                                </div>
+                                                <!-- help text -->
+                                                <div class="helptip icon-sprite speech" id="boxt7">
+                                                    <h5>Help</h5>
+                                                </div>
+                                                <!-- help text end -->
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group question" id="t10" data-title="Enter Your Name">
+                                                <label>Forename</label>
+                                                <div>
+                                                    <span class="checkboxes">  
+                                                        <input type="text" class="form-control" ng-model="customers.applicants[2].forename" name="forename" required only-alphabets ng-focus="showTyping('forename')" ng-blur="hideTyping('forename')">
+                                                    </span>
+                                                </div>
+                                                <!-- help text -->
+                                                <div>
+                                                    <div class="typing helptip icon-sprite speech" ng-show="customer.applicant.forename.typing && !local.customer.applicant.forename.typing" >
+                                                        Typing ...
+                                                    </div>
+                                                    <div class="helptip icon-sprite speech" id="boxt10" ng-hide="customer.applicant.forename.typing && !local.customer.applicant.forename.typing">
+                                                        <h5>Help</h5>
+                                                    </div>
+                                                </div>
+                                                <!-- help text end -->
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group question" id="t10"
+                                                 data-title="Enter Your Middlename">
+                                                <label>Middle Name (s)</label>
+                                                <div>
+                                                    <span class="checkboxes">  
+                                                        <input type="text" class="form-control" ng-model="customers.applicants[2].middlenames" name="middlenames" required only-alphabets ng-focus="showTyping('middlenames')" ng-blur="hideTyping('middlenames')">
+                                                    </span>
+                                                </div>
+                                                <!-- help text -->
+                                                <div>
+                                                    <div class="typing helptip icon-sprite speech" ng-show="customer.applicant.middlenames.typing && !local.customer.applicant.middlenames.typing" >
+                                                        Typing ...
+                                                    </div>
+                                                    <div class="helptip icon-sprite speech" id="boxt10" ng-hide="customer.applicant.middlenames.typing && !local.customer.applicant.middlenames.typing">
+                                                        <h5>Help</h5>
+                                                    </div>
+                                                </div>
+                                                <!-- help text end -->
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group question" id="t10" data-title="Enter Your surname">
+                                                <label>Surname</label>
+                                                <div>
+                                                    <span class="checkboxes">  
+                                                        <input type="text" class="form-control" ng-model="customers.applicants[2].surname" name="surname" required only-alphabets ng-focus="showTyping('surname')" ng-blur="hideTyping('surname')">
+                                                    </span>
+                                                </div>
+                                                <!-- help text -->
+                                                <div>
+                                                    <div class="typing helptip icon-sprite speech" ng-show="customer.applicant.surname.typing && !local.customer.applicant.surname.typing" >
+                                                        Typing ...
+                                                    </div>
+                                                    <div class="helptip icon-sprite speech" id="boxt10" ng-hide="customer.applicant.surname.typing && !local.customer.applicant.surname.typing">
+                                                        <h5>Help</h5>
+                                                    </div>
+                                                </div>
+                                                <!-- help text end -->
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group question" id="t13"
+                                                 data-title="Select Voters Roll">
+                                                <label>Voters Roll</label>
+                                                <div>
+                                                    <span class="checkboxes" ng-init="customers.applicants[2].voters_roll = false">
+                                                        <input type="radio" ng-model="customers.applicants[2].voters_roll" value="1" name="voters_roll"> Yes 
+                                                        <input type="radio" ng-model="customers.applicants[2].voters_roll" value="0" name="voters_roll"> No 
+                                                    </span>
+                                                </div>
+                                                <!-- help text -->
+                                                <div class="helptip icon-sprite speech" id="boxt13">
+                                                    <h5>Help</h5>
+                                                </div>
+                                                <!-- help text end -->
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group question" id="t14" data-title="Enter Your Date of Birth">
+                                                <label>Date of Birth [dd/mm/yyyy]</label>
+                                                <div>
+                                                    <span class="checkboxes">  
+                                                        <!--<input class="form-control" type="text" ng-model="customers.applicants[2].dob" name="dob" required="" onkeyup="ValidateDate(this, event.keyCode)" onkeydown="return DateFormat(this, event.keyCode)" invalid-date="10" maxlength="10" autocomplete="off" wiz-val-date-of-birth="18" >-->
+                                                        <input  class="form-control"  type="text" ng-model="customers.applicants[2].dob" name="dob" required  onkeyup = "ValidateDate(this, event.keyCode)" onkeydown="return DateFormat(this, event.keyCode)" invalid-Date="10" maxlength="10"  autocomplete="off" wiz-val-date-of-birth="18">
+                                                        <span class="form error" ng-show="addapp2.dob.$error.wizValDateOfBirth">
+                                                            Please enter age above 18
+                                                        </span> 
+                                                    </span>
+                                                </div>
+                                                <!-- help text -->
+                                                <div>
+                                                    <div class="typing helptip icon-sprite speech" ng-show="customer.applicant.dob.typing && !local.customer.applicant.dob.typing" >
+                                                        Typing ...
+                                                    </div>
+                                                    <div class="helptip icon-sprite speech" id="boxt10" ng-hide="customer.applicant.dob.typing && !local.customer.applicant.dob.typing">
+                                                        <h5>Help</h5>
+                                                    </div>
+                                                </div>
+                                                <!-- help text end -->
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group question" id="t14">
+                                                <label>Gender</label>
+                                                <div>
+                                                    <span class="checkboxes">  
+                                                        <select class="form-control" ng-model="customers.applicants[2].gender" name="gender" required>
+                                                            <option value="">Please Select</option>
+                                                            <option value="1">Male</option>
+                                                            <option value="2">Female</option>
+                                                        </select>
+                                                    </span>
+                                                </div>
+                                                <!-- help text -->
+                                                <div class="helptip icon-sprite speech" id="boxt14">
+                                                    <h5>Help</h5>
+                                                </div>
+                                                <!-- help text end -->
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group question" id="t15"
+                                                 data-title="Select Marital Status">
+                                                <label>Marital Status </label>
+                                                <div>
+                                                    <span class="checkboxes">  
+                                                        <select class="form-control" ng-model="customers.applicants[2].marital_status" name="marital_status" required>
+                                                            <option value="">Please Select</option>
+                                                            <option value="4">Divorced</option>
+                                                            <option value="1">Married</option>
+                                                            <option value="5">Separated</option>
+                                                            <option value="2">Single</option>
+                                                            <option value="3">Widowed</option>
+                                                        </select>
+                                                    </span>
+                                                </div>
+                                                <!-- help text -->
+                                                <div class="helptip icon-sprite speech" id="boxt15">
+                                                    <h5>Help</h5>
+                                                </div>
+
+                                                <!-- help text end -->
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group question" id="t16"
+                                                 data-title="Enter Nationality">
+                                                <label>Nationality</label>
+                                                <div>
+                                                    <span class="checkboxes">  
+                                                        <select class="form-control" ng-model="customers.applicants[2].nationality" name="nationality" required>
+                                                            <option value="">Please Select</option>
+                                                            <option value="1">British</option>
+                                                            <option value="2">EEC</option>
+                                                            <option value="3">New EEC</option>
+                                                            <option value="4">Non EEC</option>
+
+                                                        </select>
+                                                    </span>
+                                                </div>
+                                                <!-- help text -->
+                                                <div class="helptip icon-sprite speech" id="boxt16">
+                                                    <h5>Help</h5>
+                                                </div>
+                                                <!-- help text end -->
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group question" id="t19" data-title="Residency Proof?">
+                                                <label>Residency Proof</label>
+                                                <div>
+                                                    <span class="checkboxes">  
+                                                        <select class="form-control" ng-model="customers.applicants[2].residency_proof" name="residency_proof" required>
+                                                            <option value="">Please Select</option>
+                                                            <option value="2">12 Months</option>
+                                                            <option value="3">24 Months</option>
+                                                            <option value="1">3 Months</option>
+                                                            <option value="4" selected="selected">36 Months or More</option>
+                                                        </select>
+                                                    </span>
+                                                </div>
+                                                <!-- help text -->
+                                                <div class="helptip icon-sprite speech" id="boxt19">
+                                                    <h5>Help</h5>
+                                                </div>
+                                                <!-- help text end -->
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group question" id="t8"
+                                                 data-title="Enter Email Address">
+                                                <label>Email Address</label>
+                                                <div>
+                                                    <span class="checkboxes">  
+                                                        <input type="email" class="form-control" ng-model="customers.applicants[2].email_address" name="email_address" required ng-focus="showTyping('email_address')" ng-blur="hideTyping('email_address')">
+                                                    </span>
+                                                </div>
+                                                <!-- help text -->
+                                                <div>
+                                                    <div class="typing helptip icon-sprite speech" ng-show="customer.applicant.email_address.typing && !local.customer.applicant.email_address.typing" >
+                                                        Typing ...
+                                                    </div>
+                                                    <div class="helptip icon-sprite speech" id="boxt10" ng-hide="customer.applicant.email_address.typing && !local.customer.applicant.email_address.typing">
+                                                        <h5>Help</h5>
+                                                    </div>
+                                                </div>
+                                                <!-- help text end -->
+                                            </div>
+                                        </div>
+
+                                        <div class="col-sm-6">
+                                            <div class="form-group question">
+                                                <label>Mobile Number</label>
+                                                <div>
+                                                    <span class="checkboxes">  
+                                                        <input type="text" class="form-control" ng-model="customers.applicants[2].mobile_number" name="mobile_number" ng-focus="showTyping('mobile_number')" ng-blur="hideTyping('mobile_number')" required="" maxlength="11" numbers-only="" minlength="10">
+                                                    </span>
+                                                </div>
+                                                <!-- help text -->
+                                                <div>
+                                                    <div class="typing helptip icon-sprite speech" ng-show="customer.applicant.mobile_number.typing && !local.customer.applicant.mobile_number.typing" >
+                                                        Typing ...
+                                                    </div>
+                                                    <div class="helptip icon-sprite speech" id="boxt10" ng-hide="customer.applicant.mobile_number.typing && !local.customer.applicant.mobile_number.typing">
+                                                        <h5>Help</h5>
+                                                    </div>
+                                                </div>
+                                                <!-- help text end -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                    </br>
+                                    </br>
+                                    <div class="form-group">
+                                        <div class="pull-right">
+                                            <input type="button" class="whi-btn2 btnPrevious" ng-click="changeTab(2)" value="&lt; BACK">
+                                            <button type="submit" class="blue-btn5">Save</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="tab-pane" id="applicant4" ng-class="{active: isTabActive(4)}">
+                                <form class="form-horizontal" name="addapp3" ng-submit="addapp3.$valid && createapplicant(customers.applicants[3], 3)">
+                                    <div class="form-group">
+                                        <div class="col-sm-6">
+                                            <input type="hidden" class="form-control" ng-model="customers.applicants[3].id"/>
+                                            <div class="form-group question" id="t7" data-title="Enter Your Title">
+                                                <label>Title</label>
+                                                <div>
+                                                    <span class="checkboxes">   
+                                                        <select class="form-control" ng-model="customers.applicants[3].title" required>
+                                                            <option value="">Please Select</option>
+                                                            <option value="5">Dr</option>
+                                                            <option value="4">Miss</option>
+                                                            <option value="1">Mr</option>
+                                                            <option value="2">Mrs</option>
+                                                            <option value="3">Ms</option>
+                                                        </select>
+                                                    </span>
+                                                </div>
+                                                <!-- help text -->
+                                                <div class="helptip icon-sprite speech" id="boxt7">
+                                                    <h5>Help</h5>
+                                                </div>
+                                                <!-- help text end -->
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group question" id="t10" data-title="Enter Your Name">
+                                                <label>Forename</label>
+                                                <div>
+                                                    <span class="checkboxes">  
+                                                        <input type="text" class="form-control" ng-model="customers.applicants[3].forename" name="forename" required only-alphabets ng-focus="showTyping('forename')" ng-blur="hideTyping('forename')">
+                                                    </span>
+                                                </div>
+                                                <!-- help text -->
+                                                <div>
+                                                    <div class="typing helptip icon-sprite speech" ng-show="customer.applicant.forename.typing && !local.customer.applicant.forename.typing" >
+                                                        Typing ...
+                                                    </div>
+                                                    <div class="helptip icon-sprite speech" id="boxt10" ng-hide="customer.applicant.forename.typing && !local.customer.applicant.forename.typing">
+                                                        <h5>Help</h5>
+                                                    </div>
+                                                </div>
+                                                <!-- help text end -->
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group question" id="t10"
+                                                 data-title="Enter Your Middlename">
+                                                <label>Middle Name (s)</label>
+                                                <div>
+                                                    <span class="checkboxes">  
+                                                        <input type="text" class="form-control" ng-model="customers.applicants[3].middlenames" required name="middlenames" only-alphabets ng-focus="showTyping('middlenames')" ng-blur="hideTyping('middlenames')">
+                                                    </span>
+                                                </div>
+                                                <!-- help text -->
+                                                <div>
+                                                    <div class="typing helptip icon-sprite speech" ng-show="customer.applicant.middlenames.typing && !local.customer.applicant.middlenames.typing" >
+                                                        Typing ...
+                                                    </div>
+                                                    <div class="helptip icon-sprite speech" id="boxt10" ng-hide="customer.applicant.middlenames.typing && !local.customer.applicant.middlenames.typing">
+                                                        <h5>Help</h5>
+                                                    </div>
+                                                </div>
+                                                <!-- help text end -->
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group question" id="t10" data-title="Enter Your surname">
+                                                <label>Surname</label>
+                                                <div>
+                                                    <span class="checkboxes">  
+                                                        <input type="text" class="form-control" ng-model="customers.applicants[3].surname" name="surname" required only-alphabets ng-focus="showTyping('surname')" ng-blur="hideTyping('surname')">
+                                                    </span>
+                                                </div>
+                                                <!-- help text -->
+                                                <div>
+                                                    <div class="typing helptip icon-sprite speech" ng-show="customer.applicant.surname.typing && !local.customer.applicant.surname.typing" >
+                                                        Typing ...
+                                                    </div>
+                                                    <div class="helptip icon-sprite speech" id="boxt10" ng-hide="customer.applicant.surname.typing && !local.customer.applicant.surname.typing">
+                                                        <h5>Help</h5>
+                                                    </div>
+                                                </div>
+                                                <!-- help text end -->
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group question" id="t13"
+                                                 data-title="Select Voters Roll">
+                                                <label>Voters Roll</label>
+                                                <div>
+                                                    <span class="checkboxes" ng-init="customers.applicants[3].voters_roll = false">
+                                                        <input type="radio" ng-model="customers.applicants[3].voters_roll" value="1" name="voters_roll"> Yes 
+                                                        <input type="radio" ng-model="customers.applicants[3].voters_roll" value="0" name="voters_roll"> No 
+                                                    </span>
+                                                </div>
+                                                <!-- help text -->
+                                                <div class="helptip icon-sprite speech" id="boxt13">
+                                                    <h5>Help</h5>
+                                                </div>
+                                                <!-- help text end -->
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group question" id="t14" data-title="Enter Your Date of Birth">
+                                                <label>Date of Birth [dd/mm/yyyy]</label>
+                                                <div>
+                                                    <span class="checkboxes">  
+                                                        <input  class="form-control"  type="text" ng-model="customers.applicants[3].dob" name="dob" required  onkeyup = "ValidateDate(this, event.keyCode)" onkeydown="return DateFormat(this, event.keyCode)" invalid-Date="10" maxlength="10"  autocomplete="off" wiz-val-date-of-birth="18">
+                                                        <!--<input class="form-control" type="text" ng-model="customers.applicants[3].dob" name="dob" required="" onkeyup="ValidateDate(this, event.keyCode)" onkeydown="return DateFormat(this, event.keyCode)" invalid-date="10" maxlength="10" autocomplete="off" wiz-val-date-of-birth="18" >-->
+                                                        <span class="form error" ng-show="addapp3.dob.$error.wizValDateOfBirth">
+                                                            Please enter age above 18
+                                                        </span> 
+                                                    </span>
+                                                </div>
+                                                <!-- help text -->
+                                                <div>
+                                                    <div class="typing helptip icon-sprite speech" ng-show="customer.applicant.dob.typing && !local.customer.applicant.dob.typing" >
+                                                        Typing ...
+                                                    </div>
+                                                    <div class="helptip icon-sprite speech" id="boxt10" ng-hide="customer.applicant.dob.typing && !local.customer.applicant.dob.typing">
+                                                        <h5>Help</h5>
+                                                    </div>
+                                                </div>
+                                                <!-- help text end -->
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group question" id="t14">
+                                                <label>Gender</label>
+                                                <div>
+                                                    <span class="checkboxes">  
+                                                        <select class="form-control" ng-model="customers.applicants[3].gender" name="gender" required>
+                                                            <option value="">Please Select</option>
+                                                            <option value="1">Male</option>
+                                                            <option value="2">Female</option>
+                                                        </select>
+                                                    </span>
+                                                </div>
+                                                <!-- help text -->
+                                                <div class="helptip icon-sprite speech" id="boxt14">
+                                                    <h5>Help</h5>
+                                                </div>
+                                                <!-- help text end -->
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group question" id="t15"
+                                                 data-title="Select Marital Status">
+                                                <label>Marital Status </label>
+                                                <div>
+                                                    <span class="checkboxes">  
+                                                        <select class="form-control" ng-model="customers.applicants[3].marital_status" name="marital_status" required>
+                                                            <option value="">Please Select</option>
+                                                            <option value="4">Divorced</option>
+                                                            <option value="1">Married</option>
+                                                            <option value="5">Separated</option>
+                                                            <option value="2">Single</option>
+                                                            <option value="3">Widowed</option>
+                                                        </select>
+                                                    </span>
+                                                </div>
+                                                <!-- help text -->
+                                                <div class="helptip icon-sprite speech" id="boxt15">
+                                                    <h5>Help</h5>
+                                                </div>
+
+                                                <!-- help text end -->
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group question" id="t16"
+                                                 data-title="Enter Nationality">
+                                                <label>Nationality</label>
+                                                <div>
+                                                    <span class="checkboxes">  
+                                                        <select class="form-control" ng-model="customers.applicants[3].nationality" name="nationality" required>
+                                                            <option value="">Please Select</option>
+                                                            <option value="1">British</option>
+                                                            <option value="2">EEC</option>
+                                                            <option value="3">New EEC</option>
+                                                            <option value="4">Non EEC</option>
+
+                                                        </select>
+                                                    </span>
+                                                </div>
+                                                <!-- help text -->
+                                                <div class="helptip icon-sprite speech" id="boxt16">
+                                                    <h5>Help</h5>
+                                                </div>
+                                                <!-- help text end -->
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group question" id="t19" data-title="Residency Proof?">
+                                                <label>Residency Proof</label>
+                                                <div>
+                                                    <span class="checkboxes">  
+                                                        <select class="form-control" ng-model="customers.applicants[3].residency_proof" name="residency_proof" required>
+                                                            <option value="">Please Select</option>
+                                                            <option value="2">12 Months</option>
+                                                            <option value="3">24 Months</option>
+                                                            <option value="1">3 Months</option>
+                                                            <option value="4" selected="selected">36 Months or More</option>
+                                                        </select>
+                                                    </span>
+                                                </div>
+                                                <!-- help text -->
+                                                <div class="helptip icon-sprite speech" id="boxt19">
+                                                    <h5>Help</h5>
+                                                </div>
+                                                <!-- help text end -->
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group question" id="t8"
+                                                 data-title="Enter Email Address">
+                                                <label>Email Address</label>
+                                                <div>
+                                                    <span class="checkboxes">  
+                                                        <input type="email" class="form-control" ng-model="customers.applicants[3].email_address" name="email_address" required ng-focus="showTyping('email_address')" ng-blur="hideTyping('email_address')">
+                                                    </span>
+                                                </div>
+                                                <!-- help text -->
+                                                <div>
+                                                    <div class="typing helptip icon-sprite speech" ng-show="customer.applicant.email_address.typing && !local.customer.applicant.email_address.typing" >
+                                                        Typing ...
+                                                    </div>
+                                                    <div class="helptip icon-sprite speech" id="boxt10" ng-hide="customer.applicant.email_address.typing && !local.customer.applicant.email_address.typing">
+                                                        <h5>Help</h5>
+                                                    </div>
+                                                </div>
+                                                <!-- help text end -->
+                                            </div>
+                                        </div>
+
+                                        <div class="col-sm-6">
+                                            <div class="form-group question">
+                                                <label>Mobile Number</label>
+                                                <div>
+                                                    <span class="checkboxes">  
+                                                        <input type="text" class="form-control" ng-model="customers.applicants[3].mobile_number" name="mobile_number" ng-focus="showTyping('mobile_number')" ng-blur="hideTyping('mobile_number')" required="" maxlength="11" numbers-only="" minlength="10">
+                                                    </span>
+                                                </div>
+                                                <!-- help text -->
+                                                <div>
+                                                    <div class="typing helptip icon-sprite speech" ng-show="customer.applicant.mobile_number.typing && !local.customer.applicant.mobile_number.typing" >
+                                                        Typing ...
+                                                    </div>
+                                                    <div class="helptip icon-sprite speech" id="boxt10" ng-hide="customer.applicant.mobile_number.typing && !local.customer.applicant.mobile_number.typing">
+                                                        <h5>Help</h5>
+                                                    </div>
+                                                </div>
+                                                <!-- help text end -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                    </br>
+                                    </br>
+                                    <div class="form-group">
+                                        <div class="pull-right">
+                                            <input type="button" class="whi-btn2 btnPrevious" ng-click="changeTab(3)" value="&lt; BACK">
+                                            <button type="submit" class="blue-btn5" >Save</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--                    <div class="tab-content">
+                                    <div class="tab-pane active">
+                                        <uib-tabset>
+                                            <uib-tab ng-repeat="applicant in customers.applicants" heading="{{applicant.forename == '' ? 'Applicant' + $index : applicant.forename| uppercase}}" active="applicant.active">
+                                                <form class="form-horizontal" name="addapp0" ng-submit="createapplicant(applicant, $index)">
+                                                    <div class="form-group">
+                                                        <div class="col-sm-6">
+                                                            <input type="hidden" class="form-control" ng-model="applicant.id"/>
+                                                            <div class="form-group question" id="t7" data-title="Enter Your Title">
+                                                                <label>Title</label>
+                                                                <div>
+                                                                    <span class="checkboxes">   
+                                                                        <select class="form-control" ng-model="applicant.title" required>
+                                                                            <option value="">Please Select</option>
+                                                                            <option value="5">Dr</option>
+                                                                            <option value="4">Miss</option>
+                                                                            <option value="1">Mr</option>
+                                                                            <option value="2">Mrs</option>
+                                                                            <option value="3">Ms</option>
+                                                                        </select>
+                                                                    </span>
+                                                                </div>
+            
+                                                                help text 
+            
+                                                                <div class="helptip icon-sprite speech" id="boxt7">
+                                                                    <h5>Help</h5>
+                                                                </div>
+            
+                                                                help text end 
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-6">
+                                                            <div class="form-group question" id="t10" data-title="Enter Your Name">
+                                                                <label>Forename</label>
+                                                                <div>
+                                                                    <span class="checkboxes">  
+                                                                        <input type="text" class="form-control" ng-model="applicant.forename" name="forename{{$index}}" required only-alphabets ng-focus="showTyping('forename')" ng-blur="hideTyping('forename')">
+                                                                    </span>
+                                                                </div>
+                                                                help text 
+                                                                <div>
+                                                                    <div class="typing helptip icon-sprite speech" ng-show="customer.applicant.forename.typing && !local.customer.applicant.forename.typing" >
+                                                                        Typing ...
+                                                                    </div>
+                                                                    <div class="helptip icon-sprite speech" id="boxt10" ng-hide="customer.applicant.forename.typing && !local.customer.applicant.forename.typing">
+                                                                        <h5>Help</h5>
+                                                                    </div>
+                                                                </div>
+                                                                help text end 
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-6">
+                                                            <div class="form-group question" id="t10"
+                                                                 data-title="Enter Your Middlename">
+                                                                <label>Middle Name (s)</label>
+            
+                                                                <div>
+                                                                    <span class="checkboxes">  
+                                                                        <input type="text" class="form-control" ng-model="applicant.middlenames" name="middlenames{{$index}}" only-alphabets ng-focus="showTyping('middlenames')" ng-blur="hideTyping('middlenames')">
+                                                                    </span>
+                                                                </div>
+            
+                                                                help text 
+            
+                                                                <div>
+                                                                    <div class="typing helptip icon-sprite speech" ng-show="customer.applicant.middlenames.typing && !local.customer.applicant.middlenames.typing" >
+                                                                        Typing ...
+                                                                    </div>
+                                                                    <div class="helptip icon-sprite speech" id="boxt10" ng-hide="customer.applicant.middlenames.typing && !local.customer.applicant.middlenames.typing">
+                                                                        <h5>Help</h5>
+                                                                    </div>
+                                                                </div>
+            
+                                                                help text end 
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-6">
+                                                            <div class="form-group question" id="t10"
+                                                                 data-title="Enter Your surname">
+                                                                <label>Surname</label>
+            
+                                                                <div>
+                                                                    <span class="checkboxes">  
+                                                                        <input type="text" class="form-control" ng-model="applicant.surname" name="surname{{$index}}" required only-alphabets ng-focus="showTyping('surname')" ng-blur="hideTyping('surname')">
+                                                                    </span>
+                                                                </div>
+            
+                                                                help text 
+            
+                                                                <div>
+                                                                    <div class="typing helptip icon-sprite speech" ng-show="customer.applicant.surname.typing && !local.customer.applicant.surname.typing" >
+                                                                        Typing ...
+                                                                    </div>
+                                                                    <div class="helptip icon-sprite speech" id="boxt10" ng-hide="customer.applicant.surname.typing && !local.customer.applicant.surname.typing">
+                                                                        <h5>Help</h5>
+                                                                    </div>
+                                                                </div>
+            
+                                                                help text end 
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-6">
+                                                            <div class="form-group question" id="t13"
+                                                                 data-title="Select Voters Roll">
+                                                                <label>Voters Roll</label>
+            
+                                                                <div>
+                                                                    <span class="checkboxes">
+                                                                        <input type="radio" ng-model="applicant.voters_roll" value="1" name="voters_roll{{$index}}"> Yes 
+                                                                        <input type="radio" ng-model="applicant.voters_roll" value="0" name="voters_roll{{$index}}"> No 
+                                                                    </span>
+                                                                </div>
+                                                                help text 
+                                                                <div class="helptip icon-sprite speech" id="boxt13">
+                                                                    <h5>Help</h5>
+                                                                </div>
+                                                                help text end 
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-6">
+                                                            <div class="form-group question" id="t14"
+                                                                 data-title="Enter Your Date of Birth">
+                                                                <label>Date of Birth [dd/mm/yyyy]</label>
+                                                                <div>
+                                                                    <span class="checkboxes">  
+                                                                        <input class="form-control" type="text" ng-model="applicant.dob" name="dob{{$index}}" required="" onkeyup="ValidateDate(this, event.keyCode)" onkeydown="return DateFormat(this, event.keyCode)" invalid-date="10" maxlength="10" autocomplete="off" ng-focus="showTyping('dob')" ng-blur="hideTyping('dob')">
+            
+                                                                        <input class="form-control" type="text" ng-model="applicant.dob" name="dob" required="" onkeyup="ValidateDate(this, event.keyCode)" onkeydown="return DateFormat(this, event.keyCode)" invalid-date="10" maxlength="10" autocomplete="off" wiz-val-date-of-birth="18" >
+            
+                                                                        <span class="form error" ng-show="addapp0.dob.$error.wizValDateOfBirth">
+                                                                            Please enter age above 18
+                                                                        </span> 
+                                                                    </span>
+                                                                </div>
+                                                                help text 
+                                                                <div>
+                                                                    <div class="typing helptip icon-sprite speech" ng-show="customer.applicant.dob.typing && !local.customer.applicant.dob.typing" >
+                                                                        Typing ...
+                                                                    </div>
+                                                                    <div class="helptip icon-sprite speech" id="boxt10" ng-hide="customer.applicant.dob.typing && !local.customer.applicant.dob.typing">
+                                                                        <h5>Help</h5>
+                                                                    </div>
+                                                                </div>
+                                                                help text end 
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-6">
+                                                            <div class="form-group question" id="t14">
+                                                                <label>Gender</label>
+                                                                <div>
+                                                                    <span class="checkboxes">  
+                                                                        <select class="form-control" ng-model="applicant.gender" name="gender{{$index}}" required>
+                                                                            <option value="">Please Select</option>
+                                                                            <option value="1">Male</option>
+                                                                            <option value="2">Female</option>
+                                                                        </select>
+                                                                    </span>
+                                                                </div>
+                                                                help text 
+                                                                <div class="helptip icon-sprite speech" id="boxt14">
+                                                                    <h5>Help</h5>
+                                                                </div>
+                                                                help text end 
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-6">
+                                                            <div class="form-group question" id="t15"
+                                                                 data-title="Select Marital Status">
+                                                                <label>Marital Status </label>
+                                                                <div>
+                                                                    <span class="checkboxes">  
+                                                                        <select class="form-control" ng-model="applicant.marital_status" name="marital_status{{$index}}" required>
+                                                                            <option value="">Please Select</option>
+                                                                            <option value="4">Divorced</option>
+                                                                            <option value="1">Married</option>
+                                                                            <option value="5">Separated</option>
+                                                                            <option value="2">Single</option>
+                                                                            <option value="3">Widowed</option>
+                                                                        </select>
+                                                                    </span>
+                                                                </div>
+                                                                help text 
+                                                                <div class="helptip icon-sprite speech" id="boxt15">
+                                                                    <h5>Help</h5>
+                                                                </div>
+            
+                                                                help text end 
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-6">
+                                                            <div class="form-group question" id="t16"
+                                                                 data-title="Enter Nationality">
+                                                                <label>Nationality</label>
+                                                                <div>
+                                                                    <span class="checkboxes">  
+                                                                        <select class="form-control" ng-model="applicant.nationality" name="nationality{{$index}}" required>
+                                                                            <option value="">Please Select</option>
+                                                                            <option value="1">British</option>
+                                                                            <option value="2">EEC</option>
+                                                                            <option value="3">New EEC</option>
+                                                                            <option value="4">Non EEC</option>
+            
+                                                                        </select>
+                                                                    </span>
+                                                                </div>
+                                                                help text 
+                                                                <div class="helptip icon-sprite speech" id="boxt16">
+                                                                    <h5>Help</h5>
+                                                                </div>
+                                                                help text end 
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-6">
+                                                            <div class="form-group question" id="t19" data-title="Residency Proof?">
+                                                                <label>Residency Proof</label>
+                                                                <div>
+                                                                    <span class="checkboxes">  
+                                                                        <select class="form-control" ng-model="applicant.residency_proof" name="residency_proof{{$index}}" required>
+                                                                            <option value="">Please Select</option>
+                                                                            <option value="2">12 Months</option>
+                                                                            <option value="3">24 Months</option>
+                                                                            <option value="1">3 Months</option>
+                                                                            <option value="4" selected="selected">36 Months or More</option>
+                                                                        </select>
+                                                                    </span>
+                                                                </div>
+            
+                                                                help text 
+            
+                                                                <div class="helptip icon-sprite speech" id="boxt19">
+                                                                    <h5>Help</h5>
+                                                                </div>
+            
+                                                                help text end 
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-6">
+                                                            <div class="form-group question" id="t8"
+                                                                 data-title="Enter Email Address">
+                                                                <label>Email Address</label>
+            
+                                                                <div>
+                                                                    <span class="checkboxes">  
+                                                                        <input type="email" class="form-control" ng-model="applicant.email_address" name="email_address{{$index}}" required ng-focus="showTyping('email_address')" ng-blur="hideTyping('email_address')">
+                                                                    </span>
+                                                                </div>
+            
+                                                                help text 
+            
+                                                                <div>
+                                                                    <div class="typing helptip icon-sprite speech" ng-show="customer.applicant.email_address.typing && !local.customer.applicant.email_address.typing" >
+                                                                        Typing ...
+                                                                    </div>
+                                                                    <div class="helptip icon-sprite speech" id="boxt10" ng-hide="customer.applicant.email_address.typing && !local.customer.applicant.email_address.typing">
+                                                                        <h5>Help</h5>
+                                                                    </div>
+                                                                </div>
+            
+                                                                help text end 
+                                                            </div>
+                                                        </div>
+            
+                                                        <div class="col-sm-6">
+                                                            <div class="form-group question">
+                                                                <label>Mobile Number</label>
+                                                                <div>
+                                                                    <span class="checkboxes">  
+                                                                        <input type="text" class="form-control" ng-model="applicant.mobile_number" name="mobile_number{{$index}}" required ng-focus="showTyping('mobile_number')" ng-blur="hideTyping('mobile_number')" numbers-only>
+                                                                    </span>
+                                                                </div>
+                                                                help text 
+                                                                <div>
+                                                                    <div class="typing helptip icon-sprite speech" ng-show="customer.applicant.mobile_number.typing && !local.customer.applicant.mobile_number.typing" >
+                                                                        Typing ...
+                                                                    </div>
+                                                                    <div class="helptip icon-sprite speech" id="boxt10" ng-hide="customer.applicant.mobile_number.typing && !local.customer.applicant.mobile_number.typing">
+                                                                        <h5>Help</h5>
+                                                                    </div>
+                                                                </div>
+                                                                help text end 
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    </br>
+                                                    </br>
+                                                    <div class="form-group">
+                                                        <div class="pull-right">
+                                                            <input type="button" class="whi-btn2 btnPrevious" ng-click="changeTab($index)" ng-hide="$index == 0" value="&lt; BACK">
+                                                            <button type="submit" class="blue-btn5">Save</button>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </uib-tab>
+                                        </uib-tabset>
+                                    </div>
+                                </div>-->
+        </div>
+    </div>
+</div>
+

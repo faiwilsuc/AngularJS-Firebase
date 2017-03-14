@@ -1,0 +1,54 @@
+<!-- panel 2 Start-->
+<div ng-controller="ApplicantController">
+    <div class="form-group">
+        <h3><img style="padding-right:5px;" src="images/ic-Applicants.png">Applicants</h3>
+    </div>
+    <div>
+        <div class=" tab-pane-border que-for" style="margin-top:-5px; margin-bottom:8px;">
+            <div class="" style="display:inline-block" id="t13" data-title="Select Voters Roll">
+                <label>Choose how many applicants want to create ?</label>
+
+                <div>
+         <span class="checkboxes">  
+         <input type="radio" ng-model="customers.no_of_applicants" name="customers.no_of_applicants" value="1"
+                ng-click="addTab()"> 1
+         <input type="radio" ng-model="customers.no_of_applicants" name="customers.no_of_applicants" value="2"
+                ng-click="addTab()"> 2
+         <input type="radio" ng-model="customers.no_of_applicants" name="customers.no_of_applicants" value="3"
+                ng-click="addTab()"> 3
+<input type="radio" ng-model="customers.no_of_applicants" name="customers.no_of_applicants" value="4"
+       ng-click="addTab()"> 4 </span>
+                </div>
+
+            </div>
+        </div>
+        <div>
+            <div>
+                <div class="tab-pane-border que-for">
+
+                    <div class="tab-content">
+                        <div class="tab-pane active">
+
+                            <uib-tabset>
+                                <uib-tab ng-repeat="applicant in applicants" active="applicant.active"
+                                         disable="applicant.disabled">
+                                    <uib-tab-heading>
+                                        {{applicant.title}} <i class="glyphicon glyphicon-remove-sign"></i>
+                                    </uib-tab-heading>
+                                    <!-- {{tab.content}} -->
+                                    <div compile-html="applicant.content"></div>
+                                    <!--{{tab.tabUrl}}-->
+                                </uib-tab>
+                            </uib-tabset>
+
+
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end3 -->

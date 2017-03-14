@@ -1,0 +1,548 @@
+<div ng-controller="sourcingController">
+    <div class="ng-cloak sourcedproducts">
+        <button type="button" ng-click="sourcingback()" class="btn custom-btn pull-right back1">Back to Case dashboard
+        </button>
+        <button type="button" ng-click="sourcingback()" class="btn custom-btn pull-right back1"
+                style="margin-right:5px;">Back
+        </button>
+        <div class="container-fluid tab-bg">
+            <h2 class="tab-title">Your Mortgage Quotes</h2>
+        </div>
+        <ul class="nav nav-tabs">
+            <li ng-class="{active:customers.showAllProduct}">
+                <a href="javascript:;" ng-click="allProduct()"> All Products</a>
+            </li>
+            <li ng-class="{active:customers.showFaildProduct}">
+                <a href="javascript:;" ng-click="failedProduct()"> Failed Products</a>
+            </li>
+            <li ng-class="{active:customers.showShortListProduct}">
+                <a href="javascript:;" ng-click="shortlistProduct()">Shortlisted Products</a>
+            </li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane" ng-class="{active:customers.showAllProduct}">
+                <div class="col-md-3">
+                    <div class="factfind-rates">
+                        <h3 class="factfind-rat-cion"> Filter Products By Lender <a href="" id="reset" ng-click="resetFilters()"><i class="glyphicon glyphicon-refresh"></i></a></h3>
+                        <div class="factfind-rates-bg" style="padding-bottom:45px;">
+                            <select class="selectBox form-control" ng-model="customers.keyObj.LenderName"
+                                    ng-options="lender.LenderName as lender.LenderName for lender in allItems| unique:'LenderName'"
+                                    style="width:100%">
+                                <option value="" selected> Please Select Lender</option>
+                            </select>
+                        </div>
+                        <h3 class="factfind-rat-cion"><img src="images/star.png" width="22" height="19">RATES
+                            <small style="color: white; font-size: 13px;">[ Select only 2 options ]</small>
+                        </h3>
+                        <div class="factfind-rates-bg">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="checkbox" style="padding-left: 20px">
+                                        <input type="checkbox" ng-model="customers.get.ProductName" ng-true-value="'fixed'" ng-false-value="'%'"/> Fixed</br>
+                                        <input type="checkbox" ng-model="customers.get.ProductName" ng-true-value="'Discount'" ng-false-value="'%'"/>Discounted</br>
+                                        <input type="checkbox" ng-model="customers.get.ProductName" ng-true-value="'Tracker'" ng-false-value="'%'"/>Tracker</br>
+                                        <input type="checkbox" ng-model="customers.get.ProductName" ng-true-value="'Capped'" ng-false-value="'%'"/>Capped</br>
+                                        <input type="checkbox" ng-model="customers.get.ProductName" ng-true-value="'Variable'" ng-false-value="'%'"/>Variable</br>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                <!--<div class="checkbox" >
+                                        <div ng-repeat="filters in filteryears">
+                                            <label>
+                                                <input type="checkbox"/>{{filters}}
+                                            </label>
+                                        </div>
+                                    </div> -->
+                                    
+                                    <input type="checkbox" ng-model="customers.search.test1" ng-true-value="'1 Year'" ng-false-value="'Year'"/>1 Year</br>
+                                    <input type="checkbox" ng-model="customers.search.test1" ng-true-value="'2 Year'" ng-false-value="'Year'"/>2 Year</br>
+                                    <input type="checkbox" ng-model="customers.search.test2" ng-true-value="'3 Year'" ng-false-value="'Year'"/>3 Year</br>
+                                    <input type="checkbox" ng-model="customers.search.test" ng-true-value="'4 Year'" ng-false-value="'Year'"/>4 Year</br>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="factfind-rates">
+                        <h3 class="factfind-rat-cion"><img src="images/home-tab.png" width="22" height="19">
+                            CHOOSE MY MORTGAGE</h3>
+                        <div class="factfind-rates-bg" style="padding-left: 35px">Interest Calculation Method <a href="#"><img src="images/audio-4.png" width="18" height="19"></a></br>
+                            <!-- <div ng-repeat="mymortage in choosemymortage"><span class="checkbox"><label><input
+                                            type="checkbox"/>{{mymortage}}</label></span>
+                            </div> -->
+                            <input type="checkbox" ng-model="customers.search.test" ng-true-value="'freelegals'" ng-false-value="'Year'"/>Offset Mortgages</br>
+                            <input type="checkbox" ng-model="customers.search.test" ng-true-value="'hrs'" ng-false-value="'Year'"/>Overpayment Facility</br>
+                            <input type="checkbox" ng-model="customers.get.BookingFee" ng-true-value="'£'" ng-false-value="'£'"/>No Booking Fee</br>
+                            <input type="checkbox" ng-model="customers.get.ArrangementFee" ng-true-value="'£0'" ng-false-value="'£'"/>No Arrangement Fee</br>
+                            <input type="checkbox" ng-model="customers.search.test" ng-true-value="'ltg'" ng-false-value="'Year'"/>No Higher Lending Charge</br>
+                            <input type="checkbox" ng-model="customers.search.test" ng-true-value="'£0'" ng-false-value="'Year'"/>Cashback Required</br>
+                            <input type="checkbox" ng-model="customers.search.test" ng-true-value="'erc'" ng-false-value="'Year'"/>No Early Repayment Charges</br>
+                            <input type="checkbox" ng-model="customers.search.test" ng-true-value="'over'" ng-false-value="'Year'"/>No Early Repayment Charge Overhang</br>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-md-9">
+                    <form>
+                        <div class="row pp-top">
+                            <div class="col-md-12">
+                                <span style="font-size: 14px; display: inline-block; margin-bottom: 10px;">
+                                    <input type="checkbox" ng-model="customers.lenderlist">  Show Lender Names |  
+                                    <b>Please select maximum 5 products from the list to compare</b>   &nbsp;
+                                    <span class="pull-right">
+                                        <a ng-click="showCompare()"><img src="images/update-shortlist.jpg"></a>
+                                        <a ng-click="resetCompare()"><img src="images/clear-shortlist.jpg"></a>
+                                    </span>
+                                </span>
+                            </div>
+                            <div class="clearfix"></div>
+                            <div>
+                                <table class="table table-hover tablefixed" style="border:#CCCCCC solid 1px;">
+                                    <thead>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+
+                                            <th class="bla-f14">Sort by :-</th>
+                                            <th class="Term bla-f14" ng-show="showlenderlist"><a href=""
+                                               ng-click="sort('LenderName', $event)">Lender
+                                                    Name <span class="{{Header[7]}}"></span></a></th>
+                                            <th class="Term bla-f14"> Productname</th>
+                                            <th class="Term bla-f14"><a href="" ng-click="sort('Term', $event)">Term
+                                                    <span class="{{Header[0]}}"></span></a></th>
+                                            <th class="LenderRate bla-f14"><a href=""
+                                                                              ng-click="sort('LenderRate', $event)">Rate
+                                                    <span class="{{Header[1]}}"></span></a></th>
+                                            <th class="InitialPayment bla-f14"><a href=""
+                                                                                  ng-click="sort('InitialPayment', $event)">Initial
+                                                    Payment (£)<span class="{{Header[2]}}"></span></a></th>
+                                            <th class="ValuationFee bla-f14"><a href=""
+                                                                                ng-click="sort('ValuationFee', $event)">Valuation<span
+                                                        class="{{Header[3]}}"></span></a></th>
+                                            <!--    <th class="LegalFee bla-f14">Legal Fee</th> -->
+                                            <th class="Cashback bla-f14"><a href=""
+                                                                            ng-click="sort('Cashback', $event)">Includes
+                                                    Cash-back<span class="{{Header[4]}}"></span></a></th>
+                                            <th class="ArrangementFee bla-f14"><a href=""
+                                                                                  ng-click="sort('ArrangementFee', $event)">Completion
+                                                    fee<span class="{{Header[5]}}"></span></a></th>
+                                            <th class="BookingFee bla-f14"><a href=""
+                                                                              ng-click="sort('BookingFee', $event)">Application
+                                                    fee<span class="{{Header[6]}}"></span></a></th>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+             
+                        <div>
+                            <div class="mtb"
+                                 ng-repeat="c1 in filtered = allItems| filterMultiple: {LenderName : customers.keyObj.LenderName, ProductType : ProductType, Term : Term, BookingFee : BookingFee, ArrangementFee :ArrangementFee, ERCOverHang : ERCOverHang, ERC : ERC, HLC : HLC, Incentives : Incentives, ProductName : ProductName, Overpayments : '!' + Overpayments} : true | startFrom:(currentPage1 - 1) * entryLimit | limitTo:entryLimit | orderBy:columnToOrder:reverse | filter:customers.search.test | filter:customers.search.test1| filter:customers.search.test2 | filter:customers.get">
+                                <table class="table table-hover tablefixed" style="border:#CCCCCC solid 1px;">
+                                    <thead>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th valign="middle">
+                                                <label>
+                                                    <span class="checkboxes">  
+                                                        <input type="checkbox" ng-model="c1.checkbox" ng-checked="c1.checkbox === true" value="true" ng-change="checkChanged(c1);" />
+                                                    </span>
+                                                    <span class="blue-f14">Compare</span>
+                                                </label>
+                                            </th>
+                                            <td class="bor-left" ng-show="showlenderlist">
+                                                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                                    <tr>
+                                                        <td height="40" valign="top" class="greay-f14">Lender Name</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="bla-f14" tooltip="{{c1.LenderName}}">
+                                                            {{c1.LenderName}}
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </td>
+                                            <td class="bor-left pdes">
+                                                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                                    <tr>
+                                                        <td height="40" valign="top" class="greay-f14">Product
+                                                            Description
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="bla-f14" tooltip="{{c1.ProductName}}">
+                                                            {{c1.ProductName|truncate:25}}
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </td>
+                                            <td class="bor-left">
+                                                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                                    <tr>
+                                                        <td height="40" valign="top" class="greay-f14">Term</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="bla-f14">{{c1.Term}}</td>
+                                                    </tr>
+                                                </table>
+                                            </td>
+                                            <td class="bor-left">
+                                                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                                    <tr>
+                                                        <td height="40" valign="top" class="greay-f14">Rate</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="bla-f14">{{c1.LenderRate}}</td>
+                                                    </tr>
+                                                </table>
+                                            </td>
+                                            <td class="bor-left">
+                                                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                                    <tr>
+                                                        <td height="40" valign="top" class="greay-f14">Initial <br>
+                                                            Payment
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="bla-f14">{{c1.InitialPayment}}</td>
+                                                    </tr>
+                                                </table>
+                                            </td>
+                                            <td class="bor-left">
+                                                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                                    <tr>
+                                                        <td height="40" valign="top" class="greay-f14">Valuation<br>
+                                                            Fee
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="bla-f14">{{c1.ValuationFee}}</td>
+                                                    </tr>
+                                                </table>
+                                            </td>
+
+                                            <td class="bor-left">
+                                                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                                    <tr>
+                                                        <td height="40" valign="top" class="greay-f14">Includes <br>
+                                                            Cash-back
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="bla-f14">{{c1.Cashback}}</td>
+                                                    </tr>
+                                                </table>
+                                            </td>
+                                            <td class="bor-left">
+                                                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                                    <tr>
+                                                        <td height="40" valign="top" class="greay-f14">Lender <br>
+                                                            Completion fee
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="bla-f14">{{c1.ArrangementFee}}</td>
+                                                    </tr>
+                                                </table>
+                                            </td>
+                                            <td class="bor-left">
+                                                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                                    <tr>
+                                                        <td height="40" valign="top" class="greay-f14">Lender <br>
+                                                            Application fee
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="bla-f14">{{c1.BookingFee}}</td>
+                                                    </tr>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <pagination page="currentPage1" max-size="10" total-items="totalItems" items-per-page="entryLimit" boundary-links="true" rotate="false"></pagination>
+                    </form>
+                </div>
+            </div>
+            <div class="tab-pane" ng-class="{active:customers.showFaildProduct}">
+                <div>
+                    <div class="col-md-3">
+                        <div class="rates">
+                            <h3 class="rat-cion"><img src="images/home-tab.png" width="22" height="19"> FAILURE
+                                REASONS</h3>
+
+                            <div class="rates-bg">
+                                <table width="100%" border="0" cellspacing="0" cellpadding="0"
+                                       ng-repeat="Reason in allItems2| groupBy:'FailureReason'">
+                                    <tr>
+                                        <td class="bla-f14" tooltip="{{Reason[0].FailureReason}}">
+                                            {{Reason[0].FailureReason|truncate:25}}
+                                        </td>
+                                        <td height="25" class="greay-f14"
+                                            style="text-align:right; color:#4c4c4c; font-weight:bold; ">
+                                            {{Reason.length}}
+                                        </td>
+                                        <td height="25" class="greay-f14">
+                                            <button my-compare
+                                                    my-compare-data="{{Reason[0].FailureReason}}" link
+                                                    ng-click="moveback(Reason[0].FailureReason)" class="btn btn-primary"
+                                                    style="padding:0px 5px;  border-radius:0px; font-size:13px;">
+                                                View now
+                                            </button>
+                                        </td>
+
+                                    </tr>
+                                </table>
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <div class="col-md-9">
+                        <div class="mtb"
+                             ng-repeat="c1 in  allItems2| startFrom:(currentPage2 - 1) * entryLimit | limitTo:entryLimit | orderBy:columnToOrder:reverse">
+                            <table class="table table-hover tablefixed" style="border:#CCCCCC solid 1px;">
+                                <thead>
+                                </thead>
+                                <tbody>
+                                    <tr>
+
+                                        <td class="bor-left pdes">
+                                            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                                <tr>
+                                                    <td height="40" valign="top" class="greay-f14">Product Name</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="bla-f14">{{c1.ProductName}}</td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                        <td class="bor-left pdes">
+                                            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                                <tr>
+                                                    <td height="40" valign="top" class="greay-f14">Lender Name</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="bla-f14">{{c1.LenderName}}</td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                        <td class="bor-left">
+                                            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                                <tr>
+                                                    <td height="40" valign="top" class="greay-f14">Term</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="bla-f14">{{c1.Term}}</td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                        <td class="bor-left">
+                                            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                                <tr>
+                                                    <td height="40" valign="top" class="greay-f14">Rate</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="bla-f14">{{c1.LenderRate}}</td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                        <td class="bor-left">
+                                            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                                <tr>
+                                                    <td height="40" valign="top" class="greay-f14">Max LTV<br>
+                                                        Payment
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="bla-f14">{{c1.MaxLTV}}</td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                        <td class="bor-left">
+                                            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                                <tr>
+                                                    <td height="40" valign="top" class="greay-f14">Rejection
+                                                        Reason<br>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="bla-f14">{{c1.FailureReason}} <img width="18"
+                                                      height="19"
+                                                      src="images/audio.png"
+                                                      tooltip="{{c1.FailureReason}}">
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                        <td class="bor-left">
+                                            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                                <tr>
+                                                    <td height="40" valign="top" class="greay-f14">Product Type</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="bla-f14">{{c1.ProductType}}</td>
+                                                </tr>
+                                            </table>
+                                        </td>
+
+
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <pagination page="currentPage2" max-size="10" total-items="totalItemssec"
+                                    items-per-page="entryLimit" boundary-links="true"
+                                    rotate="false"></pagination>
+                    </div>
+
+
+                </div>
+            </div>
+            <div class="tab-pane" ng-class="{active:customers.showShortListProduct}">
+                <div class="col-md-12">
+                    <div ng-if="showCompareList && customers.compareList.length">
+                        <div class="mtb"
+                             ng-repeat="c1 in customers.compareList| filterMultiple: {LenderName : customers.keyObj.LenderName, ProductType : ProductType, Term : Term, BookingFee : BookingFee, ArrangementFee :ArrangementFee, ERCOverHang : ERCOverHang, ERC : ERC, HLC : HLC, Incentives : Incentives, ProductName : ProductName, Overpayments : '!' + Overpayments} : true | startFrom:(currentPage1 - 1) * entryLimit | limitTo:entryLimit | orderBy:columnToOrder:reverse">
+                            <table class="table table-hover tablefixed" style="border:#CCCCCC solid 1px;">
+                                <tbody>
+                                    <tr>
+                                        <th valign="middle"><label>
+                                                <span class="checkboxes">  <input type="checkbox"
+                                                  checklist-model="selectedClientID.c1"
+                                                  checklist-value="c1"
+                                                  name="selectedClientID{{$index}}"
+                                                  ng-model="c1.checkbox"
+                                                  date-etc="{{c1.checkbox}}"
+                                                  ng-disabled="checked == limit && c1.checkbox != true"
+                                                  ng-change="checkChanged(c1); keypress1($event, 'selectedClientID.c1', c1, $index, 'getsource')"></span>
+                                                <span class="blue-f14">Compare</span></label></th>
+                                        <td class="bor-left" ng-show="showlenderlist">
+                                            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                                <tr>
+                                                    <td height="40" valign="top" class="greay-f14">Lender Name</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="bla-f14" tooltip="{{c1.LenderName}}">
+                                                        {{c1.LenderName}}
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                        <td class="bor-left pdes">
+                                            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                                <tr>
+                                                    <td height="40" valign="top" class="greay-f14">Product
+                                                        Description
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="bla-f14" tooltip="{{c1.ProductName}}">
+                                                        {{c1.ProductName|truncate:25}}
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                        <td class="bor-left">
+                                            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                                <tr>
+                                                    <td height="40" valign="top" class="greay-f14">Term</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="bla-f14">{{c1.Term}}</td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                        <td class="bor-left">
+                                            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                                <tr>
+                                                    <td height="40" valign="top" class="greay-f14">Rate</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="bla-f14">{{c1.LenderRate}}</td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                        <td class="bor-left">
+                                            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                                <tr>
+                                                    <td height="40" valign="top" class="greay-f14">Initial <br>
+                                                        Payment
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="bla-f14">{{c1.InitialPayment}}</td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                        <td class="bor-left">
+                                            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                                <tr>
+                                                    <td height="40" valign="top" class="greay-f14">Valuation<br>
+                                                        Fee
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="bla-f14">{{c1.ValuationFee}}</td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                        <!-- <td class="bor-left"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                           <tr>
+                                             <td height="40" valign="top" class="greay-f14">Legal Fee</td>
+                                           </tr>
+                                           <tr>
+                                             <td class="bla-f14">0</td>
+                                           </tr>
+                                         </table></td> -->
+                                        <td class="bor-left">
+                                            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                                <tr>
+                                                    <td height="40" valign="top" class="greay-f14">Includes <br>
+                                                        Cash-back
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="bla-f14">{{c1.Cashback}}</td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                        <td class="bor-left">
+                                            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                                <tr>
+                                                    <td height="40" valign="top" class="greay-f14">Lender <br>
+                                                        Completion fee
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="bla-f14">{{c1.ArrangementFee}}</td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                        <td class="bor-left">
+                                            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                                <tr>
+                                                    <td height="40" valign="top" class="greay-f14">Lender <br>
+                                                        Application fee
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="bla-f14">{{c1.BookingFee}}</td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+    </div>
+</div>

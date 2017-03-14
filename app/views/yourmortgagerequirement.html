@@ -1,0 +1,2183 @@
+﻿<div ng-controller="YourmortgagerequirementController">
+    <div class="tab-pane" id="etab8">
+        <div class="form-group">
+            <h3><img style="padding-right:5px;" src="images/ic-ExistingMortgage2.png">Your Mortgage Requirement</h3>
+
+        </div>
+
+        <form class="form-horizontal" name="createcmortgages" ng-submit="createcmortgages.$valid && createcmortgage(customers.your_mortgage_rquirement)">
+
+
+            <div class="tab-pane-border que-for">
+
+                <div class="col-sm-6">
+                    <div class="form-group question" id="t67" data-title="Application Type ">
+                        <label>Application Type </label>
+
+                        <div>
+                            <span class="checkboxes" ng-init="customers.your_mortgage_rquirement.applicant_type = 'purchase'">  <input
+                                    ng-model="customers.your_mortgage_rquirement.applicant_type" type="radio"
+                                    value="purchase" ng-change="change()"> Purchase <input
+                                    ng-model="customers.your_mortgage_rquirement.applicant_type" type="radio"
+                                    value="remortgage" ng-change="change()"> Remortgage </span>
+                        </div>
+
+                        <!-- help text -->
+
+                        <div class="helptip icon-sprite speech" id="boxt67">
+                            <h5>Help</h5>
+                        </div>
+
+                        <!-- help text end -->
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+                <div ng-switch="customers.your_mortgage_rquirement.applicant_type == 'purchase'">
+
+                    <div ng-switch-when="true">
+
+                        <div class="col-sm-6">
+                            <div class="form-group question" id="t68" data-title="Home Insurance ">
+                                <label>Mortgage Type </label>
+
+                                <div>
+                                    <span class="checkboxes">   
+
+                                        <select class="form-control" id="options2" ng-model="customers.your_mortgage_rquirement.mortgage_type"
+                                                ng-init="customers.your_mortgage_rquirement.mortgage_type = '0'" required>
+                                            <option value="0">Please Select</option>
+                                            <option value="1">Purchase (Buy 2 Let)</option>
+                                            <option value="2">Purchase (FTB)</option>
+                                            <option value="3">Purchase (Not FTB)</option>
+                                            <option value="4">Purchase (RTB)</option>
+                                            <option value="5">Purchase (Shared Ownership)</option>
+
+                                        </select>
+                                    </span>
+                                </div>
+
+                                <!-- help text -->
+
+                                <div class="helptip icon-sprite speech" id="boxt68">
+                                    <h5>Help</h5>
+                                </div>
+
+                                <!-- help text end -->
+                            </div>
+                        </div>
+                        <div ng-switch="customers.your_mortgage_rquirement.mortgage_type == '1' || customers.your_mortgage_rquirement.mortgage_type == '2' || customers.your_mortgage_rquirement.mortgage_type == '3' || customers.your_mortgage_rquirement.mortgage_type == '4' || customers.your_mortgage_rquirement.mortgage_type == '5'">
+                            <div ng-switch-when="true">
+
+                                <div class="clearfix"></div>
+                                <ul id="fact-form-breadcrumb">
+
+                                    <li><a ng-class="{active:customers.selected5}" href="javascript:;" ng-click="createcmortgages.$valid && pmortgagedetails()">Purchase Details</a>
+                                    </li>
+
+                                    <li ng-switch="customers.meeting_aims.select_apps.is_bridging_sta"><a ng-switch-when="true" ng-class="{active:customers.selected6}" href="javascript:;" ng-click="createcmortgages.$valid && bmortgagedetails()"> Bridging/Short Term/Auction?</a></li>
+                                </ul>
+                                <div ng-switch="customers.showpmortgagedetails">
+                                    <div ng-switch-when="true">
+
+                                        <div ng-switch="customers.your_mortgage_rquirement.mortgage_type == '4'">
+                                            <div ng-switch-when="true">
+                                                <div class="col-sm-6">
+                                                    <div class="form-group question" id="t69" data-title="Purchase price after discount">
+                                                        <label>Purchase price after discount</label>
+
+                                                        <div>
+                                                            <span class="checkboxes pound">  
+																<input type="text"
+                                                                       class="form-control"
+                                                                       ng-model="customers.your_mortgage_rquirement.purchase_details.purchase_price"
+                                                                       required
+                                                                       numbers-only>  </span>
+                                                        </div>
+
+                                                        <!-- help text -->
+
+                                                        <div class="helptip icon-sprite speech" id="boxt69">
+                                                            <h5>Help</h5>
+                                                        </div>
+
+                                                        <!-- help text end -->
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div ng-switch="customers.your_mortgage_rquirement.mortgage_type == '1'">
+                                            <div ng-switch-when="true">
+                                                <div class="col-sm-6">
+                                                    <div class="form-group question" id="t74" data-title="Purchase Price (£)">
+                                                        <label>Buy 2 Let Payment Covered </label>
+
+                                                        <div>
+                                                            <span class="checkboxes">  
+
+                                                                <select class="form-control" ng-model="customers.your_mortgage_rquirement.purchase_details.payment_covered"
+                                                                        required>
+                                                                    <option value="">Please Select</option>
+                                                                    <option value="1">Rental and Earned</option>
+                                                                    <option value="2">Rental Income Only</option>
+
+                                                                </select>
+                                                            </span>
+                                                        </div>
+
+                                                        <!-- help text -->
+
+                                                        <div class="helptip icon-sprite speech" id="boxt74">
+                                                            <h5>Help</h5>
+                                                        </div>
+
+                                                        <!-- help text end -->
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <div class="form-group question" id="t74" data-title="Purchase Price (£)">
+                                                        <label>Anticipated Monthly Rental Income (£) </label>
+
+                                                        <div>
+                                                            <span class="checkboxes pound">  <input type="text" name=" "
+                                                                                                    class="form-control"
+                                                                                                    ng-model="customers.your_mortgage_rquirement.purchase_details.monthly_rental_income"
+                                                                                                    required
+                                                                                                    numbers-only ng-focus="showTyping('monthly_rental_income')" ng-blur="hideTyping('monthly_rental_income')">  </span>
+                                                        </div>
+
+                                                        <!-- help text -->
+
+                                                        <div>
+                                                            <div class="typing helptip icon-sprite speech" ng-show="customer.mortgage.monthly_rental_income.typing && !local.customer.mortgage.monthly_rental_income.typing">
+                                                                Typing ...
+                                                            </div>
+                                                            <div class="helptip icon-sprite speech" id="boxt10" ng-hide="customer.mortgage.monthly_rental_income.typing && !local.customer.mortgage.monthly_rental_income.typing">
+                                                                <h5>Help</h5>
+                                                            </div>
+                                                        </div>
+
+                                                        <!-- help text end -->
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+
+                                        <div class="col-sm-6">
+                                            <div class="form-group question" id="t70" data-title="Source of Deposit">
+                                                <label>Source of Deposit</label>
+
+                                                <div>
+                                                    <span class="checkboxes">  <select class="form-control"
+                                                                                       ng-model="customers.your_mortgage_rquirement.purchase_details.source_of_deposit"
+                                                                                       required="required">
+                                                            <option value="">Please Select</option>
+                                                            <option value="3">Builder's incentive</option>
+                                                            <option value="4">Family gift</option>
+                                                            <option value="7">Other</option>
+                                                            <option value="1">Sale of existing property</option>
+                                                            <option value="5" selected="selected">Savings</option>
+                                                            <option value="2">Secondary borrowing</option>
+                                                            <option value="6">Vendor's gifted deposit</option>
+
+                                                        </select> </span>
+
+                                                </div>
+
+                                                <!-- help text -->
+
+                                                <div class="helptip icon-sprite speech" id="boxt70">
+                                                    <h5>Help</h5>
+                                                </div>
+
+                                                <!-- help text end -->
+                                            </div>
+                                        </div>
+
+
+                                        <div ng-switch="customers.your_mortgage_rquirement.mortgage_type == '3'">
+
+                                            <div ng-switch-when="true">
+                                                <div class="col-sm-6">
+                                                    <div class="form-group question" id="t74" data-title="Purchase Price (£)">
+                                                        <label>Purchase Price (£)</label>
+
+                                                        <div>
+                                                            <span class="checkboxes pound">  <input type="text" name=" "
+                                                                                                    class="form-control"
+                                                                                                    ng-model="customers.your_mortgage_rquirement.purchase_details.purchase_price"
+                                                                                                    required
+                                                                                                    numbers-only
+                                                                                                    ng-focus="showTyping('purchase_price')" ng-blur="hideTyping('purchase_price')">  </span>
+                                                        </div>
+
+                                                        <!-- help text -->
+
+                                                        <div>
+                                                            <div class="typing helptip icon-sprite speech" ng-show="customer.mortgage.purchase_price.typing && !local.customer.mortgage.purchase_price.typing">
+                                                                Typing ...
+                                                            </div>
+                                                            <div class="helptip icon-sprite speech" id="boxt10" ng-hide="customer.mortgage.purchase_price.typing && !local.customer.mortgage.purchase_price.typing">
+                                                                <h5>Help</h5>
+                                                            </div>
+                                                        </div>
+
+                                                        <!-- help text end -->
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group question" id="t76" data-title="Property Value ">
+                                                <label>Property Value </label>
+
+                                                <div>
+                                                    <span class="checkboxes pound">  <input type="text" name=" "
+                                                                                            class="form-control"
+                                                                                            ng-model="customers.your_mortgage_rquirement.purchase_details.property_value"
+                                                                                            required
+                                                                                            numbers-only calucalte-ltv ng-focus="showTyping('property_value')" ng-blur="hideTyping('property_value')">  </span>
+                                                </div>
+
+                                                <!-- help text -->
+
+                                                <div>
+                                                    <div class="typing helptip icon-sprite speech" ng-show="customer.mortgage.property_value.typing && !local.customer.mortgage.property_value.typing">
+                                                        Typing ...
+                                                    </div>
+                                                    <div class="helptip icon-sprite speech" id="boxt10" ng-hide="customer.mortgage.property_value.typing && !local.customer.mortgage.property_value.typing">
+                                                        <h5>Help</h5>
+                                                    </div>
+                                                </div>
+
+                                                <!-- help text end -->
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group question" id="t77" data-title="Term of New Mortgage ">
+                                                <label>Term of New Mortgage </label>
+
+                                                <div>
+                                                    <span class="checkboxes" style=" height: 35px;"> 
+                                                        <span style="position:relative; width:25%; display:inline-block">
+                                                            <input type="text" class="form-control" placeholder="Years"
+                                                                   ng-model="customers.your_mortgage_rquirement.purchase_details.term_mortgage_yrs"
+                                                                   required maxlength="2" ng-min="2" numbers-only name="yrs"
+                                                                   ng-focus="showTyping('term_mortgage_yrs')" ng-blur="hideTyping('term_mortgage_yrs')"> 
+                                                                   <!--<span style="position:absolute; right:10px; top:5px;">Years </span> -->
+                                                    </span>
+                                                    <span style="position:relative; width:25%; display:inline-block">
+                                                            <input type="text" class="form-control" required placeholder="Month"
+                                                                   ng-model="customers.your_mortgage_rquirement.purchase_details.term_mortgage_month"
+                                                                   ng-init="customers.your_mortgage_rquirement.purchase_details.term_mortgage_month = '0'" min="0"
+                                                                   max="12" numbers-only maxlength="2"
+                                                                   ng-focus="showTyping('term_mortgage_yrs')" ng-blur="hideTyping('term_mortgage_yrs')">
+                                                                    <!--<span
+                                                                   style="position:absolute; right:10px; top:5px;">Month </span>-->
+                                                    </span>
+
+                                                    <!--<span class="form error" ng-show="createcmortgages.yrs.$error.ngMin">
+                                                            Minimum 2 Years</span>
+                                                    </span>-->
+                                                    <span class="form error" ng-if="customers.your_mortgage_rquirement.purchase_details.term_mortgage_yrs<2" style="color: red;">
+                                                            Minimum 2 Years</span>
+                                                    </span>
+
+
+                                                </div>
+
+                                                <!-- help text -->
+
+                                                <div>
+                                                    <div class="typing helptip icon-sprite speech" ng-show="customer.mortgage.term_mortgage_yrs.typing && !local.customer.mortgage.term_mortgage_yrs.typing">
+                                                        Typing ...
+                                                    </div>
+                                                    <div class="helptip icon-sprite speech" id="boxt10" ng-hide="customer.mortgage.term_mortgage_yrs.typing && !local.customer.mortgage.term_mortgage_yrs.typing">
+                                                        <h5>Help</h5>
+                                                    </div>
+                                                </div>
+
+                                                <!-- help text end -->
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group question" id="t77">
+                                                <label>Deposit Amount </label>
+
+                                                <div>
+                                                    <span class="checkboxes pound">  <input type="text"
+                                                                                            ng-model="customers.your_mortgage_rquirement.purchase_details.deposit_amt"
+                                                                                            class="form-control"
+                                                                                            required
+                                                                                            numbers-only calucalte-ltv
+                                                                                            ng-focus="showTyping('deposit_amt')" ng-blur="hideTyping('deposit_amt')">  </span>
+                                                </div>
+
+                                                <!-- help text -->
+
+                                                <div>
+                                                    <div class="typing helptip icon-sprite speech" ng-show="customer.mortgage.deposit_amt.typing && !local.customer.mortgage.deposit_amt.typing">
+                                                        Typing ...
+                                                    </div>
+                                                    <div class="helptip icon-sprite speech" id="boxt10" ng-hide="customer.mortgage.deposit_amt.typing && !local.customer.mortgage.deposit_amt.typing">
+                                                        <h5>Help</h5>
+                                                    </div>
+                                                </div>
+
+                                                <!-- help text end -->
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group question" id="t79" data-title="Method of Repayment">
+                                                <label>Method of Repayment</label>
+
+                                                <div> <span class="checkboxes">
+                                                        <select class="form-control" ng-model="customers.your_mortgage_rquirement.purchase_details.monthly_repayment"
+                                                                required>
+                                                            <option value="">Please Select</option>
+                                                            <option value="1">Interest Only</option>
+                                                            <option value="2">Repayment</option>
+                                                            <option value="3">Split</option>
+
+                                                        </select>  </span>
+                                                </div>
+
+                                                <!-- help text -->
+
+                                                <div class="helptip icon-sprite speech" id="boxt79">
+                                                    <h5>Help</h5>
+                                                </div>
+                                                <div ng-if="customers.your_mortgage_rquirement.purchase_details.monthly_repayment==3">
+                                                    <div>
+                                                        <br>
+                                                        <label>Interest Only</label>
+                                                        <span class="checkboxes"> 
+                                                         <input type="text" name="interest_only " class="form-control"/> 
+                                                    </span>
+                                                    </div>
+
+                                                    <div>
+                                                        <br>
+                                                        <label>Repayment</label>
+                                                        <span class="checkboxes"> 
+                                                         <input type="text" name="repayment" class="form-control"/> 
+                                                    </span>
+                                                    </div>
+                                                </div>
+
+                                                <!-- help text end -->
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group question" id="t80">
+                                                <label>Additional Capital Raising </label>
+
+                                                <div>
+                                                    <span class="checkboxes pound">  <input type="text"
+                                                                                            class="form-control"
+                                                                                            ng-model="customers.your_mortgage_rquirement.purchase_details.additional_capital_rasing"
+                                                                                            required
+                                                                                            numbers-only calucalte-ltv
+                                                                                            ng-focus="showTyping('additional_capital_rasing')" ng-blur="hideTyping('additional_capital_rasing')">  </span>
+                                                </div>
+
+                                                <!-- help text -->
+
+                                                <div>
+                                                    <div class="typing helptip icon-sprite speech" ng-show="customer.mortgage.additional_capital_rasing.typing && !local.customer.mortgage.additional_capital_rasing.typing">
+                                                        Typing ...
+                                                    </div>
+                                                    <div class="helptip icon-sprite speech" id="boxt10" ng-hide="customer.mortgage.additional_capital_rasing.typing && !local.customer.mortgage.additional_capital_rasing.typing">
+                                                        <h5>Help</h5>
+                                                    </div>
+                                                </div>
+
+                                                <!-- help text end -->
+                                            </div>
+                                        </div>
+
+                                        <div ng-if="customers.your_mortgage_rquirement.purchase_details.additional_capital_rasing">
+                                            <div class="col-sm-6" style="display:none;">
+                                                <div class="form-group question" id="t118" data-title="Capital Raising?">
+                                                    <label>Capital Raising? </label>
+
+                                                    <div>
+                                                        <span class="checkboxes" ng-init="customers.your_mortgage_rquirement.purchase_details.is_capital_raising_allowed = 1">  <input
+                                                                type="radio" ng-value="1"
+                                                                ng-model="customers.your_mortgage_rquirement.purchase_details.is_capital_raising_allowed"> Yes <input
+                                                                type="radio" ng-value="0"
+                                                                ng-model="customers.your_mortgage_rquirement.purchase_details.is_capital_raising_allowed"
+                                                                disabled="true"> No </span>
+
+
+                                                    </div>
+
+                                                    <!-- help text -->
+
+                                                    <div class="helptip icon-sprite speech" id="boxt118">
+                                                        <h5>Help</h5>
+                                                    </div>
+
+
+                                                    <!-- help text end -->
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div ng-if="!customers.your_mortgage_rquirement.purchase_details.additional_capital_rasing">
+                                            <div class="col-sm-6" style="display:none;">
+                                                <div class="form-group question" id="t118" data-title="Capital Raising?">
+                                                    <label>Capital Raising? </label>
+
+                                                    <div>
+                                                        <span class="checkboxes" ng-init="customers.your_mortgage_rquirement.purchase_details.is_capital_raising_allowed = 0">  <input
+                                                                type="radio" ng-value="1"
+                                                                ng-model="customers.your_mortgage_rquirement.purchase_details.is_capital_raising_allowed"
+                                                                disabled="true"> Yes <input type="radio" ng-value="0"
+                                                                ng-model="customers.your_mortgage_rquirement.purchase_details.is_capital_raising_allowed"> No </span>
+
+
+                                                    </div>
+
+                                                    <!-- help text -->
+
+                                                    <div class="helptip icon-sprite speech" id="boxt118">
+                                                        <h5>Help</h5>
+                                                    </div>
+
+                                                    <!-- help text end -->
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div ng-switch="customers.your_mortgage_rquirement.purchase_details.additional_capital_rasing == '1'">
+                                            <div ng-switch-when="true">
+                                                <div class="col-sm-6">
+                                                    <div class="form-group question" id="t121" data-title="Reason for Capital Raising(Applicable for LTB) ">
+                                                        <label>Reason for Capital Raising(Applicable for LTB)</label>
+
+                                                        <div>
+                                                            <span class="checkboxes">   <select class="form-control"
+                                                                                                ng-model="customers.your_mortgage_rquirement.purchase_details.ltb"
+                                                                                                name="customers.your_mortgage_rquirement.purchase_details.ltb" required>
+                                                                    <option value="Not Applicable">Not Applicable</option>
+                                                                    <option value="Any legal reason">Any legal reason</option>
+                                                                    <option value="Only for Home Imp on BTL property">Only for Home Imp on BTL property</option>
+                                                                    <option value="For Home Imp or Deposit for another property">For Home Imp or Deposit for another property
+                                                                    </option>
+
+                                                                </select>
+                                                            </span>
+                                                        </div>
+
+                                                        <!-- help text -->
+
+                                                        <div class="helptip icon-sprite speech" id="boxt121">
+                                                            <h5>Help</h5>
+                                                        </div>
+
+                                                        <!-- help text end -->
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div ng-switch-when="false"><input type="hidden" ng-model="cmortgage.CapitalRaisingReason" ng-init="cmortgage.CapitalRaisingReason = 'Not Applicable'">
+                                            </div>
+
+                                        </div>
+
+                                        <div ng-switch="customers.your_mortgage_rquirement.mortgage_type == '1'">
+                                            <div ng-switch-when="true">
+
+                                                <div class="col-sm-6" style="display:none;">
+                                                    <div class="form-group question" id="t211" data-title="Is this a LTB">
+                                                        <label>Is this a LTB </label>
+
+                                                        <div>
+                                                            <span class="checkboxes">  <input type="radio"
+                                                                                              ng-model="customers.your_mortgage_rquirement.purchase_details.ltb"
+                                                                                              ng-value="true"> Yes <input
+                                                                                              type="radio" ng-value="false"
+                                                                                              ng-model="customers.your_mortgage_rquirement.purchase_details.ltb"> No </span>
+                                                        </div>
+
+                                                        <!-- help text -->
+
+                                                        <div class="helptip icon-sprite speech" id="boxt211">
+                                                            <h5>Help</h5>
+                                                        </div>
+
+                                                        <!-- help text end -->
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <div class="form-group question" id="t213" data-title="Is this a FTL">
+                                                        <label>Is this a FTL</label>
+
+                                                        <div>
+                                                            <span class="checkboxes">  <input type="radio"
+                                                                                              ng-model="customers.your_mortgage_rquirement.purchase_details.ftl"
+                                                                                              ng-value="true"> Yes <input
+                                                                                              type="radio"
+                                                                                              ng-model="customers.your_mortgage_rquirement.purchase_details.ftl"
+                                                                                              ng-value="false"> No </span>
+                                                        </div>
+
+                                                        <!-- help text -->
+
+                                                        <div class="helptip icon-sprite speech" id="boxt213">
+                                                            <h5>Help</h5>
+                                                        </div>
+
+                                                        <!-- help text end -->
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <div class="clearfix"></div>
+
+
+                                        <span class="form error" style="padding-left:0px; float:right;color: red;" ng-if="(customers.your_mortgage_rquirement.purchase_details.property_value - customers.your_mortgage_rquirement.purchase_details.deposit_amt--customers.your_mortgage_rquirement.purchase_details.additional_capital_rasing)/customers.your_mortgage_rquirement.purchase_details.property_value
+                                                    * 100>100 || (customers.your_mortgage_rquirement.purchase_details.property_value - customers.your_mortgage_rquirement.purchase_details.deposit_amt--customers.your_mortgage_rquirement.purchase_details.additional_capital_rasing)/customers.your_mortgage_rquirement.purchase_details.property_value
+                                                    * 100<0">
+                                            LTV Not more than 100% and not less than 0</span>
+
+                                        <div class="clearfix"></div>
+                                        <div class="form-group">
+                                            <div class="pull-right">
+                                                <button class="blue-btn5" ng-click="Nmortgagedetails()">Save</button>
+                                            </div>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                        <div class="factfind-gk-color-price-table col3" ng-if="customers.your_mortgage_rquirement.purchase_details.property_value" style="padding:10px">
+                                            <dl>
+                                                <dt>Mortgage</dt>
+                                                <dd class="gk-price"><span>LTV </span>{{(customers.your_mortgage_rquirement.purchase_details.property_value - customers.your_mortgage_rquirement.purchase_details.deposit_amt--customers.your_mortgage_rquirement.purchase_details.additional_capital_rasing)/customers.your_mortgage_rquirement.purchase_details.property_value
+                                                    * 100 | setDecimal:2}} %
+                                                </dd>
+                                                <dd class="gk-price"><span>Loan Required </span>&#163; {{customers.your_mortgage_rquirement.purchase_details.property_value - customers.your_mortgage_rquirement.purchase_details.deposit_amt--customers.your_mortgage_rquirement.purchase_details.additional_capital_rasing}}
+                                                    <img src="images/infos.png" width="20" height="20" style="cursor:pointer; position: relative;
+                                                         top: -2px;" ng-click="pcomparisonmodal()"></dd>
+                                            </dl>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div ng-switch="customers.meeting_aims.select_apps.is_bridging_sta">
+                                    <div ng-switch-when="true">
+                                        <div ng-switch="showbmortgagedetails">
+                                            <div ng-switch-when="true">
+
+                                                <div class="col-sm-6">
+                                                    <div class="form-group question" id="t80">
+                                                        <label>Is the property going to be <br>secured on your main
+                                                            residence </label>
+
+                                                        <div>
+                                                            <span class="checkboxes" ng-init="customers.cmortgage.IsBridgingMainResidence = false">
+                                                                <input type="radio" ng-value="true"
+                                                                       ng-model="customers.cmortgage.IsBridgingMainResidence"> Yes </input>
+                                                                <input type="radio" ng-value="false"
+                                                                       ng-model="customers.cmortgage.IsBridgingMainResidence"> No </input>
+                                                            </span>
+
+                                                        </div>
+
+                                                        <!-- help text -->
+
+                                                        <div class="helptip icon-sprite speech" id="boxt80">
+                                                            <h5>Help</h5>
+                                                        </div>
+
+                                                        <!-- help text end -->
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <div class="form-group question" id="t80">
+                                                        <label>What term would you like to take <br>your bridging loan
+                                                            over?[In Months] </label>
+
+                                                        <div>
+                                                            <span class="checkboxes">  <input type="text" numbers-only
+                                                                                              class="form-control"
+                                                                                              ng-model="customers.cmortgage.BridgingTermMonths"
+                                                                                              required>  </span>
+                                                        </div>
+
+                                                        <!-- help text -->
+
+                                                        <div class="helptip icon-sprite speech" id="boxt80">
+                                                            <h5>Help</h5>
+                                                        </div>
+
+                                                        <!-- help text end -->
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <div class="form-group question" id="t80">
+                                                        <label>Do you require rolled up interest </label>
+
+                                                        <div>
+                                                            <span class="checkboxes" ng-init="customers.cmortgage.RolledUpInterest = false">
+                                                                <input type="radio" ng-value="true"
+                                                                       ng-model="customers.cmortgage.RolledUpInterest"> Yes
+                                                                <input type="radio" ng-value="false"
+                                                                       ng-model="customers.cmortgage.RolledUpInterest"> No
+                                                            </span>
+                                                        </div>
+
+                                                        <!-- help text -->
+
+                                                        <div class="helptip icon-sprite speech" id="boxt80">
+                                                            <h5>Help</h5>
+                                                        </div>
+
+                                                        <!-- help text end -->
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <div class="form-group question" id="t80">
+                                                        <label>How do you intend to repay the loan at the end of the
+                                                            term ? </label>
+
+                                                        <div>
+                                                            <span class="checkboxes">   
+                                                                <select class="form-control" ng-model="customers.cmortgage.PayEndofTerm" required="required"
+                                                                        ng-init="customers.cmortgage.PayEndofTerm = 'Refinance'">
+                                                                    <option value="Refinance">Refinance</option>
+                                                                    <option value="Sale of Existing Property">Sale of Existing Property</option>
+                                                                    <option value="Sale of Another Property">Sale of Another Property</option>
+                                                                </select>
+                                                            </span>
+                                                        </div>
+
+                                                        <!-- help text -->
+
+                                                        <div class="helptip icon-sprite speech" id="boxt80">
+                                                            <h5>Help</h5>
+                                                        </div>
+
+                                                        <!-- help text end -->
+                                                    </div>
+                                                </div>
+                                                <div ng-switch="customers.cmortgage.PayEndofTerm">
+                                                    <div ng-switch-when="Sale of Another Property">
+
+                                                        <div class="col-sm-6">
+                                                            <div class="form-group question" id="t80">
+                                                                <label> What is the address of the property </label>
+
+                                                                <div>
+                                                                    <span class="checkboxes">  <input type="text"
+                                                                                                      class="form-control"
+                                                                                                      ng-model="customers.cmortgage.AnotherAddress"
+                                                                                                      required>  </span>
+                                                                </div>
+
+                                                                <!-- help text -->
+
+                                                                <div class="helptip icon-sprite speech" id="boxt80">
+                                                                    <h5>Help</h5>
+                                                                </div>
+
+                                                                <!-- help text end -->
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-6">
+                                                            <div class="form-group question" id="t80">
+                                                                <label>What is the value of the property?</label>
+
+                                                                <div>
+                                                                    <span class="checkboxes pound">  <input type="text"
+                                                                                                            numbers-only
+                                                                                                            class="form-control"
+                                                                                                            ng-model="customers.cmortgage.AnotherValue"
+                                                                                                            required>  </span>
+                                                                </div>
+
+                                                                <!-- help text -->
+
+                                                                <div class="helptip icon-sprite speech" id="boxt80">
+                                                                    <h5>Help</h5>
+                                                                </div>
+
+                                                                <!-- help text end -->
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-6">
+                                                            <div class="form-group question" id="t80">
+                                                                <label>What is the current outstanding mortgage
+                                                                    balance? </label>
+
+                                                                <div>
+                                                                    <span class="checkboxes pound">  <input type="text"
+                                                                                                            numbers-only
+                                                                                                            class="form-control"
+                                                                                                            ng-model="customers.cmortgage.AnotherOutstanding"
+                                                                                                            required>  </span>
+                                                                </div>
+
+                                                                <!-- help text -->
+
+                                                                <div class="helptip icon-sprite speech" id="boxt80">
+                                                                    <h5>Help</h5>
+                                                                </div>
+
+                                                                <!-- help text end -->
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-6">
+                                                            <div class="form-group question" id="t80">
+                                                                <label>Who is the current lender? </label>
+
+                                                                <div>
+                                                                    <span class="checkboxes">  <input type="text"
+                                                                                                      class="form-control"
+                                                                                                      ng-model="customers.cmortgage.AnotherLender"
+                                                                                                      required >  </span>
+                                                                </div>
+
+                                                                <!-- help text -->
+
+                                                                <div class="helptip icon-sprite speech" id="boxt80">
+                                                                    <h5>Help</h5>
+                                                                </div>
+
+                                                                <!-- help text end -->
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-6">
+                                                            <div class="form-group question" id="t80">
+                                                                <label>Equity/Sale Proceeds? </label>
+
+                                                                <div>
+                                                                    <span class="checkboxes pound">  <input type="text"
+                                                                                                            numbers-only
+                                                                                                            class="form-control"
+                                                                                                            ng-model="customers.cmortgage.BridgingEquity"
+                                                                                                            required >  </span>
+                                                                </div>
+
+                                                                <!-- help text -->
+
+                                                                <div class="helptip icon-sprite speech" id="boxt80">
+                                                                    <h5>Help</h5>
+                                                                </div>
+
+                                                                <!-- help text end -->
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                                <input type="hidden" ng-model="cmortgage.Nmortgagedetails" ng-init="cmortgage.Nmortgagedetails = '1'">
+
+                                                <div class="form-group">
+                                                    <div class="pull-right">
+                                                        <input type="button" class="whi-btn2 btnPrevious" ng-click="pmortgagedetails()" value="&lt; BACK">
+                                                        <button class="blue-btn5" type="submit">Save</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+
+                <div ng-switch="customers.your_mortgage_rquirement.applicant_type == 'remortgage'">
+
+                    <div ng-switch-when="true">
+
+                        <div class="col-sm-6">
+                            <div class="form-group question" id="t68" data-title="Home Insurance ">
+                                <label>Mortgage Type </label>
+
+                                <div>
+                                    <span class="checkboxes">   
+                                        <select class="form-control" id="options" ng-model="customers.your_mortgage_rquirement.mortgage_type" required>
+                                            <option value="" ng-selected="selected">Please Select</option>
+                                            <option ng-click="Emortgagedetails()" value="6">Remortgage</option>
+                                            <option ng-click="Emortgagedetails()" value="7">Remortgage (Buy 2 Let)</option>
+                                            <option ng-click="Emortgagedetails()" value="8">Remortgage (RTB)</option>
+                                            <option ng-click="Emortgagedetails()" value="9">Remortgage (Shared Ownership)</option>
+                                            <option ng-click="Emortgagedetails()" value="10">SecuredLoans(Residential)</option>
+                                            <option ng-click="Emortgagedetails()" value="11">SecuredLoans(Buy 2 Let)</option>
+
+
+                                        </select>
+                                    </span>
+                                </div>
+
+                                <!-- help text -->
+
+                                <div class="helptip icon-sprite speech" id="boxt68">
+                                    <h5>Help</h5>
+                                </div>
+
+                                <!-- help text end -->
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div ng-switch="customers.your_mortgage_rquirement.mortgage_type == '6' || customers.your_mortgage_rquirement.mortgage_type == '7' || customers.your_mortgage_rquirement.mortgage_type == '8' || customers.your_mortgage_rquirement.mortgage_type == '9' || customers.your_mortgage_rquirement.mortgage_type == '10' || customers.your_mortgage_rquirement.mortgage_type == '11'">
+                            <div ng-switch-when="true">
+
+                                <div class="clearfix"></div>
+
+                                <ul id="fact-form-breadcrumb">
+
+                                    <li><a ng-class="{active:customers.selected1}" href="javascript:;" ng-click="Emortgagedetails()">Existing Mortgage Details</a></li>
+
+                                    <li ng-switch="customers.your_mortgage_rquirement.mortgage_type == '10' || customers.your_mortgage_rquirement.mortgage_type == '11'">
+                                        <a ng-switch-when="true" ng-class="{active:customers.selected2}" href="javascript:;" ng-click="createcmortgages.$valid && Nmortgagedetails()">
+                                            SecuredLoans Mortgage Details
+                                        </a> <a ng-switch-when="false" ng-class="{active:customers.selected2}" href="javascript:;" ng-click="createcmortgages.$valid && Nmortgagedetails()">
+                                            New Mortgage Details
+                                        </a></li>
+                                    <li ng-switch="customers.meeting_aims.select_apps.is_bridging_sta"><a ng-switch-when="true" ng-class="{active:customers.selected7}" href="javascript:;" ng-click="bmortgagedetails()">Bridging/Short Term/Auction?</a></li>
+                                </ul>
+
+
+                                <div ng-switch="customers.showEmortgagedetails">
+                                    <div ng-switch-when="true">
+
+                                        <div class="col-sm-12">
+                                            <div class="form-group">
+                                                <span class="step-heading step-heading-small ">Existing Mortgage Details</span>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="col-sm-6">
+                                            <div class="form-group question" id="t85">
+                                                <label>Property Purchase Date [dd/mm/yyyy]</label>
+
+                                                <div>
+                                                    <span class="checkboxes">  <input type="text" name=" "
+                                                                                      class="form-control"
+                                                                                      ng-model="customers.your_mortgage_rquirement.existing_mortgage_details.purchase_date"
+                                                                                      required >  </span>
+                                                </div>
+
+                                                <!-- help text -->
+
+                                                <div class="helptip icon-sprite speech" id="boxt85">
+                                                    <h5>Help</h5>
+                                                </div>
+
+                                                <!-- help text end -->
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group question" id="t85" data-title="Property Value">
+                                                <label>Property Value</label>
+
+                                                <div>
+                                                    <span class="checkboxes pound">  <input type="text"
+                                                                                            name="customers.your_mortgage_rquirement.existing_mortgage_details.property_value"
+                                                                                            class="form-control"
+                                                                                            ng-model="customers.your_mortgage_rquirement.existing_mortgage_details.property_value"
+                                                                                            required 
+                                                                                            numbers-only
+                                                                                            remo-calucalte-ltv
+                                                                                            remo-calucalte-ltvs ng-focus="showTyping('property_value')" ng-blur="hideTyping('property_value')">  </span>
+                                                </div>
+
+                                                <!-- help text -->
+
+                                                <div>
+                                                    <div class="typing helptip icon-sprite speech" ng-show="customer.mortgage.property_value.typing && !local.customer.mortgage.property_value.typing">
+                                                        Typing ...
+                                                    </div>
+                                                    <div class="helptip icon-sprite speech" id="boxt10" ng-hide="customer.mortgage.property_value.typing && !local.customer.mortgage.property_value.typing">
+                                                        <h5>Help</h5>
+                                                    </div>
+                                                </div>
+
+                                                <!-- help text end -->
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group question" id="t85">
+                                                <label>Original Mortgage Amount</label>
+
+                                                <div>
+                                                    <span class="checkboxes pound">  <input type="text" numbers-only
+                                                                                            name="customers.your_mortgage_rquirement.existing_mortgage_details.origional_mortgage_amt"
+                                                                                            class="form-control"
+                                                                                            ng-model="customers.your_mortgage_rquirement.existing_mortgage_details.origional_mortgage_amt"
+                                                                                            required >  </span>
+                                                </div>
+
+                                                <!-- help text -->
+
+                                                <div class="helptip icon-sprite speech" id="boxt85">
+                                                    <h5>Help</h5>
+                                                </div>
+
+                                                <!-- help text end -->
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group question" id="t85">
+                                                <label>Monthly Payments</label>
+
+                                                <div>
+                                                    <span class="checkboxes pound">  <input type="text"
+                                                                                            name="customers.your_mortgage_rquirement.existing_mortgage_details.monthly_payment"
+                                                                                            class="form-control"
+                                                                                            ng-model="customers.your_mortgage_rquirement.existing_mortgage_details.monthly_payment"
+                                                                                            required
+                                                                                            numbers-only>  </span>
+                                                </div>
+
+                                                <!-- help text -->
+
+                                                <div class="helptip icon-sprite speech" id="boxt85">
+                                                    <h5>Help</h5>
+                                                </div>
+
+                                                <!-- help text end -->
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group question" id="t85">
+                                                <label>Outstanding Balance</label>
+
+                                                <div>
+                                                    <span class="checkboxes pound">  <input type="text"
+                                                                                            name="customers.your_mortgage_rquirement.existing_mortgage_details.outstand_balance"
+                                                                                            class="form-control"
+                                                                                            ng-model="customers.your_mortgage_rquirement.existing_mortgage_details.outstand_balance"
+                                                                                            required only-num
+                                                                                            max="{{customers.your_mortgage_rquirement.existing_mortgage_details.origional_mortgage_amt}}"
+                                                                                            remo-calucalte-ltv
+                                                                                            remo-calucalte-ltvs>  </span>
+                                                </div>
+
+                                                <!-- help text -->
+
+                                                <div class="helptip icon-sprite speech" id="boxt85">
+                                                    <h5>Help</h5>
+                                                </div>
+
+                                                <!-- help text end -->
+                                            </div>
+                                        </div>
+
+                                        <div class="col-sm-6">
+                                            <div class="form-group question" id="t72" data-title="Lenders">
+                                                <label>Existing Lenders </label>
+
+                                                <div>
+                                                    <span class="checkboxes">  <select class="form-control"
+                                                                                       ng-model="customers.your_mortgage_rquirement.existing_mortgage_details.existing_lender"
+                                                                                       required="required">
+                                                            <option value="">Please Select</option>
+                                                            <option value="90">Accord Prime</option>
+                                                            <option value="2">Aldermore Mortgages</option>
+                                                            <option value="245">Axis Bank</option>
+                                                            <option value="66">Bath Building Society</option>
+                                                            <option value="70">Bluestone Mortgages</option>
+                                                            <option value="6">BM Solutions</option>
+                                                            <option value="229">Bridgewater</option>
+                                                            <option value="15">Buckinghamshire Building Society</option>
+                                                            <option value="4">Cambridge Building Society</option>
+                                                            <option value="226">Castle Trust</option>
+                                                            <option value="242">Cheshire</option>
+                                                            <option value="59">Chorley Building Society</option>
+                                                            <option value="140">Clydesdale Bank Plc</option>
+                                                            <option value="88">Coventry</option>
+                                                            <option value="60">Darlington BS</option>
+                                                            <option value="218">Dragonfly</option>
+                                                            <option value="12">Dudley Building Society</option>
+                                                            <option value="233">Earl Shilton Building Society</option>
+                                                            <option value="232">Fleet Mortgages</option>
+                                                            <option value="238">Fluent Money</option>
+                                                            <option value="234">Foundation Home Loans</option>
+                                                            <option value="8">Furness</option>
+                                                            <option value="86">Halifax</option>
+                                                            <option value="64">Harpenden Building Society</option>
+                                                            <option value="129">Hinckley and Rugby</option>
+                                                            <option value="236">Holmesdale Building Society</option>
+                                                            <option value="112">Ipswich BS</option>
+                                                            <option value="106">Kensington</option>
+                                                            <option value="154">Kent Reliance Building Society</option>
+                                                            <option value="235">Keystone</option>
+                                                            <option value="108">Leeds BS</option>
+                                                            <option value="10">Leek United Building Society</option>
+                                                            <option value="225">Magellan</option>
+                                                            <option value="114">Manchester BS</option>
+                                                            <option value="141">Mansfield BS</option>
+                                                            <option value="248">Market Harborough BS</option>
+                                                            <option value="125">Marsden BS</option>
+                                                            <option value="116">MBS Lending</option>
+                                                            <option value="58">Melton Mowbray Building Society</option>
+                                                            <option value="230">Metro Bank</option>
+                                                            <option value="63">Monmouthshire Building Society</option>
+                                                            <option value="7">MortgageTrust</option>
+                                                            <option value="118">National Counties BS</option>
+                                                            <option value="83">Nationwide</option>
+                                                            <option value="62">NatWest</option>
+                                                            <option value="111">Newbury BS</option>
+                                                            <option value="52">Newcastle Building Society</option>
+                                                            <option value="219">Norton Home Loans</option>
+                                                            <option value="126">Nottingham BS</option>
+                                                            <option value="5">Paragon</option>
+                                                            <option value="67">Pepper Homeloans</option>
+                                                            <option value="13">Platform</option>
+                                                            <option value="14">Precise Mortgages</option>
+                                                            <option value="96">Principality</option>
+                                                            <option value="56">Progressive Build Society</option>
+                                                            <option value="105">Saffron BS</option>
+                                                            <option value="120">Santander</option>
+                                                            <option value="11">Scottish Building Society</option>
+                                                            <option value="102">Scottish Widows</option>
+                                                            <option value="89">Skipton</option>
+                                                            <option value="3">Teachers Building Society</option>
+                                                            <option value="115">The Mortgage Works</option>
+                                                            <option value="57">Tipton and Coseley Building Society</option>
+                                                            <option value="107">Virgin Money</option>
+                                                            <option value="121">Woolwich</option>
+                                                        </select>
+                                                    </span>
+                                                </div>
+
+                                                <!-- help text -->
+
+                                                <div class="helptip icon-sprite speech" id="boxt72">
+                                                    <h5>Help</h5>
+                                                </div>
+
+                                                <!-- help text end -->
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group question" id="t85">
+                                                <label>Early Repayment Charges (if any)</label>
+
+                                                <div>
+                                                    <span class="checkboxes pound">  <input type="text"
+                                                                                            name="customers.your_mortgage_rquirement.existing_mortgage_details.repayment_charge"
+                                                                                            class="form-control"
+                                                                                            ng-model="customers.your_mortgage_rquirement.existing_mortgage_details.repayment_charge"
+                                                                                            required="required"
+                                                                                            numbers-only
+                                                                                            remo-calucalte-ltvs>  </span>
+                                                </div>
+
+                                                <!-- help text -->
+
+                                                <div class="helptip icon-sprite speech" id="boxt85">
+                                                    <h5>Help</h5>
+                                                </div>
+
+                                                <!-- help text end -->
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group question" id="t85">
+                                                <label>Early Repayment Expiry date [dd/mm/yyyy]</label>
+
+                                                <div>
+                                                    <span class="checkboxes">  <input type="text"
+                                                                                      name="customers.your_mortgage_rquirement.existing_mortgage_details.repayment_expire_date"
+                                                                                      class="form-control"
+                                                                                      ng-model="customers.your_mortgage_rquirement.existing_mortgage_details.repayment_expire_date"
+                                                                                      required="required">  </span>
+                                                </div>
+
+                                                <!-- help text -->
+
+                                                <div class="helptip icon-sprite speech" id="boxt85">
+                                                    <h5>Help</h5>
+                                                </div>
+
+                                                <!-- help text end -->
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group question" id="t79" data-title="Method of Repayment">
+                                                <label>Early Repayment Mode </label>
+
+                                                <div>
+                                                    <span class="checkboxes">    <select class="form-control"
+                                                                                         ng-model="customers.your_mortgage_rquirement.existing_mortgage_details.repayment_mode"
+                                                                                         required="required">
+                                                            <option value="1">Add to New Mortgage</option>
+                                                            <option value="2">Own Funds</option>
+                                                            <option value="3">Not willing to pay</option>
+
+
+                                                        </select>  </span>
+                                                </div>
+
+                                                <!-- help text -->
+
+                                                <div class="helptip icon-sprite speech" id="boxt79">
+                                                    <h5>Help</h5>
+                                                </div>
+
+                                                <!-- help text end -->
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group question" id="t79" data-title="Method of Repayment">
+                                                <label>Method of Repayment</label>
+
+                                                <div>
+                                                    <span class="checkboxes">    <select class="form-control"
+                                                                                         ng-model="customers.your_mortgage_rquirement.existing_mortgage_details.repayment_method"
+                                                                                         required="required">
+                                                            <option value="">Please Select</option>
+                                                            <option value="1">Interest Only</option>
+                                                            <option value="2">Repayment</option>
+                                                            <option value="3">Split</option>
+
+                                                        </select>  </span>
+                                                </div>
+
+                                                <!-- help text -->
+
+                                                <div class="helptip icon-sprite speech" id="boxt79">
+                                                    <h5>Help</h5>
+                                                </div>
+
+                                                <!-- help text end -->
+                                            </div>
+                                        </div>
+                                        <div ng-switch="customers.applicants[0].ERCPaymentMode == '1'">
+                                            <div ng-switch-when="true">
+                                                <div class="col-sm-6">
+                                                    <div class="form-group question" id="t80">
+                                                        <label>Additional Capital Raising </label>
+
+                                                        <div>
+                                                            <span class="checkboxes pound">  <input type="text"
+                                                                                                    class="form-control"
+                                                                                                    ng-keyup="keypress1($event, 'CapitalRaising', customers.applicants[0].CapitalRaising, 0, 'mortage')"
+                                                                                                    ng-class="AdditionalCapitalRaising"
+                                                                                                    ng-model="customers.applicants[0].CapitalRaising"
+                                                                                                    required="required"
+                                                                                                    numbers-only
+                                                                                                    remo-calucalte-ltv ng-focus="showTyping('additional_capital_rasing')" ng-blur="hideTyping('additional_capital_rasing')">  </span>
+                                                        </div>
+
+                                                        <!-- help text -->
+
+                                                        <div>
+                                                            <div class="typing helptip icon-sprite speech" ng-show="customer.mortgage.additional_capital_rasing.typing && !local.customer.mortgage.additional_capital_rasing.typing">
+                                                                Typing ...
+                                                            </div>
+                                                            <div class="helptip icon-sprite speech" id="boxt10" ng-hide="customer.mortgage.additional_capital_rasing.typing && !local.customer.mortgage.additional_capital_rasing.typing">
+                                                                <h5>Help</h5>
+                                                            </div>
+                                                        </div>
+
+                                                        <!-- help text end -->
+                                                    </div>
+                                                </div>
+                                                <input type="hidden" ng-model="cmortgage.ExtraQnID">
+
+                                                <div ng-if="!customers.applicants[0].CapitalRaising">
+                                                    <div class="col-sm-6" style="display:none;">
+                                                        <div class="form-group question" id="t118" data-title="Capital Raising?">
+                                                            <label>Capital Raising? </label>
+
+                                                            <div>
+                                                                <span class="checkboxes" ng-init="customers.applicants[0].IsCapitalRaisingAllowed = 0">  <input
+                                                                        type="radio" ng-value="1"
+                                                                        ng-model="customers.applicants[0].IsCapitalRaisingAllowed"
+                                                                        disabled="true"> Yes <input type="radio"
+                                                                        ng-value="0"
+                                                                        ng-model="customers.applicants[0].IsCapitalRaisingAllowed"> No </span>
+
+
+                                                            </div>
+
+                                                            <!-- help text -->
+
+                                                            <div class="helptip icon-sprite speech" id="boxt118">
+                                                                <h5>Help</h5>
+                                                            </div>
+
+                                                            <!-- help text end -->
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div ng-switch="customers.applicants[0].CapitalRaising != '0'">
+                                                    <div ng-switch-when="true">
+                                                        <div class="col-sm-6">
+                                                            <div class="form-group question" id="t121" data-title="Reason for Capital Raising(Applicable for LTB) " ng-class="{ 'has-error' :   createcmortgages.CapitalRaisingReason.$invalid && !createcmortgages.CapitalRaisingReason.$pristine }">
+                                                                <label>Reason for Capital Raising(Applicable for
+                                                                    LTB)</label>
+
+                                                                <div>
+                                                                    <span class="checkboxes">   <select class="form-control"
+                                                                                                        ng-model="customers.applicants[0].CapitalRaisingReason"
+                                                                                                        name="CapitalRaisingReason" required>
+                                                                            <option value="Not Applicable">Not Applicable</option>
+                                                                            <option value="Any legal reason">Any legal reason</option>
+                                                                            <option value="Only for Home Imp on BTL property">Only for Home Imp on BTL property</option>
+                                                                            <option value="For Home Imp or Deposit for another property">For Home Imp or Deposit for another property
+                                                                            </option>
+
+                                                                        </select>
+                                                                    </span>
+                                                                </div>
+
+
+                                                                <!-- help text -->
+
+                                                                <div class="helptip icon-sprite speech" id="boxt121">
+                                                                    <h5>Help</h5>
+                                                                </div>
+
+                                                                <!-- help text end -->
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div ng-switch-when="false"><input type="hidden" ng-model="customers.applicants[0].CapitalRaisingReason" ng-init="customers.applicants[0].CapitalRaisingReason = 'Not Applicable'">
+                                                    </div>
+
+                                                </div>
+                                                <div class="clearfix"></div>
+                                                <div class="col-sm-6">
+                                                    <div class="form-group question" id="t80">
+                                                        <label>Contingency </label>
+
+                                                        <div>
+                                                            <span class="checkboxes pound">  <input type="text"
+                                                                                                    class="form-control"
+                                                                                                    ng-model="customers.applicants[0].Contingency"
+                                                                                                    required="required"
+                                                                                                    numbers-only
+                                                                                                    ng-keyup="keypress1($event, 'Contingency', customers.applicants[0].Contingency, 0, 'mortage')"
+                                                                                                    ng-disabled="customers.applicants[0].fieldname == 'Contingency'">  </span>
+                                                        </div>
+
+                                                        <!-- help text -->
+
+                                                        <div class="helptip icon-sprite speech" id="boxt80">
+                                                            <h5>Help</h5>
+                                                        </div>
+
+                                                        <!-- help text end -->
+                                                    </div>
+                                                </div>
+                                                <div class="clearfix"></div>
+                                            </div>
+                                        </div>
+                                        <div ng-switch="customers.your_mortgage_rquirement.mortgage_type == '7' || customers.your_mortgage_rquirement.mortgage_type == '11'">
+                                            <div ng-switch-when="true">
+
+                                                <div class="col-sm-6">
+                                                    <div class="form-group question" id="t85">
+                                                        <label>Buy to Let payment covered </label>
+
+                                                        <div>
+                                                            <span class="checkboxes">  
+                                                                <select class="form-control"
+                                                                        ng-model="customers.your_mortgage_rquirement.existing_mortgage_details.payment_covered"
+                                                                        required="required">
+                                                                    <option value="">Please Select</option>
+                                                                    <option value="1">Rental and Earned</option>
+                                                                    <option value="2">Rental Income Only</option>
+
+                                                                </select>
+
+
+                                                            </span>
+                                                        </div>
+
+                                                        <!-- help text -->
+
+                                                        <div class="helptip icon-sprite speech" id="boxt85">
+                                                            <h5>Help</h5>
+                                                        </div>
+
+                                                        <!-- help text end -->
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <div class="form-group question" id="t79" data-title="Method of Repayment">
+                                                        <label>Monthly Rental Income</label>
+
+                                                        <div>
+                                                            <span class="checkboxes pound">  
+                                                                <input type="text" name="customers.your_mortgage_rquirement.existing_mortgage_details.monthly_rental"
+                                                                       class="form-control"
+                                                                       ng-model="customers.your_mortgage_rquirement.existing_mortgage_details.monthly_rental"
+                                                                       required="required"> </span>
+                                                        </div>
+
+                                                        <!-- help text -->
+
+                                                        <div class="helptip icon-sprite speech" id="boxt79">
+                                                            <h5>Help</h5>
+                                                        </div>
+
+                                                        <!-- help text end -->
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+                                        <div ng-switch="customers.your_mortgage_rquirement.mortgage_type == '7' || customers.your_mortgage_rquirement.mortgage_type == '11'">
+                                            <div ng-switch-when="true">
+
+                                                <div class="col-sm-6">
+                                                    <div class="form-group question" id="t86">
+                                                        <label>Additional Capital Raising </label>
+                                                        <div>
+                                                            <span class="checkboxes pound">  <input type="text"
+                                                                                                    class="form-control"
+                                                                                                    ng-model=""
+                                                                                                    required="required"
+                                                                                                    numbers-only
+                                                                                                    ng-keyup=""
+                                                                                                    >  </span>
+                                                        </div>
+
+                                                        <!-- help text -->
+
+                                                        <div class="helptip icon-sprite speech" id="boxt85">
+                                                            <h5>Help</h5>
+                                                        </div>
+
+                                                        <!-- help text end -->
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <div class="form-group question" id="t79" data-title="Method of Repayment">
+                                                        <label>Reason for Capital Raising(Applicable for LTB)</label>
+
+                                                        <div>
+                                                            <span class="checkboxes">  
+                                                                <select class="form-control"
+                                                                        ng-model="customers.your_mortgage_rquirement.existing_mortgage_details.payment_covered"
+                                                                        required="required">
+                                                                    <option value="">Not Applicable</option>
+                                                                    <option value="1">Item1</option>
+                                                                    <option value="2">Item2</option>
+
+                                                                </select>
+
+
+                                                            </span>
+                                                        </div>
+
+                                                        <!-- help text -->
+
+                                                        <div class="helptip icon-sprite speech" id="boxt79">
+                                                            <h5>Help</h5>
+                                                        </div>
+
+                                                        <!-- help text end -->
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+                                        <div ng-switch="customers.your_mortgage_rquirement.mortgage_type == '7' || customers.your_mortgage_rquirement.mortgage_type == '11'">
+                                            <div ng-switch-when="true">
+
+                                                <div class="col-sm-6">
+                                                    <div class="form-group question" id="t86">
+                                                        <label>Contingency </label>
+                                                        <div>
+                                                            <span class="checkboxes pound">  <input type="text"
+                                                                                                    class="form-control"
+                                                                                                    ng-model=""
+                                                                                                    required="required"
+                                                                                                    numbers-only
+                                                                                                    ng-keyup=""
+                                                                                                    >  </span>
+                                                        </div>
+
+                                                        <!-- help text -->
+
+                                                        <div class="helptip icon-sprite speech" id="boxt85">
+                                                            <h5>Help</h5>
+                                                        </div>
+
+                                                        <!-- help text end -->
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+
+                                        <div class="clearfix"></div>
+                                        <!--<span class="form error" style="padding-left:0px; float:right" ng-if="(customers.your_mortgage_rquirement.purchase_details.property_value - customers.your_mortgage_rquirement.purchase_details.deposit_amt--customers.your_mortgage_rquirement.purchase_details.additional_capital_rasing)/customers.your_mortgage_rquirement.purchase_details.property_value
+                                                    * 100>100 || (customers.your_mortgage_rquirement.purchase_details.property_value - customers.your_mortgage_rquirement.purchase_details.deposit_amt--customers.your_mortgage_rquirement.purchase_details.additional_capital_rasing)/customers.your_mortgage_rquirement.purchase_details.property_value
+                                                    * 100<0">
+                                            LTV Not more than 100% and not less than 0</span>-->
+
+                                        <div class="clearfix"></div>
+                                        <div class="form-group">
+                                            <div class="pull-right">
+                                                <button class="blue-btn5" ng-click="createcmortgages.$valid && Nmortgagedetails()">Save</button>
+                                            </div>
+                                        </div>
+
+                                        <div class="clearfix"></div>
+
+                                        <div class="comparison">
+
+                                            <div>
+
+                                                <div class="factfind-gk-color-price-table col3" ng-if="customers.your_mortgage_rquirement.existing_mortgage_details.property_value" style="padding:10px">
+
+                                                    <dl>
+                                                        <dt>Mortgage <span> ( Not Willing to Pay )</span></dt>
+                                                        <dd class="gk-price"><span>LTV </span>{{(customers.your_mortgage_rquirement.existing_mortgage_details.outstand_balance)/customers.your_mortgage_rquirement.existing_mortgage_details.property_value * 100 | setDecimal:2}}
+                                                            %
+                                                        </dd>
+                                                        <dd class="gk-price"><span>Loan Required </span>&#163; {{customers.your_mortgage_rquirement.existing_mortgage_details.outstand_balance}}
+                                                            <img src="images/infos.png" width="20" height="20" style="cursor:pointer; position: relative;
+                                                                 top: -2px;" ng-click="notmcomparisonmodal()"></dd>
+                                                    </dl>
+
+                                                    <dl>
+                                                        <dt>Mortgage <span> ( Add to new Mortgage )</span></dt>
+                                                        <dd class="gk-price"><span>LTV </span>{{(customers.your_mortgage_rquirement.existing_mortgage_details.outstand_balance--customers.your_mortgage_rquirement.new_mortgage_details.additional_capital_rasing--customers.your_mortgage_rquirement.new_mortgage_details.total_consolidated--customers.your_mortgage_rquirement.new_mortgage_details.Contingency--customers.your_mortgage_rquirement.existing_mortgage_details.repayment_charge)/customers.your_mortgage_rquirement.existing_mortgage_details.property_value
+                                                            * 100 | setDecimal:2}} %
+                                                        </dd>
+                                                        <dd class="gk-price"><span>Loan Required </span>&#163; {{customers.your_mortgage_rquirement.existing_mortgage_details.outstand_balance--customers.your_mortgage_rquirement.new_mortgage_details.additional_capital_rasing--customers.your_mortgage_rquirement.new_mortgage_details.total_consolidated--customers.your_mortgage_rquirement.existing_mortgage_details.repayment_charge--customers.your_mortgage_rquirement.new_mortgage_details.Contingency}}
+                                                            <img src="images/infos.png" width="20" height="20" style="cursor:pointer; position: relative;
+                                                                 top: -2px;" ng-click="addmcomparisonmodal()"></dd>
+                                                    </dl>
+
+
+                                                    <dl ng-show="(customers.your_mortgage_rquirement.mortgage_type==10)||(customers.your_mortgage_rquirement.mortgage_type ==11)" class="gk-color">
+                                                        <dt>SecuredLoan</dt>
+                                                        <dd class="gk-price"><span>LTV </span>
+                                                            <!-- {{(customers.your_mortgage_rquirement.new_mortgage_details.additional_capital_rasing--customers.your_mortgage_rquirement.new_mortgage_details.total_consolidated--customers.your_mortgage_rquirement.new_mortgage_details.Contingency)/customers.your_mortgage_rquirement.existing_mortgage_details.property_value
+                                                            * 100 | setDecimal:2}} % -->
+                                                            {{(customers.your_mortgage_rquirement.existing_mortgage_details.property_value--customers.your_mortgage_rquirement.new_mortgage_details.additional_capital_rasing-customers.your_mortgage_rquirement.existing_mortgage_details.outstand_balance)/customers.your_mortgage_rquirement.existing_mortgage_details.property_value*100
+                                                            | setDecimal:2}}
+                                                        </dd>
+                                                        <dd class="gk-price"><span>Loan Required </span>&#163; {{customers.your_mortgage_rquirement.existing_mortgage_details.property_value--customers.your_mortgage_rquirement.new_mortgage_details.additional_capital_rasing-customers.your_mortgage_rquirement.existing_mortgage_details.outstand_balance
+                                                            }}
+                                                            <!-- {{customers.your_mortgage_rquirement.new_mortgage_details.Contingency--customers.your_mortgage_rquirement.new_mortgage_details.additional_capital_rasing--customers.your_mortgage_rquirement.new_mortgage_details.total_consolidated}} -->
+                                                            <img src="images/infos.png" width="20" height="20" style="cursor:pointer; position: relative;
+                                                                 top: -2px;" ng-click="scomparisonmodal()"></dd>
+                                                        <dd class="gk-link">
+                                                            <a href="javascript:;" class="loaded">
+                                                                <div ng-switch=" {{(customers.your_mortgage_rquirement.existing_mortgage_details.outstand_balance--customers.your_mortgage_rquirement.new_mortgage_details.additional_capital_rasing--customers.your_mortgage_rquirement.new_mortgage_details.total_consolidated--customers.your_mortgage_rquirement.new_mortgage_details.Contingency) / customers.your_mortgage_rquirement.existing_mortgage_details.property_value * 100}} < {{(customers.your_mortgage_rquirement.existing_mortgage_details.outstand_balance--customers.your_mortgage_rquirement.new_mortgage_details.additional_capital_rasing--customers.your_mortgage_rquirement.new_mortgage_details.total_consolidated--your_mortgage_rquirement.new_mortgage_details.Contingency--customers.your_mortgage_rquirement.existing_mortgage_details.repayment_charge)/customers.your_mortgage_rquirement.existing_mortgage_details.property_value * 100 | setDecimal:2}}"
+                                                                    style="display:inline-block">
+                                                                    <div ng-switch-when="true">
+                                                                        <img src="http://www.pro-grass.com/wp-content/uploads/2013/07/prograss-tip-icon.png" width="25" height="25" tooltip=" Choosing secured loan is more advantageous for you" style="cursor:default;">
+                                                                    </div>
+
+                                                                </div>
+                                                            </a>
+                                                        </dd>
+                                                    </dl>
+
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div ng-switch="customers.showNmortgagedetails">
+                                    <div ng-switch-when="true">
+
+                                        <div class="col-sm-12">
+                                            <div class="form-group">
+                                                <div ng-switch="customers.your_mortgage_rquirement.mortgage_type == '10' || customers.your_mortgage_rquirement.mortgage_type == '11'">
+                                                    <span ng-switch-when="true" class="step-heading step-heading-small ">SecuredLoans Mortgage Details</span>
+                                                    <span ng-switch-when="false" class="step-heading step-heading-small ">New Mortgage Details</span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-sm-6">
+                                            <div class="form-group question" id="t85" data-title="Property Value">
+                                                <label>Total Consolidated Liabilities</label>
+                                                <div>
+                                                    <span class="checkboxes pound">
+													<input type="text" class="form-control" ng-model="consolidatedvalue()" readonly> </span>
+                                                </div>
+
+                                                <!-- help text -->
+
+                                                <div class="helptip icon-sprite speech" id="boxt85">
+                                                    <h5>Help</h5>
+                                                </div>
+
+                                                <!-- help text end -->
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group question" id="t77" data-title="Term of New Mortgage ">
+                                                <label>Term of New Mortgage </label>
+
+                                                <div>
+                                                    <span class="checkboxes" style=" height: 35px;"> 
+                                                        <span style="position:relative; width:25%; display:inline-block">
+                                                            <input type="text" class="form-control"
+                                                                   ng-model="customers.your_mortgage_rquirement.new_mortgage_details.new_mortgage_yr"
+                                                                   required="required" maxlength="2" ng-min="2" numbers-only name="yrs" required min="2" > <span
+                                                                   style="position:absolute; right:18px; top:6px;">Years </span> </span>
+                                                    <span style="position:relative; width:25%; display:inline-block">
+                                                            <input type="text" class="form-control"
+                                                                   ng-model="customers.your_mortgage_rquirement.new_mortgage_details.new_mortgage_month"
+                                                                   ng-init="customers.your_mortgage_rquirement.new_mortgage_details.new_mortgage_month = '0'"
+                                                                   min="0" max="12" numbers-only maxlength="2" required > <span
+                                                                   style="position:absolute; right:18px; top:6px;">Month </span> </span>
+                                                    <span class="form error" ng-show="customers.your_mortgage_rquirement.new_mortgage_details.new_mortgage_yr<2">
+                                                            Minimum 2 Years</span>
+                                                    </span>
+
+                                                </div>
+
+                                                <!-- help text -->
+
+                                                <div class="helptip icon-sprite speech" id="boxt77">
+                                                    <h5>Help</h5>
+                                                </div>
+
+                                                <!-- help text end -->
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group question" id="t85" data-title="Property Value">
+                                                <label>Property Value</label>
+
+                                                <div>
+                                                    <span class="checkboxes pound">  <input type="text" name=" "
+                                                                                            class="form-control"
+                                                                                            ng-model="customers.your_mortgage_rquirement.new_mortgage_details.property_value"
+                                                                                            required="required"
+                                                                                            numbers-only
+                                                                                            remo-calucalte-ltv ng-focus="showTyping('property_value')" ng-blur="hideTyping('property_value')">  </span>
+                                                </div>
+
+                                                <!-- help text -->
+
+                                                <div>
+                                                    <div class="typing helptip icon-sprite speech" ng-show="customer.mortgage.property_value.typing && !local.customer.mortgage.property_value.typing">
+                                                        Typing ...
+                                                    </div>
+                                                    <div class="helptip icon-sprite speech" id="boxt10" ng-hide="customer.mortgage.property_value.typing && !local.customer.mortgage.property_value.typing">
+                                                        <h5>Help</h5>
+                                                    </div>
+                                                </div>
+
+                                                <!-- help text end -->
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group question" id="t79" data-title="Method of Repayment">
+                                                <label>Method of Repayment</label>
+
+                                                <div> <span class="checkboxes">
+                                                        <select class="form-control" ng-model="customers.your_mortgage_rquirement.new_mortgage_details.method_repayment"
+                                                                required="required">
+                                                            <option value="">Please Select</option>
+                                                            <option value="1">Interest Only</option>
+                                                            <option value="2">Repayment</option>
+                                                            <option value="3">Split</option>
+
+                                                        </select>  </span>
+                                                </div>
+
+                                                <!-- help text -->
+
+                                                <div class="helptip icon-sprite speech" id="boxt79">
+                                                    <h5>Help</h5>
+                                                </div>
+
+                                                <!-- help text end -->
+                                                <div>
+                                                    <span class="checkboxes pound">  <input type="text" name=" "
+                                                                                            class="form-control"
+                                                                                            ng-model="customers.your_mortgage_rquirement.new_mortgage_details.property_value"
+                                                                                            required="required"
+                                                                                            numbers-only
+                                                                                            remo-calucalte-ltv ng-focus="showTyping('property_value')" ng-blur="hideTyping('property_value')">  </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div ng-switch="customers.your_mortgage_rquirement.new_mortgage_details.method_repayment == '3'">
+                                            <div ng-switch-when="true">
+                                                <div class="col-sm-6">
+                                                    <div class="form-group question" id="t80">
+                                                        <label>Interest Only Amount </label>
+
+                                                        <div>
+                                                            <span class="checkboxes pound">  <input type="text"
+                                                                                                    class="form-control"
+                                                                                                    ng-model="customers.your_mortgage_rquirement.new_mortgage_details.interest_amt"
+                                                                                                    required="required"
+                                                                                                    numbers-only>  </span>
+                                                        </div>
+
+                                                        <!-- help text -->
+
+                                                        <div class="helptip icon-sprite speech" id="boxt80">
+                                                            <h5>Help</h5>
+                                                        </div>
+
+                                                        <!-- help text end -->
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <div class="form-group question" id="t80">
+                                                        <label>Repayment Amount </label>
+
+                                                        <div>
+                                                            <span class="checkboxes pound" ng-init="customers.your_mortgage_rquirement.new_mortgage_details.repayment_amt = '0'">  <input
+                                                                    type="text" class="form-control"
+                                                                    ng-model="customers.your_mortgage_rquirement.new_mortgage_details.repayment_amt"
+                                                                    required="required" numbers-only>  </span>
+                                                        </div>
+
+                                                        <!-- help text -->
+
+                                                        <div class="helptip icon-sprite speech" id="boxt80">
+                                                            <h5>Help</h5>
+                                                        </div>
+
+                                                        <!-- help text end -->
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group question" id="t80">
+                                                <label>Additional Capital Raising </label>
+
+                                                <div>
+                                                    <span class="checkboxes pound">  <input type="text"
+                                                                                            class="form-control"
+                                                                                            ng-model="customers.your_mortgage_rquirement.new_mortgage_details.capital_rasing"
+                                                                                            required="required"
+                                                                                            numbers-only
+                                                                                            remo-calucalte-ltv ng-focus="showTyping('additional_capital_rasing')" ng-blur="hideTyping('additional_capital_rasing')">  </span>
+                                                </div>
+
+                                                <!-- help text -->
+
+                                                <div>
+                                                    <div class="typing helptip icon-sprite speech" ng-show="customer.mortgage.additional_capital_rasing.typing && !local.customer.mortgage.additional_capital_rasing.typing">
+                                                        Typing ...
+                                                    </div>
+                                                    <div class="helptip icon-sprite speech" id="boxt10" ng-hide="customer.mortgage.additional_capital_rasing.typing && !local.customer.mortgage.additional_capital_rasing.typing">
+                                                        <h5>Help</h5>
+                                                    </div>
+                                                </div>
+
+                                                <!-- help text end -->
+                                            </div>
+                                        </div>
+
+                                        <div ng-if="customers.your_mortgage_rquirement.new_mortgage_details.capital_rasing">
+                                            <div class="col-sm-6" style="display:none;">
+                                                <div class="form-group question" id="t118" data-title="Capital Raising?">
+                                                    <label>Capital Raising? </label>
+
+                                                    <div>
+                                                        <span class="checkboxes">  <input type="radio" ng-value="1"
+                                                                                          ng-model="customers.your_mortgage_rquirement.new_mortgage_details.ltb"> Yes <input
+                                                                                          type="radio" ng-value="0"
+                                                                                          ng-model="customers.your_mortgage_rquirement.new_mortgage_details.ltb"
+                                                                                          disabled="true"> No </span>
+
+
+                                                    </div>
+
+                                                    <!-- help text -->
+
+                                                    <div class="helptip icon-sprite speech" id="boxt118">
+                                                        <h5>Help</h5>
+                                                    </div>
+
+                                                    <!-- help text end -->
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div ng-if="!customers.your_mortgage_rquirement.new_mortgage_details.capital_rasing">
+                                            <div class="col-sm-6" style="display:none;">
+                                                <div class="form-group question" id="t118" data-title="Capital Raising?">
+                                                    <label>Capital Raising? </label>
+
+                                                    <div>
+                                                        <span class="checkboxes" ng-init="cmortgage.IsCapitalRaisingAllowed = 0">  <input
+                                                                type="radio" ng-value="1"
+                                                                ng-model="cmortgage.IsCapitalRaisingAllowed"
+                                                                disabled="true"> Yes <input type="radio" ng-value="0"
+                                                                ng-model="cmortgage.IsCapitalRaisingAllowed"> No </span>
+
+
+                                                    </div>
+
+                                                    <!-- help text -->
+
+                                                    <div class="helptip icon-sprite speech" id="boxt118">
+                                                        <h5>Help</h5>
+                                                    </div>
+
+                                                    <!-- help text end -->
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div ng-switch="customers.your_mortgage_rquirement.new_mortgage_details.capital_rasing == '1'">
+                                            <div ng-switch-when="true">
+                                                <div class="col-sm-6">
+                                                    <div class="form-group question" id="t121" data-title="Reason for Capital Raising(Applicable for LTB) " ng-class="{ 'has-error' :   createcmortgages.CapitalRaisingReason.$invalid && !createcmortgages.CapitalRaisingReason.$pristine }">
+                                                        <label>Reason for Capital Raising(Applicable for LTB)</label>
+
+                                                        <div>
+                                                            <span class="checkboxes">   <select class="form-control" ng-model="cmortgage.CapitalRaisingReason"
+                                                                                                name="CapitalRaisingReason" required>
+                                                                    <option value="Not Applicable">Not Applicable</option>
+                                                                    <option value="Any legal reason">Any legal reason</option>
+                                                                    <option value="Only for Home Imp on BTL property">Only for Home Imp on BTL property</option>
+                                                                    <option value="For Home Imp or Deposit for another property">For Home Imp or Deposit for another property
+                                                                    </option>
+
+                                                                </select>
+                                                            </span>
+                                                        </div>
+
+                                                        <!-- help text -->
+
+                                                        <div class="helptip icon-sprite speech" id="boxt121">
+                                                            <h5>Help</h5>
+                                                        </div>
+
+                                                        <!-- help text end -->
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div ng-switch-when="false"><input type="hidden" ng-model="cmortgage.CapitalRaisingReason" ng-init="cmortgage.CapitalRaisingReason = 'Not Applicable'">
+                                            </div>
+
+                                        </div>
+                                        <div class="clearfix"></div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group question" id="t80">
+                                                <label>Contingency </label>
+
+                                                <div>
+                                                    <span class="checkboxes pound" ng-init="customers.your_mortgage_rquirement.new_mortgage_details.Contingency = '0'">  <input
+                                                            type="text" class="form-control"
+                                                            ng-model="customers.your_mortgage_rquirement.new_mortgage_details.Contingency"
+                                                            required="required" numbers-only>  </span>
+                                                </div>
+
+                                                <!-- help text -->
+
+                                                <div class="helptip icon-sprite speech" id="boxt80">
+                                                    <h5>Help</h5>
+                                                </div>
+
+                                                <!-- help text end -->
+                                            </div>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                        <div ng-switch="customers.your_mortgage_rquirement.mortgage_type == '7' || customers.your_mortgage_rquirement.mortgage_type == '11'">
+                                            <div ng-switch-when="true">
+
+                                                <div class="col-sm-6">
+                                                    <div class="form-group question" id="t211" data-title="Is this a LTB">
+                                                        <label>Is this a LTB </label>
+
+                                                        <div>
+                                                            <span class="checkboxes">  <input type="radio"
+                                                                                              ng-model="customers.your_mortgage_rquirement.new_mortgage_details.ltb"
+                                                                                              ng-value="true"> Yes <input
+                                                                                              type="radio" ng-value="false"
+                                                                                              ng-model="customers.your_mortgage_rquirement.new_mortgage_details.ltb"> No </span>
+                                                        </div>
+
+                                                        <!-- help text -->
+
+                                                        <div class="helptip icon-sprite speech" id="boxt211">
+                                                            <h5>Help</h5>
+                                                        </div>
+
+                                                        <!-- help text end -->
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <div class="form-group question" id="t213" data-title="Is this a FTL">
+                                                        <label>Is this a FTL</label>
+
+                                                        <div>
+                                                            <span class="checkboxes">  <input type="radio"
+                                                                                              ng-model="customers.your_mortgage_rquirement.new_mortgage_details.ftl"
+                                                                                              ng-value="true"> Yes <input
+                                                                                              type="radio"
+                                                                                              ng-model="customers.your_mortgage_rquirement.new_mortgage_details.ftl"
+                                                                                              ng-value="false"> No </span>
+                                                        </div>
+
+                                                        <!-- help text -->
+
+                                                        <div class="helptip icon-sprite speech" id="boxt213">
+                                                            <h5>Help</h5>
+                                                        </div>
+
+                                                        <!-- help text end -->
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+                                        <div class="clearfix"></div>
+                                        <!--<span class="form error" style="padding-left:0px; float:right" ng-if="(customers.your_mortgage_rquirement.purchase_details.property_value - customers.your_mortgage_rquirement.purchase_details.deposit_amt--customers.your_mortgage_rquirement.purchase_details.additional_capital_rasing)/customers.your_mortgage_rquirement.purchase_details.property_value
+                                                    * 100>100 || (customers.your_mortgage_rquirement.purchase_details.property_value - customers.your_mortgage_rquirement.purchase_details.deposit_amt--customers.your_mortgage_rquirement.purchase_details.additional_capital_rasing)/customers.your_mortgage_rquirement.purchase_details.property_value
+                                                    * 100<0">
+                                            LTV Not more than 100% and not less than 0</span>-->
+
+                                        <div class="clearfix"></div>
+                                        <div class="form-group">
+                                            <div class="pull-right">
+                                                <input type="button" class="whi-btn2 btnPrevious" ng-click="Emortgagedetails()" value="&lt; BACK">
+                                                <button class="blue-btn5" ng-click="bmortgagedetails()">Save</button>
+                                            </div>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                        <div class="comparison">
+
+                                            <div>
+
+
+                                                <div ng-switch="customers.your_mortgage_rquirement.mortgage_type == '10' || customers.your_mortgage_rquirement.mortgage_type == '11'" class="comparison col-md-9">
+                                                    <div class="row" style="margin-left:0px">
+
+                                                        <div ng-switch-when="true">
+
+                                                            <div class="factfind-gk-color-price-table col3" ng-if="customers.your_mortgage_rquirement.new_mortgage_details.property_value">
+                                                                <div class="comparison-heading">Know the Difference
+                                                                </div>
+                                                                <div>
+
+                                                                    <dl>
+                                                                        <dt>Mortgage ( Not Willing to Pay )</dt>
+                                                                        <dd class="gk-price"><span>LTV </span>{{(customers.your_mortgage_rquirement.existing_mortgage_details.outstand_balance)/customers.your_mortgage_rquirement.new_mortgage_details.property_value * 100 | setDecimal:2}}
+                                                                            %
+                                                                        </dd>
+                                                                        <dd class="gk-price"><span>Loan Required </span>&#163; {{customers.your_mortgage_rquirement.existing_mortgage_details.outstand_balance}}
+                                                                            <img src="images/infos.png" width="20" height="20" style="cursor:pointer; position: relative;
+                                                                                 top: -2px;" ng-click="notmcomparisonmodal()"></dd>
+                                                                    </dl>
+
+                                                                    <dl>
+                                                                        <dt>Mortgage ( Add to new Mortgage )</dt>
+                                                                        <dd class="gk-price"><span>LTV </span>{{(customers.your_mortgage_rquirement.existing_mortgage_details.outstand_balance--customers.your_mortgage_rquirement.new_mortgage_details.capital_rasing--customers.your_mortgage_rquirement.new_mortgage_details.total_consolidated--customers.your_mortgage_rquirement.new_mortgage_details.Contingency--customers.your_mortgage_rquirement.existing_mortgage_details.repayment_charge)/customers.your_mortgage_rquirement.new_mortgage_details.property_value
+                                                                            * 100 | setDecimal:2}} %
+                                                                        </dd>
+                                                                        <dd class="gk-price"><span>Loan Required </span>&#163; {{customers.your_mortgage_rquirement.existing_mortgage_details.outstand_balance--customers.your_mortgage_rquirement.new_mortgage_details.total_consolidated--customers.your_mortgage_rquirement.existing_mortgage_details.repayment_charge--customers.your_mortgage_rquirement.new_mortgage_details.Contingency}}
+                                                                            <img src="images/infos.png" width="20" height="20" style="cursor:pointer; position: relative;
+                                                                                 top: -2px;" ng-click="addmcomparisonmodal()"></dd>
+                                                                    </dl>
+                                                                </div>
+                                                                <dl class="gk-color">
+                                                                    <dt>SecuredLoan</dt>
+                                                                    <dd class="gk-price"><span>LTV </span>{{(customers.your_mortgage_rquirement.new_mortgage_details.capital_rasing--customers.your_mortgage_rquirement.new_mortgage_details.total_consolidated--customers.your_mortgage_rquirement.new_mortgage_details.Contingency)/customers.your_mortgage_rquirement.new_mortgage_details.property_value
+                                                                        * 100 | setDecimal:2}} %
+                                                                    </dd>
+                                                                    <dd class="gk-price"><span>Loan Required </span>&#163; {{customers.your_mortgage_rquirement.new_mortgage_details.Contingency--customers.your_mortgage_rquirement.new_mortgage_details.capital_rasing--customers.your_mortgage_rquirement.new_mortgage_details.total_consolidated}}
+                                                                        <img src="images/infos.png" width="20" height="20" style="cursor:pointer; position: relative;
+                                                                             top: -2px;" ng-click="scomparisonmodal()"></dd>
+                                                                    <dd class="gk-link">
+                                                                        <a href="javascript:;" class="loaded">
+                                                                            <div ng-switch=" {{(customers.your_mortgage_rquirement.existing_mortgage_details.outstand_balance--customers.your_mortgage_rquirement.new_mortgage_details.capital_rasing--customers.your_mortgage_rquirement.new_mortgage_details.total_consolidated--customers.your_mortgage_rquirement.new_mortgage_details.Contingency) / customers.your_mortgage_rquirement.new_mortgage_details.property_value * 100}} < {{(customers.your_mortgage_rquirement.existing_mortgage_details.outstand_balance--customers.your_mortgage_rquirement.new_mortgage_details.capital_rasing--customers.your_mortgage_rquirement.new_mortgage_details.total_consolidated--customers.your_mortgage_rquirement.new_mortgage_details.Contingency--customers.your_mortgage_rquirement.existing_mortgage_details.repayment_charge)/customers.your_mortgage_rquirement.new_mortgage_details.property_value * 100 | setDecimal:2}}"
+                                                                                style="display:inline-block">
+                                                                                <div ng-switch-when="true">
+                                                                                    <img src="http://www.pro-grass.com/wp-content/uploads/2013/07/prograss-tip-icon.png" width="25" height="25" tooltip=" Choosing secured loan is more advantageous for you" style="cursor:default;">
+                                                                                </div>
+
+                                                                            </div>
+                                                                        </a>
+                                                                    </dd>
+                                                                </dl>
+                                                            </div>
+                                                        </div>
+                                                        <div ng-switch-when="false">
+
+                                                            <div class="factfind-gk-color-price-table col3" ng-if="customers.your_mortgage_rquirement.new_mortgage_details.property_value" style="padding:10px;">
+                                                                <dl>
+                                                                    <dt>Mortgage <span> ( Add to new Mortgage )</span>
+                                                                    </dt>
+                                                                    <dd class="gk-price"><span>LTV </span> {{(customers.your_mortgage_rquirement.existing_mortgage_details.outstand_balance--customers.your_mortgage_rquirement.new_mortgage_details.capital_rasing--customers.your_mortgage_rquirement.new_mortgage_details.total_consolidated--customers.your_mortgage_rquirement.new_mortgage_details.Contingency--customers.your_mortgage_rquirement.existing_mortgage_details.repayment_charge)/customers.your_mortgage_rquirement.new_mortgage_details.property_value
+                                                                        * 100 | setDecimal:2}} %
+                                                                    </dd>
+                                                                    <dd class="gk-price"><span>Loan Required </span>&#163; {{customers.your_mortgage_rquirement.existing_mortgage_details.outstand_balance--customers.your_mortgage_rquirement.new_mortgage_details.capital_rasing--customers.your_mortgage_rquirement.new_mortgage_details.total_consolidated--customers.your_mortgage_rquirement.existing_mortgage_details.repayment_charge--customers.your_mortgage_rquirement.new_mortgage_details.Contingency}}
+                                                                        <img src="images/infos.png" width="20" height="20" style="cursor:pointer; position: relative;
+                                                                             top: -2px;" ng-click="addmcomparisonmodal()"></dd>
+                                                                </dl>
+                                                                <dl>
+                                                                    <dt>Mortgage <span> ( Not Willing to Pay )</span>
+                                                                    </dt>
+                                                                    <dd class="gk-price"><span>LTV </span>{{(customers.your_mortgage_rquirement.existing_mortgage_details.outstand_balance)/customers.your_mortgage_rquirement.new_mortgage_details.property_value * 100 | setDecimal:2}}
+                                                                        %
+                                                                    </dd>
+                                                                    <dd class="gk-price"><span>Loan Required </span>&#163; {{customers.your_mortgage_rquirement.existing_mortgage_details.outstand_balance}}
+                                                                        <img src="images/infos.png" width="20" height="20" style="cursor:pointer; position: relative;
+                                                                             top: -2px;" ng-click="notmcomparisonmodal()"></dd>
+                                                                </dl>
+                                                            </div>
+                                                        </div>
+
+
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <div ng-switch="customers.meeting_aims.select_apps.is_bridging_sta">
+                                    <div ng-switch-when="true">
+
+                                        <div ng-switch="customers.showbmortgagedetails">
+                                            <div ng-switch-when="true">
+                                                <input type="hidden" ng-model="cmortgage.Nmortgagedetails" ng-init="cmortgage.Nmortgagedetails = '1'">
+
+                                                <div class="col-sm-6">
+                                                    <div class="form-group question" id="t80">
+                                                        <label>Is the property going to be <br>secured on your main
+                                                            residence </label>
+
+                                                        <div>
+                                                            <span class="checkboxes" ng-init="customers.cmortgage.IsBridgingMainResidence = false">
+                                                                <input type="radio" ng-value="true"
+                                                                       ng-model="customers.cmortgage.IsBridgingMainResidence"> Yes </input>
+                                                                <input type="radio" ng-value="false"
+                                                                       ng-model="customers.cmortgage.IsBridgingMainResidence"> No </input>
+                                                            </span>
+
+                                                        </div>
+
+                                                        <!-- help text -->
+
+                                                        <div class="helptip icon-sprite speech" id="boxt80">
+                                                            <h5>Help</h5>
+                                                        </div>
+
+                                                        <!-- help text end -->
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <div class="form-group question" id="t80">
+                                                        <label>What term would you like to take <br> your bridging loan
+                                                            over?[In Months] </label>
+
+                                                        <div>
+                                                            <span class="checkboxes">  <input type="text" numbers-only
+                                                                                              class="form-control"
+                                                                                              ng-model="customers.cmortgage.BridgingTermMonths"
+                                                                                              required="required">  </span>
+                                                        </div>
+
+                                                        <!-- help text -->
+
+                                                        <div class="helptip icon-sprite speech" id="boxt80">
+                                                            <h5>Help</h5>
+                                                        </div>
+
+                                                        <!-- help text end -->
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <div class="form-group question" id="t80">
+                                                        <label>Do you require rolled up interest </label>
+
+                                                        <div>
+                                                            <span class="checkboxes">
+                                                                <input type="radio" ng-value="true"
+                                                                       ng-model="customers.cmortgage.RolledUpInterest"> Yes
+                                                                <input type="radio" ng-value="false"
+                                                                       ng-model="customers.cmortgage.RolledUpInterest"> No
+                                                            </span>
+                                                        </div>
+
+                                                        <!-- help text -->
+
+                                                        <div class="helptip icon-sprite speech" id="boxt80">
+                                                            <h5>Help</h5>
+                                                        </div>
+
+                                                        <!-- help text end -->
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <div class="form-group question" id="t80">
+                                                        <label>How do you intend to repay the loan at the end of the
+                                                            term ? </label>
+
+                                                        <div>
+                                                            <span class="checkboxes">   
+                                                                <select class="form-control" ng-model="customers.cmortgage.PayEndofTerm" required="required">
+                                                                    <option value="Refinance">Refinance</option>
+                                                                    <option value="Sale of Existing Property">Sale of Existing Property</option>
+                                                                    <option value="Sale of Another Property">Sale of Another Property</option>
+                                                                </select>
+                                                            </span>
+                                                        </div>
+
+                                                        <!-- help text -->
+
+                                                        <div class="helptip icon-sprite speech" id="boxt80">
+                                                            <h5>Help</h5>
+                                                        </div>
+
+                                                        <!-- help text end -->
+                                                    </div>
+                                                </div>
+                                                <div ng-switch="customers.cmortgage.PayEndofTerm">
+                                                    <div ng-switch-when="Sale of Another Property">
+
+                                                        <div class="col-sm-6">
+                                                            <div class="form-group question" id="t80">
+                                                                <label> What is the address of the property </label>
+
+                                                                <div>
+                                                                    <span class="checkboxes">  <input type="text"
+                                                                                                      class="form-control"
+                                                                                                      ng-model="customers.cmortgage.AnotherAddress"
+                                                                                                      required="required">  </span>
+                                                                </div>
+
+                                                                <!-- help text -->
+
+                                                                <div class="helptip icon-sprite speech" id="boxt80">
+                                                                    <h5>Help</h5>
+                                                                </div>
+
+                                                                <!-- help text end -->
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-6">
+                                                            <div class="form-group question" id="t80">
+                                                                <label>What is the value of the property?</label>
+
+                                                                <div>
+                                                                    <span class="checkboxes pound">  <input type="text"
+                                                                                                            numbers-only
+                                                                                                            class="form-control"
+                                                                                                            ng-model="customers.cmortgage.AnotherValue"
+                                                                                                            required="required">  </span>
+                                                                </div>
+
+                                                                <!-- help text -->
+
+                                                                <div class="helptip icon-sprite speech" id="boxt80">
+                                                                    <h5>Help</h5>
+                                                                </div>
+
+                                                                <!-- help text end -->
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-6">
+                                                            <div class="form-group question" id="t80">
+                                                                <label>What is the current outstanding mortgage
+                                                                    balance? </label>
+
+                                                                <div>
+                                                                    <span class="checkboxes pound">  <input type="text"
+                                                                                                            numbers-only
+                                                                                                            class="form-control"
+                                                                                                            ng-model="customers.cmortgage.AnotherOutstanding"
+                                                                                                            required="required">  </span>
+                                                                </div>
+
+                                                                <!-- help text -->
+
+                                                                <div class="helptip icon-sprite speech" id="boxt80">
+                                                                    <h5>Help</h5>
+                                                                </div>
+
+                                                                <!-- help text end -->
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-6">
+                                                            <div class="form-group question" id="t80">
+                                                                <label>Who is the current lender? </label>
+
+                                                                <div>
+                                                                    <span class="checkboxes">  <input type="text"
+                                                                                                      class="form-control"
+                                                                                                      ng-model="customers.cmortgage.AnotherLender"
+                                                                                                      required="required">  </span>
+                                                                </div>
+
+                                                                <!-- help text -->
+
+                                                                <div class="helptip icon-sprite speech" id="boxt80">
+                                                                    <h5>Help</h5>
+                                                                </div>
+
+                                                                <!-- help text end -->
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-6">
+                                                            <div class="form-group question" id="t80">
+                                                                <label>Equity/Sale Proceeds? </label>
+
+                                                                <div>
+                                                                    <span class="checkboxes pound">  <input type="text"
+                                                                                                            numbers-only
+                                                                                                            class="form-control"
+                                                                                                            ng-model="customers.cmortgage.BridgingEquity"
+                                                                                                            required="required">  </span>
+                                                                </div>
+
+                                                                <!-- help text -->
+
+                                                                <div class="helptip icon-sprite speech" id="boxt80">
+                                                                    <h5>Help</h5>
+                                                                </div>
+
+                                                                <!-- help text end -->
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+
+                                                <div class="clearfix"></div>
+                                                <div class="form-group">
+                                                    <div class="pull-right">
+                                                        <input type="button" value="&lt; BACK" ng-click="Nmortgagedetails()" class="whi-btn2">
+                                                        <button class="blue-btn5" ng-click="bmortgagedetails()">Save</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+
+
+        </form>
+
+
+    </div>
+</div>

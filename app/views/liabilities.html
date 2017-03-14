@@ -1,0 +1,665 @@
+<div ng-controller="LiabilitiesController">
+    <div class="tab-pane" id="etab6">
+
+        <div class="form-group">
+            <h3><img style="padding-right:5px;" src="images/ic-Liabilities.png">Liabilities</h3>
+        </div>
+
+        <div class="tab-pane-border que-for row">
+            <ul id="fact-form-breadcrumb" ng-init="viewliabilities();">
+                <li><a ng-class="{active:customers.liabilitiesselected}" href="javascript:;" ng-click="viewliabilities()">Liabilities</a></li>
+                <li><a ng-class="{active:customers.PayDayLoansselected}" href="javascript:;" ng-click="viewPayDayLoans()">PayDayLoans</a></li>
+            </ul>
+        </div>
+        <div ng-switch="customers.showliabilities">
+            <div ng-switch-when="true" ng-init="customers.collapseliabilities={};">
+                <div ng-repeat="applicant in customers.applicants">
+                    <div ng-repeat="allliabilities in applicant.liabilities">
+                        <form class="form-horizontal" name="editliability" >
+                            <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading" role="tab" id="headingOne">
+                                        <h4 class="panel-title">
+                                            <a style="cursor:pointer" ng-click="customers.collapseliabilities[allliabilities.liabilityid]=!customers.collapseliabilities[allliabilities.liabilityid];">
+                                                {{applicant.forename}}/{{getLiabilityType(allliabilities.liablility_type)}} / &#163;{{allliabilities.monthly_payment}}
+                                            </a>
+                                        </h4>
+                                    </div>
+                                    <div id="collapseliability{{$index}}{{applicant_id}}{{allliabilities.liabilityid}}" class="panel-collapse" ng-class="{'collapse' :customers.collapseliabilities[allliabilities.liabilityid]!=false}" role="tabpanel" aria-labelledby="headingOne" >
+                                        <div class="panel-body">
+                                            <input type="hidden" class="form-control" ng-model="allliabilities.liability_id" name="LiabilityID">
+                                            <div class="col-sm-6">
+                                                <div class="form-group question ques1" id="t178"
+                                                     data-title="Applicants "
+                                                     ng-class="{ 'has-error' :   editliability.selectedClientID.$invalid && !editliability.selectedClientID.$pristine }">
+                                                    <label>Applicants </label>
+
+                                                    <div ng-repeat="applicantname in customers.applicants | limitTo: customers.no_of_applicants">
+                                                        <span class="checkboxes">
+                                                            <input type="checkbox" ng-model="applicantname.active_liability" ng-value="{{applicantname.$index}}"> {{applicantname.forename}}
+                                                        </span>
+                                                    </div>
+
+                                                    <!-- help text -->
+
+                                                    <div class="helptip icon-sprite speech" id="boxt178">
+                                                        <h5>Help</h5>
+                                                    </div>
+
+                                                    <!-- help text end -->
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="form-group question" id="t181" data-title="Liability Type"
+                                                     ng-class="{ 'has-error' :   liabilityes.add_liabilities.eLiabilityTypeID.$invalid && !liabilityes.add_liabilities.eLiabilityTypeID.$pristine }">
+                                                    <label>Liability Type </label>
+
+                                                    <div>
+                                                        <span class="checkboxes"> 
+                                                            <select name="allliabilities.liablility_type" ng-model="allliabilities.liablility_type" class="form-control " required>
+                                                                <option value="" ng-selected="selected">Please Select</option>
+                                                                <option value="3">Credit Card</option>
+                                                                <option value="7">Existing Mortgage</option>
+                                                                <option value="5">Mail Order</option>
+                                                                <option value="6">Overdraft</option>
+                                                                <option value="2">Secured Loan</option>
+                                                                <option value="4">Store Card</option>
+                                                                <option value="1">Unsecured Loan</option>
+
+                                                            </select></span>
+                                                    </div>
+
+                                                    <!-- help text -->
+
+                                                    <div class="helptip icon-sprite speech" id="boxt181">
+                                                        <h5>Help</h5>
+                                                    </div>
+
+                                                    <!-- help text end -->
+                                                </div>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                            <div ng-switch="allliabilities.liablility_type == '6'">
+                                                <div ng-switch-when="true">
+
+
+                                                    <div class="col-sm-6">
+                                                        <div class="form-group question" id="t181"
+                                                             data-title="Overdraft Rate"
+                                                             ng-class="{ 'has-error' :   addliability.OverdraftIntRate.$invalid && !addliability.OverdraftIntRate.$pristine }">
+                                                            <label>Overdraft Rate</label>
+
+                                                            <div>
+                                                                <span class="checkboxes">  <input type="text"
+                                                                                                  numbers-only
+                                                                                                  name="allliabilities.overdraft_rate"
+                                                                                                  class="form-control"
+                                                                                                  ng-model="allliabilities.overdraft_rate"
+                                                                                                  required> </span>
+                                                            </div>
+
+                                                            <!-- help text -->
+
+                                                            <div class="helptip icon-sprite speech" id="boxt181">
+                                                                <h5>Help</h5>
+                                                            </div>
+
+                                                            <!-- help text end -->
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div ng-switch="allliabilities.liablility_type == '3'">
+                                                <div ng-switch-when="true">
+
+                                                    <div class="col-sm-6">
+                                                        <div class="form-group question" id="t181"
+                                                             data-title="Card Type"
+                                                             ng-class="{ 'has-error' :   addliabilityes.eCreditCardTypeID.$invalid && !addliabilityes.eCreditCardTypeID.$pristine }">
+                                                            <label>Card Type</label>
+
+                                                            <div>
+                                                                <span class="checkboxes">
+                                                                    <select class="form-control" name="allliabilities.card_type" ng-model="allliabilities.card_type" required>
+                                                                        <option value="" ng-selected="selected">Please Select</option>
+                                                                        <option value="4">Delta</option>
+                                                                        <option value="3">Mastercard</option>
+                                                                        <option value="6">Solo</option>
+                                                                        <option value="5">Switch</option>
+                                                                        <option value="1">Visa Credit</option>
+                                                                        <option value="2">Visa Debit</option>
+
+                                                                    </select>
+                                                                </span>
+                                                            </div>
+
+                                                            <!-- help text -->
+
+                                                            <div class="helptip icon-sprite speech" id="boxt181">
+                                                                <h5>Help</h5>
+                                                            </div>
+
+                                                            <!-- help text end -->
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-6">
+                                                        <div data-title="StartDate" id="t14" class="form-group question" ng-class="{ 'has-error' :   addliabilityes.CreditLimit.$invalid && !addliabilityes.CreditLimit.$pristine }">
+                                                            <label>Credit Limit</label>
+                                                            <div>
+                                                                <span class="checkboxes pound">  
+                                                                    <input type="text" numbers-only class="form-control" ng-model="allliabilities.credit_limit" name="allliabilities.credit_limit" required ng-focus="showTyping('credit_limit')" ng-blur="hideTyping('credit_limit')">
+                                                                </span>
+                                                            </div>
+
+                                                            <!-- help text -->
+
+                                                            <div>
+                                                                <div class="typing helptip icon-sprite speech" ng-show="customer.liab.credit_limit.typing && !local.customer.liab.credit_limit.typing" >
+                                                                    Typing ...
+                                                                </div>
+                                                                <div class="helptip icon-sprite speech" id="boxt10" ng-hide="customer.liab.credit_limit.typing && !local.customer.liab.credit_limit.typing">
+                                                                    <h5>Help</h5>
+                                                                </div>
+                                                            </div>
+
+                                                            <!-- help text end -->
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                            <div ng-switch="allliabilities.liablility_type == '7' || allliabilities.liablility_type == '2' || allliabilities.liablility_type == '1'">
+                                                <div ng-switch-when="true">
+                                                    <div class="col-sm-6">
+                                                        <div class="form-group question" id="t181" data-title="Rate of Interest (%)" ng-class="{ 'has-error' :   addliabilityes.Rate.$invalid && !addliabilityes.Rate.$pristine }">
+                                                            <label>Rate of Interest (%)</label>
+                                                            <div>
+                                                                <span class="checkboxes">
+                                                                    <input type="text" name="allliabilities.rate_of_interest" class="form-control" ng-model="allliabilities.rate_of_interest" required valid-number> </span>
+                                                            </div>
+                                                            <!-- help text -->
+                                                            <div class="helptip icon-sprite speech" id="boxt181">
+                                                                <h5>Help</h5>
+                                                            </div>
+                                                            <!-- help text end -->
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-6">
+                                                        <div data-title="StartDate" id="t14" class="form-group question" ng-class="{ 'has-error' :   addliabilityes.StartDate.$invalid && !addliabilityes.StartDate.$pristine }">
+                                                            <label>Start Date [dd/mm/yyyy]</label>
+
+                                                            <div>
+                                                                <span class="checkboxes">
+                                                                    <input class="form-control" type="text" ng-model="allliabilities.start_date" required invalid-Date="10" maxlength="10" autocomplete="off" onkeyup="ValidateDate(this, event.keyCode)" onkeydown="return DateFormat(this, event.keyCode)">
+                                                                </span>
+                                                            </div>
+
+                                                            <!-- help text -->
+
+                                                            <div id="boxt14" class="helptip icon-sprite speech">
+                                                                <h5>Help</h5>
+                                                            </div>
+
+                                                            <!-- help text end -->
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-6">
+                                                        <div data-title="EndDate" id="t14" class="form-group question" ng-class="{ 'has-error' :   addliabilityes.EndDate.$invalid && !addliabilityes.EndDate.$pristine }">
+                                                            <label>End Date [dd/mm/yyyy]</label>
+                                                            <div>
+                                                                <span class="checkboxes">
+                                                                    <input class="form-control" name="allliabilities.end_date" type="text" ng-model="allliabilities.end_date" required invalid-Date="10" maxlength="10" autocomplete="off" mask='12/12/2030'>
+                                                                </span>
+                                                            </div>
+
+                                                            <!-- help text -->
+
+                                                            <div id="boxt14" class="helptip icon-sprite speech">
+                                                                <h5>Help</h5>
+                                                            </div>
+
+                                                            <!-- help text end -->
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="form-group question" id="t181" data-title="Monthly Payment" ng-class="{ 'has-error' :   addliabilityes.MonthlyPayments.$invalid && !addliabilityes.MonthlyPayments.$pristine }">
+                                                    <label>Monthly Payment</label>
+                                                    <div>
+                                                        <span class="checkboxes pound">
+                                                            <input type="text" numbers-only name="allliabilities.monthly_payment" class="form-control" ng-model="allliabilities.monthly_payment" required ng-focus="showTyping('monthly_payment')" ng-blur="hideTyping('monthly_payment')"> 
+                                                        </span>
+                                                    </div>
+                                                    <!-- help text -->
+                                                    <div>
+                                                        <div class="typing helptip icon-sprite speech" ng-show="customer.liab.monthly_payment.typing && !local.customer.liab.monthly_payment.typing" >
+                                                            Typing ...
+                                                        </div>
+                                                        <div class="helptip icon-sprite speech" id="boxt10" ng-hide="customer.liab.monthly_payment.typing && !local.customer.liab.monthly_payment.typing">
+                                                            <h5>Help</h5>
+                                                        </div>
+                                                    </div>
+                                                    <!-- help text end -->
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="form-group question" id="t181" data-title="Provider"
+                                                     ng-class="{ 'has-error' :   addliabilityes.Provider.$invalid && !addliabilityes.Provider.$pristine }">
+                                                    <label>Provider</label>
+                                                    <div>
+                                                        <span class="checkboxes">  
+                                                            <input type="text" name="allliabilities.provider" class="form-control"  ng-model="allliabilities.provider" required ng-focus="showTyping('provider')" ng-blur="hideTyping('provider')"> 
+                                                        </span>
+                                                    </div>
+                                                    <!-- help text -->
+                                                    <div>
+                                                        <div class="typing helptip icon-sprite speech" ng-show="customer.liab.provider.typing && !local.customer.liab.provider.typing" >
+                                                            Typing ...
+                                                        </div>
+                                                        <div class="helptip icon-sprite speech" id="boxt10" ng-hide="customer.liab.provider.typing && !local.customer.liab.provider.typing">
+                                                            <h5>Help</h5>
+                                                        </div>
+                                                    </div>
+                                                    <!-- help text end -->
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="form-group question" id="t183" data-title="Balance Outstanding" ng-class="{ 'has-error' :   addliabilityes.BalanceOutstanding.$invalid && !addliabilityes.BalanceOutstanding.$pristine }">
+                                                    <label>Balance Outstanding</label>
+                                                    <div>
+                                                        <span class="checkboxes pound">  
+                                                            <input type="text" numbers-only name="allliabilities.balance_outstanding" class="form-control" ng-model="allliabilities.balance_outstanding"  required ng-focus="showTyping('balance_outstanding')" ng-blur="hideTyping('balance_outstanding')">
+                                                        </span>
+                                                    </div>
+                                                    <!-- help text -->
+                                                    <div>
+                                                        <div class="typing helptip icon-sprite speech" ng-show="customer.liab.balance_outstanding.typing && !local.customer.liab.balance_outstanding.typing" >
+                                                            Typing ...
+                                                        </div>
+                                                        <div class="helptip icon-sprite speech" id="boxt10" ng-hide="customer.liab.balance_outstanding.typing && !local.customer.liab.balance_outstanding.typing">
+                                                            <h5>Help</h5>
+                                                        </div>
+                                                    </div>
+                                                    <!-- help text end -->
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="form-group question" id="t187" data-title="Consolidate">
+                                                    <label></label>
+                                                    <div>
+                                                        <span class="checkboxes">  
+                                                            <input type="checkbox"  name="allliabilities.consolidate" ng-model="allliabilities.consolidate" ng-value="1">  Consolidate
+                                                        </span>
+                                                    </div>
+                                                    <!-- help text -->
+
+                                                    <div class="helptip icon-sprite speech" id="boxt187">
+                                                        <h5>Help</h5>
+                                                    </div>
+
+                                                    <!-- help text end -->
+                                                </div>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                            <div class="form-group">
+                                                <div class="pull-right">
+                                                    <button class="btn custom-btn" type="submit" ng-click="editliability.$valid && togglecollapse(allliabilities.liabilityid);">
+                                                        update
+                                                    </button>
+                                                    <button class="btn custom-btn" type="button" ng-click="deleteLiabilities(allliabilities, $parent.$index)">
+                                                        Delete
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="tab-pane-border que-for">
+                    <!--initial with yes or no question-->
+                    <div ng-if="liabilitiesdata.length == 0">
+                        <div data-title="Do you have any Liabilities?" id="t79" class="form-group">
+                            <label> Do you have any Liabilities? </label>
+                            <div ng-init="customers.showmeliability1=0">
+                                <span class="checkboxes nohelp">  
+                                    <input type="radio" value="1" ng-model="customers.showmeliability1" ng-change="change()"> Yes 
+                                    <input type="radio" value="0" ng-model="customers.showmeliability1" ng-change="change()"> No 
+                                </span>
+                            </div>
+                        </div>
+					</div>                    
+                    <!--initial with yes or no question-->
+                    <div ng-if="liabilitiesdata.length > 0">
+                        <div class="pull-right">
+                            <button class="btn custom-btn showLiabilitiesButton" ng-click="showmeliability();">Add More Liabilities</button>
+                        </div>
+						<div class="clearfix"></div>
+					</div>
+					<div ng-switch="customers.showmeliability1==1">
+						<div ng-switch-when="true">
+							<div class="tab-pane-border">
+								<form class="form-horizontal" name="addliability" >
+									<div style="border:1px solid #ddd; padding:8px 5px; margin-bottom:15px;">
+										<div>
+											<div class="form-group">
+												<span class="step-heading step-heading-small ">Add Liability </span>
+											</div>
+										</div>
+										<div class="col-sm-6">
+											<div class="form-group question ques1" id="t178" data-title="Applicants " ng-class="{ 'has-error' :   addliability.selectedClientID.$invalid && !addliability.selectedClientID.$pristine }">
+												<label>Applicants </label>
+												<div ng-repeat="applicantname in customers.applicants | limitTo: customers.no_of_applicants">
+													<span class="checkboxes">
+														<input type="checkbox" ng-model="applicantname.active_liability" ng-value="{{applicantname.$index}}"> {{applicantname.forename}}
+													</span>
+												</div>
+											</div>
+										</div>
+										<div class="col-sm-6">
+											<div class="form-group question" id="t181" data-title="Liability Type" ng-class="{ 'has-error' :   liabilityes.add_liabilities.eLiabilityTypeID.$invalid && !liabilityes.add_liabilities.eLiabilityTypeID.$pristine }">
+												<label>Liability Type </label>
+												<div>
+													<span class="checkboxes"> 
+														<select name="liablility_type" ng-model="customers.dataObj.liablility_type" class="form-control " required>
+															<option value="" ng-selected="selected">Please Select</option>
+															<option value="3">Credit Card</option>
+															<option value="7">Existing Mortgage</option>
+															<option value="5">Mail Order</option>
+															<option value="6">Overdraft</option>
+															<option value="2">Secured Loan</option>
+															<option value="4">Store Card</option>
+															<option value="1">Unsecured Loan</option>
+
+														</select>
+													</span>
+												</div>
+												<!-- help text -->
+												<div class="helptip icon-sprite speech" id="boxt181">
+													<h5>Help</h5>
+												</div>
+												<!-- help text end -->
+											</div>
+										</div>
+										<div class="clearfix"></div>
+
+										<div ng-switch="customers.dataObj.liablility_type == '6'">
+											<div ng-switch-when="true">
+												<div class="col-sm-6">
+													<div class="form-group question" id="t181" data-title="Overdraft Rate" ng-class="{ 'has-error' :   addliability.OverdraftIntRate.$invalid && !addliability.OverdraftIntRate.$pristine }">
+														<label>Overdraft Rate</label>
+														<div>
+															<span class="checkboxes"> 
+																<input type="text" numbers-only name="overdraft_rate"  class="form-control"  ng-model="customers.dataObj.overdraft_rate"  required>
+															</span>
+														</div>
+														<!-- help text -->
+														<div class="helptip icon-sprite speech" id="boxt181">
+															<h5>Help</h5>
+														</div>
+														<!-- help text end -->
+													</div>
+												</div>
+											</div>
+										</div>
+
+										<div ng-switch="customers.dataObj.liablility_type == '3'">
+											<div ng-switch-when="true">
+												<div class="col-sm-6">
+													<div class="form-group question" id="t181" data-title="Card Type" ng-class="{ 'has-error' : addliabilityes.eCreditCardTypeID.$invalid && !addliabilityes.eCreditCardTypeID.$pristine }">
+														<label>Card Type</label>
+														<div>
+															<span class="checkboxes">
+																<select class="form-control" name="card_type" ng-model="customers.dataObj.card_type" required>
+																	<option value="" ng-selected="selected">Please Select</option>
+																	<option value="4">Delta</option>
+																	<option value="3">Mastercard</option>
+																	<option value="6">Solo</option>
+																	<option value="5">Switch</option>
+																	<option value="1">Visa Credit</option>
+																	<option value="2">Visa Debit</option>
+																</select>
+															</span>
+														</div>
+														<!-- help text -->
+														<div class="helptip icon-sprite speech" id="boxt181">
+															<h5>Help</h5>
+														</div>
+														<!-- help text end -->
+													</div>
+												</div>
+												<div class="col-sm-6">
+													<div data-title="StartDate" id="t14" class="form-group question" ng-class="{ 'has-error' :   addliabilityes.CreditLimit.$invalid && !addliabilityes.CreditLimit.$pristine }">
+														<label>Credit Limit</label>
+														<div>
+															<span class="checkboxes pound"> 
+																<input type="text" numbers-only class="form-control"  ng-model="customers.dataObj.credit_limit" name="credit_limit" required ng-focus="showTyping('credit_limit')" ng-blur="hideTyping('credit_limit')">
+															</span>
+														</div>
+														<!-- help text -->
+														<div>
+															<div class="typing helptip icon-sprite speech" ng-show="customer.liab.credit_limit.typing && !local.customer.liab.credit_limit.typing" >
+																Typing ...
+															</div>
+															<div class="helptip icon-sprite speech" id="boxt10" ng-hide="customer.liab.credit_limit.typing && !local.customer.liab.credit_limit.typing">
+																<h5>Help</h5>
+															</div>
+														</div>
+														<!-- help text end -->
+													</div>
+												</div>
+											</div>
+										</div>
+										<div ng-switch="customers.dataObj.liablility_type == '7' || customers.dataObj.liablility_type == '2' || customers.dataObj.liablility_type == '1'">
+											<div ng-switch-when="true">
+												<div class="col-sm-6">
+													<div class="form-group question" id="t181" data-title="Rate of Interest (%)" ng-class="{ 'has-error' :   addliabilityes.Rate.$invalid && !addliabilityes.Rate.$pristine }">
+														<label>Rate of Interest (%)</label>
+														<div>
+															<span class="checkboxes"> 
+																<input type="text" name="rate_of_interest" class="form-control" ng-model="customers.dataObj.rate_of_interest" required valid-number>
+															</span>
+														</div>
+														<!-- help text -->
+														<div class="helptip icon-sprite speech" id="boxt181">
+															<h5>Help</h5>
+														</div>
+														<!-- help text end -->
+													</div>
+												</div>
+												<div class="col-sm-6">
+													<div data-title="StartDate" id="t14" class="form-group question" ng-class="{ 'has-error' :   addliabilityes.StartDate.$invalid && !addliabilityes.StartDate.$pristine }">
+														<label>Start Date [dd/mm/yyyy]</label>
+														<div>
+															<span class="checkboxes">
+																<input class="form-control" name="start_date" type="text" ng-model="customers.dataObj.start_date" required maxlength="10" autocomplete="off"  onkeyup="ValidateDate(this, event.keyCode)" onkeydown="return DateFormat(this, event.keyCode)" invalid-date="10" >
+															</span>
+														</div>
+														<!-- help text -->
+														<div id="boxt14" class="helptip icon-sprite speech">
+															<h5>Help</h5>
+														</div>
+														<!-- help text end -->
+													</div>
+												</div>
+												<div class="col-sm-6">
+													<div data-title="EndDate" id="t14" class="form-group question" ng-class="{ 'has-error' :   addliabilityes.EndDate.$invalid && !addliabilityes.EndDate.$pristine }">
+														<label>End Date [dd/mm/yyyy]</label>
+														<div>
+															<span class="checkboxes">
+																<input class="form-control" name="end_date" type="text" ng-model="customers.dataObj.end_date" required maxlength="10" autocomplete="off" onkeyup="ValidateDate(this, event.keyCode)" onkeydown="return DateFormat(this, event.keyCode)" invalid-date="10" >
+															</span>
+														</div>
+														<!-- help text -->
+														<div id="boxt14" class="helptip icon-sprite speech">
+															<h5>Help</h5>
+														</div>
+														<!-- help text end -->
+													</div>
+												</div>
+
+											</div>
+										</div>
+										<div class="col-sm-6">
+											<div class="form-group question" id="t181" data-title="Monthly Payment" ng-class="{ 'has-error' :   addliabilityes.MonthlyPayments.$invalid && !addliabilityes.MonthlyPayments.$pristine }">
+												<label>Monthly Payment</label>
+												<div>
+													<span class="checkboxes pound">  
+														<input type="text" numbers-only name="monthly_payment" class="form-control" ng-model="customers.dataObj.monthly_payment" required ng-focus="showTyping('monthly_payment')" ng-blur="hideTyping('monthly_payment')"> </span>
+												</div>
+												<!-- help text -->
+												<div>
+													<div class="typing helptip icon-sprite speech" ng-show="customer.liab.monthly_payment.typing && !local.customer.liab.monthly_payment.typing" >
+														Typing ...
+													</div>
+													<div class="helptip icon-sprite speech" id="boxt10" ng-hide="customer.liab.monthly_payment.typing && !local.customer.liab.monthly_payment.typing">
+														<h5>Help</h5>
+													</div>
+												</div>
+												<!-- help text end -->
+											</div>
+										</div>
+										<div class="col-sm-6">
+											<div class="form-group question" id="t181" data-title="Provider" ng-class="{ 'has-error' :   addliabilityes.Provider.$invalid && !addliabilityes.Provider.$pristine }">
+												<label>Provider</label>
+												<div>
+													<span class="checkboxes">  
+														<input type="text" name="provider" class="form-control" ng-model="customers.dataObj.provider" required ng-focus="showTyping('provider')" ng-blur="hideTyping('provider')"> </span>
+												</div>
+												<!-- help text -->
+												<div>
+													<div class="typing helptip icon-sprite speech" ng-show="customer.liab.provider.typing && !local.customer.liab.provider.typing" >
+														Typing ...
+													</div>
+													<div class="helptip icon-sprite speech" id="boxt10" ng-hide="customer.liab.provider.typing && !local.customer.liab.provider.typing">
+														<h5>Help</h5>
+													</div>
+												</div>
+												<!-- help text end -->
+											</div>
+										</div>
+										<div class="col-sm-6">
+											<div class="form-group question" id="t183" data-title="Balance Outstanding" ng-class="{ 'has-error' :   addliabilityes.BalanceOutstanding.$invalid && !addliabilityes.BalanceOutstanding.$pristine }">
+												<label>Balance Outstanding</label>
+												<div>
+													<span class="checkboxes pound"> 
+														<input type="text" numbers-only name="balance_outstanding" class="form-control" ng-model="customers.dataObj.balance_outstanding" required ng-focus="showTyping('balance_outstanding')" ng-blur="hideTyping('balance_outstanding')"> </span>
+												</div>
+												<!-- help text -->
+												<div>
+													<div class="typing helptip icon-sprite speech" ng-show="customer.liab.balance_outstanding.typing && !local.customer.liab.balance_outstanding.typing" >
+														Typing ...
+													</div>
+													<div class="helptip icon-sprite speech" id="boxt10" ng-hide="customer.liab.balance_outstanding.typing && !local.customer.liab.balance_outstanding.typing">
+														<h5>Help</h5>
+													</div>
+												</div>
+												<!-- help text end -->
+											</div>
+										</div>
+										<div class="col-sm-6">
+											<div class="form-group question" id="t187" data-title="Consolidate">
+												<label></label>
+												<div>
+													<span class="checkboxes"> 
+														<input type="checkbox" name="consolidate" ng-init="customers.dataObj.consolidate=false" ng-model="customers.dataObj.consolidate" ng-value="1">  Consolidate</span>
+												</div>
+												<!-- help text -->
+												<div class="helptip icon-sprite speech" id="boxt187">
+													<h5>Help</h5>
+												</div>
+												<!-- help text end -->
+											</div>
+										</div>
+										<div class="clearfix"></div>
+										<div class="form-group">
+											<div class="pull-right">
+												<button class="btn custom-btn" ng-click="addliability.$valid && createliabilities()" type="submit" >save </button>
+											</div>
+										</div>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+                    
+                </div>
+            </div>
+
+        </div>
+        <div ng-switch="customers.showPayDayLoans">
+            <div ng-switch-when="true">
+                <form class="form-horizontal">
+
+                    <div class="tab-pane-border que-for">
+
+                        <div ng-show="loader.extraqloading" class="loading"><span
+                                class="sending">Creating Paydayloans...</span></div>
+
+                        <div data-title="Have you had any pay day loans in the last 12 months?" id="t79" class="form-group">
+                            <label> Have you had any pay day loans in the last 12 months? </label>
+
+                            <div>
+                                <span class="checkboxes nohelp">
+                                    <input type="radio" value="true" ng-model="customers.last12_months"> Yes
+                                    <input type="radio" value="false" ng-model="customers.last12_months"> No
+                                </span>
+                            </div>
+
+                            <!-- help text -->
+
+                            <div id="boxt79" class="helptip icon-sprite speech">
+                                <h5>Help</h5>
+                            </div>
+
+                            <!-- help text end -->
+                        </div>
+                        <div ng-switch="customers.last12_months">
+                            <div ng-switch-when="true">
+                                <div data-title="Have these been repaid on time?" id="t79" class="form-group">
+                                    <label> Have these been repaid on time? </label>
+
+                                    <div>
+                                        <span class="checkboxes nohelp">
+                                            <input type="radio" value="true" ng-model="customers.repaid_on_time"> Yes
+                                            <input type="radio" value="false" ng-model="customers.repaid_on_time"> No </span>
+                                    </div>
+
+                                    <!-- help text -->
+
+                                    <div id="boxt79" class="helptip icon-sprite speech">
+                                        <h5>Help</h5>
+                                    </div>
+
+                                    <!-- help text end -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="form-group form-sub">
+                        <div style="float:right;">
+                            <input type="button" class="whi-btn2 btnPrevious" ng-click="viewliabilities()"
+                                   value="&lt; BACK">
+                            <input type="submit" value="SAVE" ng-click="createpaydayloan(customers)"
+                                   class="blue-btn5 btnNext">
+                        </div>
+
+                    </div>
+
+                </form>
+            </div>
+        </div>
+        <div class="form-group" ng-if="customers.showliabilities">
+            <div class="pull-right">
+                <input type="button" ng-controller="ClientDashboardController" class="whi-btn2 btnPrevious ng-scope" ng-click="changeActiveTab('employmentandincome')" value="< BACK">
+                <button type="submit" class="blue-btn5" ng-click="viewPayDayLoans();"> Save
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

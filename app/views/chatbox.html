@@ -1,0 +1,124 @@
+<!-- chat  start -->    
+     	 
+<cdeals-aside id="cdeals-sidebar_secondary" class="cdeals-tabbed_sidebar ng-scope cdeals-chat_sidebar">
+<div class="minimize-color" ng-show="minimize_count==0 && getunreadcount">
+<!--<notification-icon animation='grow' ng-init="getunreadcount = 0" count='getunreadcount'>
+   </notification-icon>-->
+</div>
+
+
+<div class="cdeals-popup-head" >
+<div class="cdeals-popup-head-left pull-left">
+<div ><h1>online </h1></div>
+</div>
+					  <div class="cdeals-popup-head-right pull-right">
+                    
+                     <button class="cdeals-chat-header-button" type="button" ><i class="glyphicon glyphicon-facetime-video"></i></button> 
+                     
+<!--                      <button class="chat-header-button" type="button" id="unique-token" ng-click="open_room();"><i class="glyphicon glyphicon-facetime-video"></i></button>-->
+                     
+                   
+                        <div class="btn-group gurdeepoushan">
+    								  <button class="cdeals-chat-header-button" data-toggle="dropdown" type="button" aria-expanded="false">
+									   <i class="glyphicon glyphicon-paperclip"></i></button>
+									  <ul role="menu" class="dropdown-menu pull-right">                                      
+										<li><a href="#"><span class="glyphicon glyphicon-picture" aria-hidden="true"></span> Gallery</a></li>
+										<li><a ><span class="glyphicon glyphicon-camera" aria-hidden="true"></span> Photo</a></li>
+										<li><a href="#"><span class="glyphicon glyphicon-facetime-video" aria-hidden="true"></span> Video</a></li>
+										<li><a href="#"><span class="glyphicon glyphicon-headphones" aria-hidden="true"></span> Audio</a></li>
+                                        <li><a href="#"><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span> Location</a></li>
+                                        <li><a href="#"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Contact</a></li>
+									  </ul>
+						</div>
+							<button class="name" type="button" ng-click="openpopup()"><img src="images/minimize.png"></button>
+						<button data-widget="remove" id="removeClass" ng-click="removeClass()" class="cdeals-chat-header-button pull-right" type="button"><i class="glyphicon glyphicon-remove"></i></button>
+                      </div>
+			  </div>
+
+<div class="filp">
+   <div id="chat" class="cdeals-chat_box_wrapper chat_box_small chat_box_active" style="opacity: 1; display: block; transform: translateX(0px);" scroll-glue-bottom="glued">
+                        <div class="cdeals-chat_box touchscroll chat_box_colors_a">
+                        <div  ng-repeat="msgdetail in msgdetails">
+                            
+                            
+                            <div class="chat_message_wrapper chat_message_right" ng-if="msgdetail.from_ad==1">
+                                <div class="chat_user_avatar">
+                                <a>
+                                    <img src="images/chat-img.jpg" width="60" height="60" class="md-user-image">
+                                </a>
+                                </div>
+                                <ul class="chat_message">
+                                    <li>
+                                        <p>
+  										 <span  ng-bind-html="msgdetail.message | smilies"></span>
+
+                                      <!--  <span  ng-bind-html="msgdetail.message | smilies"></span>-->
+                     <span class="chat_message_time" ng-bind="Getusername(msgdetail.from_ad)"> • {{msgdetail.date}}</span> </p>
+                                    </li>
+                                </ul>
+                                <div ng-hide="msgdetail.from_ad==1">
+    <div class="delete-cht"> <a href><img src="images/edit.png" border="0"></a> | <a href ng-click="deleteMessage(msgdetail.id)"><img src="images/delete.png" border="0"></a></div>                   
+</div>
+                            </div>
+                            <div class="chat_message_wrapper" ng-if="msgdetail.from_ad==2"  ng-mouseover="showPopover(msgdetail.id)" ng-mouseleave="hidePopover()">
+                                <div class="chat_user_avatar">
+                                    <a>
+                                <img src="images/chat-img.jpg" width="60" height="60" class="md-user-image">
+                                    </a>
+                                </div>
+                                <ul class="chat_message">  
+                                <li>
+                                        <p  ng-class="{'chat_edit': msgdetail.message == selected,'chat_edit_unselect': msgdetail.message != selected}">
+                                       <span  ng-bind-html="msgdetail.message | smilies"></span>
+                                      <!-- <span  ng-bind-html="msgdetail.message | smilies"></span>-->
+                                        <span class="chat_message_time" ng-bind="Getusername(msgdetail.from_ad)"> • {{msgdetail.date}}</span> 
+                                        <div ng-show="msgdetail.from_ad==2 && popoverIsVisible && msgdetail.id==selectedmsgid">
+                             <div class="delete-cht"><a  ng-click="deleteMessage(msgdetail.id)"><img src="images/delete.png" border="0"></a>  <a  ng-click="editMessage(msgdetail.id)"><img src="images/edit.png" border="0"></a></div>
+                            </div>
+                                        </p>
+                                        
+                                    </li>                                  
+                                    
+                                    
+                                </ul>
+                                
+                            </div>
+                           
+                           </div> 
+                        </div>
+                    </div>
+                    	
+<div class="cdeals-chat_submit_box">
+<form name="myform" ng-submit="chaton()">
+    <div class="cdeals-uk-input-group">
+        <div class="cdeals-chat-box">
+        <span style="vertical-align: sub;" class="cdeals-uk-input-group-addon">
+        
+        </span>
+        <textarea cols="" rows="" class="md-input" ng-model='chatmsg' ng-required="true" placeholder="Type a message here" ng-required="true" value=""></textarea>
+        
+
+        <span style="vertical-align: sub;" class="cdeals-uk-input-group-addon">
+        
+        </span>
+        </div>
+    
+    <span class="cdeals-uk-input-group-addon">
+    <a href ng-click="myform.$valid && chaton(chatmsg);"><i class="glyphicon glyphicon-send"></i> </a>
+
+  <a href class="supernote-hover-demo4"><img src="images/smile.png" alt="" /></a>
+  <div id="supernote-note-demo4" class="snp-triggeroffset notedefault">
+ <a name="demo4"></a>
+ <div id="emoticons">
+<a href title=":D"><img alt=":D" border="0" src="smilies/biggrin.png" /></a><a href title=":S"><img alt=":S" border="0" src="smilies/confused.png"  /></a>  <a href title=";("><img alt=";(" border="0" src="smilies/cry.png" /></a><a href title="OO"><img alt="OO" border="0" src="smilies/eek.png"/></a><a href title="<3"><img alt="<3" border="0" src="smilies/like.png"/></a><a href title="^^"><img alt="^^" border="0" src="smilies/lol.png"/></a><a href title=":|"><img alt=":|" border="0" src="smilies/neutral.png"/></a><a href title=":P"><img alt=":P" border="0" src="smilies/razz.png"/></a><a href title=":O"><img alt=":O" border="0" src="smilies/surprised.png"/></a><a href title=";-)"><img alt=";-)" border="0" src="smilies/wink.png"/></a></div>
+    </div>
+    </span>
+    </div>
+    </form>
+</div>
+	</div>
+
+        
+
+
+<!-- chat end -->

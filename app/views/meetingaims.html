@@ -1,0 +1,109 @@
+<!-- panel 1 start -->
+<div id="panel_upto_15" ng-controller="MeetingaimsController">
+
+<div class="form-group">
+   <h3><img style="padding-right:5px;" src="images/ic-Applicants.png">Meeting Aims </h3>
+  </div>
+   <div class="tab-pane-border que-for" style="display:inline-block">
+      <form class="form-horizontal"  name="addmeetingaims" ng-submit="createmeetingaims(customers,'applicants')">
+         <div class="col-sm-12" style="margin-bottom:10px;">
+            <div  id="t2"  data-title="Select Application(s)">
+               <label>Select Application(s)</label>
+               <div> <span class="checkboxes nohelp" style="display:inline-block" >
+                  <input type="checkbox"   ng-model="customers.meeting_aims.select_apps.mortage" name="mortage" >
+                  Mortgage </span> <span class="checkboxes nohelp" style="display:inline-block">
+                  <input  type="checkbox" ng-model="customers.meeting_aims.select_apps.life_ins" name="life_ins" >
+                  Life Insurance </span> <span class="checkboxes nohelp" style="display:inline-block">
+                  <input type="checkbox" ng-model="customers.meeting_aims.select_apps.home_ins" name="home_ins" >
+                  Home Insurance </span> <span class="checkboxes nohelp" style="display:inline-block">
+                  <input  type="checkbox" ng-model="customers.meeting_aims.select_apps.serious_ill" name="serious_ill" >
+                  Serious Illness Cover </span> <span class="checkboxes nohelp" style="display:inline-block">
+                  <input  type="checkbox" ng-model="customers.meeting_aims.select_apps.income_protect" name="income_protect" >
+                  Income Protection </span> <span class="checkboxes nohelp" style="display:inline-block">
+                  <input type="checkbox" ng-model="customers.meeting_aims.select_apps.asu" name="asu">
+                  ASU</span> 
+               </div>
+            </div>
+         </div>
+         <div class="col-sm-6">
+            <div class="form-group question" id="t3"  data-title="Existing Client">
+               <label>Existing Client ?</label>
+               <div> <span class="checkboxes" ng-init="customers.meeting_aims.exist_client=0" >
+                  <input  type="radio"  name="ContactExistingLender"  ng-model="customers.meeting_aims.exist_client"  ng-value="1">
+                  Yes
+                  <input  type="radio" name="ContactExistingLender"  ng-model="customers.meeting_aims.exist_client" ng-value="0">
+                  No </span> 
+               </div>
+            </div>
+			</div>
+            <div class="col-sm-6">
+               <div class="form-group question" id="t4"  data-title="is commitment fee paid upfront?">
+                  <label>Is commitment fee paid upfront? </label>
+                  <div> <span class="checkboxes" ng-init="customers.meeting_aims.is_commit_fee_paid=0">
+                     <input  type="radio"  name="IsCommitmentFeePaid" ng-model="customers.meeting_aims.is_commit_fee_paid" ng-value="1">
+                     Yes
+                     <input  type="radio" name="IsCommitmentFeePaid" ng-model="customers.meeting_aims.is_commit_fee_paid" ng-value="0">
+                     No </span>
+                  </div>
+               </div>
+            </div>
+            <div class="col-sm-6">
+               <div  id="t5"  data-title="Lead Source">
+                  <label>Lead Source</label>
+                  <div>
+                     <span class="checkboxes">
+                        <select class="list form-control"  name="customers.meeting_aims.lead_source" ng-model="customers.meeting_aims.lead_source" required>
+                           <option value="" >Please Select</option>
+                           <option value="1"  ng-value="1">Company Generated</option>
+                           <option value="2"  ng-value="2">Self Generated</option>
+                        </select>
+                     </span>
+                  </div>
+               </div>
+            </div>
+            <div class="col-sm-6">
+               <div  class="form-group question" id="t80" >
+                  <label   >Is this Bridging/Short Term/Auction? </label>
+                  <div > <span class="checkboxes"> <span class="radioreject"  ng-class="BridgingAuction">
+                     <input type="radio" value="true" ng-model="customers.meeting_aims.select_apps.is_bridging_sta"  name="meeting_aims.select_apps.comments">
+                     Yes
+                     <input  type="radio" value="false" ng-model="customers.meeting_aims.select_apps.is_bridging_sta" name="meeting_aims.select_apps.comments" >
+                     No </span> </span> 
+                  </div>
+               </div>
+            </div>
+            <div class="col-sm-12">
+               <div class="form-group question" id="t6"  >
+                  <label>Any requirements or comments you wish us to record? </label>
+                  <div> <span class="checkboxes">
+                     <textarea class="form-control" rows="3" ng-model="customers.meeting_aims.select_apps.comments"  name="meeting_aims.select_apps.comments" ng-focus="showTyping()" ng-blur="hideTyping()"> </textarea>
+                     <div ng-show="customer.meetingAims.textarea.typing && !local.customer.meetingAims.textarea.typing" >
+                        Typing ...
+                     </div>
+                     </span> 
+                  </div>
+               </div>
+            </div>
+            <div class="form-group">
+               <div class="pull-right">
+                  <button type="submit" class="btn custom-btn" id="submit" >Save</button>
+               </div>
+            </div>
+      </form>
+      </div>
+   </div>
+   
+   <script type="text/javascript">
+$(document).ready(function () {
+    $('#submit').click(function() {
+      checked = $("input[type=checkbox]:checked").length;
+
+      if(!checked) {
+        alert("You must select at least one select application(s).");
+        return false;
+      }
+
+    });
+});
+
+</script>

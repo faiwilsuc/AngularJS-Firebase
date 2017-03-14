@@ -1,0 +1,731 @@
+<div ng-controller="AnotherexistingmortgageController">
+<div class="tab-pane" id="etab9">
+                
+               <div class="form-group">
+                  <h3><img style="padding-right:5px;" src="images/ic-ExistingMortgage.png">Another Existing Mortgage</h3>
+            </div>    
+
+    <div class="tab-pane-border que-for ">
+ <div >
+                     <!-- <div ng-repeat="applicant in customers.applicants"> -->
+              <div ng-repeat="existingmortgage in anotherexistingdata">   
+                  <form class="form-horizontal"  name="anothermortgage"> 
+        
+                    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+  <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="headingOne">
+      <h4 class="panel-title">
+        <a style="cursor:pointer"  data-toggle="collapse" data-parent="#accordion" data-target="#collapse{{existingmortgage.$id}}" aria-expanded="true" aria-controls="collapse{{existingmortgage.$id}}">
+        {{customers.applicants[existingmortgage.applicant_id].forename}} /{{getExistingType(existingmortgage.mortgage_type)  }} / &#163; {{existingmortgage.outstanding_mortgage}}
+        </a>
+      </h4>
+    </div>
+    <div id="collapse{{existingmortgage.$id}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+      <div class="panel-body">
+             
+ <div class="col-sm-6">   
+<div class="form-group question ques1" id=""  data-title="Applicant(s)">
+    <label  >Applicant(s)</label>
+   <div ng-repeat="applicantname in customers.applicants | limitTo: customers.no_of_applicants"> 
+ <span class="checkboxes"> 
+ <input type="checkbox"  ng-model="applicantname.selected_anotherexisting" ng-change="get_applicantindex($event,$index)" ng-value="{{applicantname.$index}}"> {{applicantname.forename}}
+ </span> 
+  </div>
+      
+      <!-- help text -->
+    
+    <div class="helptip icon-sprite speech" id=""> 
+        <h5>Help</h5>
+    </div>
+    
+    <!-- help text end -->
+</div>  
+</div>   
+<div class="col-sm-6">
+<div class="form-group question" id=""  data-title="Lenders ">
+    <label  >Lenders </label>
+    <div>
+         <span class="checkboxes"> <select class="form-control" ng-model="existingmortgage.lenders" name="existingmortgage.lenders" required>
+			            	<option value="">Please Select</option>
+			            	<option value="90">Accord Prime</option>
+							<option value="2">Aldermore Mortgages</option>
+							<option value="245">Axis Bank</option>
+							<option value="66">Bath Building Society</option>
+							<option value="70">Bluestone Mortgages</option>
+							<option value="6">BM Solutions</option>
+							<option value="229">Bridgewater </option>
+							<option value="15">Buckinghamshire Building Society</option>
+							<option value="4">Cambridge Building Society</option>
+							<option value="226">Castle Trust</option>
+							<option value="242">Cheshire</option>
+							<option value="59">Chorley Building Society</option>
+							<option value="140">Clydesdale Bank Plc</option>
+							<option value="88">Coventry</option>
+							<option value="60">Darlington BS</option>
+							<option value="218">Dragonfly</option>
+							<option value="12">Dudley Building Society</option>
+							<option value="233">Earl Shilton Building Society</option>
+							<option value="232">Fleet Mortgages</option>
+							<option value="238">Fluent Money</option>
+							<option value="234">Foundation Home Loans</option>
+							<option value="8">Furness</option>
+							<option value="86">Halifax</option>
+							<option value="64">Harpenden Building Society</option>
+							<option value="129">Hinckley and Rugby</option>
+							<option value="236">Holmesdale Building Society</option>
+							<option value="112">Ipswich BS</option>
+							<option value="106">Kensington</option>
+							<option value="154">Kent Reliance Building Society</option>
+							<option value="235">Keystone</option>
+							<option value="108">Leeds BS</option>
+							<option value="10">Leek United Building Society</option>
+							<option value="225">Magellan</option>
+							<option value="114">Manchester BS</option>
+							<option value="141">Mansfield BS</option>
+							<option value="248">Market Harborough BS</option>
+							<option value="125">Marsden BS</option>
+							<option value="116">MBS Lending</option>
+							<option value="58">Melton Mowbray Building Society</option>
+							<option value="230">Metro Bank</option>
+							<option value="63">Monmouthshire Building Society</option>
+							<option value="7">MortgageTrust</option>
+							<option value="118">National Counties BS</option>
+							<option value="83">Nationwide</option>
+							<option value="62">NatWest</option>
+							<option value="111">Newbury BS</option>
+							<option value="52">Newcastle Building Society</option>
+							<option value="219">Norton Home Loans</option>
+							<option value="126">Nottingham BS</option>
+							<option value="5">Paragon</option>
+							<option value="67">Pepper Homeloans</option>
+							<option value="13">Platform</option>
+							<option value="14">Precise Mortgages</option>
+							<option value="96">Principality</option>
+							<option value="56">Progressive Build Society</option>
+							<option value="105">Saffron BS</option>
+							<option value="120">Santander</option>
+							<option value="11">Scottish Building Society</option>
+							<option value="102">Scottish Widows</option>
+							<option value="89">Skipton</option>
+							<option value="3">Teachers Building Society</option>
+							<option value="115">The Mortgage Works </option>
+							<option value="57">Tipton and Coseley Building Society</option>
+							<option value="107">Virgin Money</option>
+							<option value="121">Woolwich</option> 
+
+			</select></span> 
+    </div>
+      
+      <!-- help text -->
+    
+    <div class="helptip icon-sprite speech" id=""> 
+        <h5>Help</h5>
+    </div>
+    
+    <!-- help text end -->
+</div> 
+</div>
+ <div class="clearfix"></div>
+<div class="col-sm-6">
+    
+ <div class="form-group question" id=""  data-title="MortgageType">
+    <label  >Current Repayment Type</label>
+    <div>
+         <span class="checkboxes"> <select class="form-control" ng-model="existingmortgage.repayment_type" 
+                                           name="existingmortgage.repayment_type" required>
+				<option value="">Please Select</option>
+				<option value="1">Interest Only</option>
+				<option value="2">Repayment</option>
+				<option value="3">Split</option>
+
+			</select></span> 
+    </div>
+      
+      <!-- help text -->
+    
+    <div class="helptip icon-sprite speech" id=""> 
+        <h5>Help</h5>
+    </div>
+    
+    <!-- help text end -->
+</div> 
+</div>
+<div class="col-sm-6">
+<div class="form-group question" id=""  data-title="MortgageType">
+    <label  >Mortgage Type</label>
+    <div>
+         <span class="checkboxes"> <select class="form-control" ng-model="existingmortgage.mortgage_type"   name="existingmortgage.mortgage_type" required>
+				<option value="">Please Select</option>
+				<option value="1">Residential</option>
+				<option value="2">BTL</option>
+
+			</select></span> 
+    </div>
+      
+      <!-- help text -->
+    
+    <div class="helptip icon-sprite speech" id=""> 
+        <h5>Help</h5>
+    </div>
+    
+    <!-- help text end -->
+</div> 
+</div>
+<div class="col-sm-6">
+ 
+<div class="form-group question" id=""  data-title="OutstandingMortgage">
+    <label  >Outstanding Mortgage</label>
+    <div>
+         <span class="checkboxes pound">  <input type="text"  class="form-control" ng-model="existingmortgage.outstanding_mortgage" name="existingmortgage.outstanding_mortgage" required numbers-only
+                                                 ng-focus="showTyping('outstanding_mortgage')" ng-blur="hideTyping('outstanding_mortgage')"> </span>
+    </div>
+      
+      <!-- help text -->
+
+    <div>
+        <div class="typing helptip icon-sprite speech" ng-show="customer.existing.outstanding_mortgage.typing && !local.customer.existing.outstanding_mortgage.typing" >
+            Typing ...
+        </div>
+        <div class="helptip icon-sprite speech" id="boxt10" ng-hide="customer.existing.outstanding_mortgage.typing && !local.customer.existing.outstanding_mortgage.typing">
+            <h5>Help</h5>
+        </div>
+    </div>
+    
+    <!-- help text end -->
+</div>  
+</div> 
+    <div ng-switch="existingmortgage.mortgage_type == '2'">
+                                 <div ng-switch-when="true">
+ 
+<div class="col-sm-6">                                    
+<div class="form-group question" id=""  data-title="RentalIncome"  ng-class="{ 'has-error' :   addothmortgages.RentalIncome.$invalid && !addothmortgages.RentalIncome.$pristine }">
+    <label  >Rental Income</label>
+    <div>
+         <span class="checkboxes pound">  <input type="text"  class="form-control" ng-model="existingmortgage.rental_income" name="existingmortgage.rental_income" required numbers-only
+                                                 ng-focus="showTyping('rental_income')" ng-blur="hideTyping('rental_income')"> </span>
+    </div>
+      
+      <!-- help text -->
+
+    <div>
+        <div class="typing helptip icon-sprite speech" ng-show="customer.existing.rental_income.typing && !local.customer.existing.rental_income.typing" >
+            Typing ...
+        </div>
+        <div class="helptip icon-sprite speech" id="boxt10" ng-hide="customer.existing.rental_income.typing && !local.customer.existing.rental_income.typing">
+            <h5>Help</h5>
+        </div>
+    </div>
+    
+    <!-- help text end -->
+</div> 
+</div>                                      
+        </div>
+    </div>
+
+        
+  <div class="clearfix"></div>         
+  <div class="form-group">
+    <div class="pull-right">
+      <button class="btn custom-btn" type="submit" ng-click="anothermortgage.$valid && editliabilities(allliabilities)">update</button>
+        
+            <button class="btn custom-btn" type="button" ng-click="deleteMoreMortgage(existingmortgage)">Delete</button> 
+     
+    </div>
+  </div> 
+      </div>
+    </div>
+  </div>
+  
+</div>
+                  
+      </form>
+                </div> </div> 
+
+
+
+
+
+<div ng-show="anotherexistingdata.length==0" class="form-group question onFocus" id="t79" data-title="Do you have other existing mortgage?">
+    <label > Do you have another existing mortgage? </label>
+    <div > 
+<span class="checkboxes nohelp" ng-init="customers.another_existing_mortgage=0" >  <input type="radio" ng-model="customers.another_existing_mortgage"  value="1"> Yes <input type="radio" ng-model="customers.another_existing_mortgage"   value="0" > No </span>
+    </div>
+      
+      <!-- help text -->
+    
+    <div class="helptip icon-sprite speech" id="boxt79"> 
+        <h5>Help</h5>
+    </div>
+    
+    <!-- help text end -->
+</div>
+                        <!-- </div> -->
+                        <div class="clearfix"></div>
+          <div ng-switch="customers.another_existing_mortgage==1&&anotherexistingdata.length==0" > 
+ <div ng-switch-when="true">
+    
+  <form class="form-horizontal" name="addothmortgages" ng-submit="addothmortgages.$valid && createothermortgage(customers)">    
+<div style="border:1px solid #ddd; padding:8px 5px; margin-bottom:15px;">
+    <div >
+     <div class="form-group">
+                    <span class="step-heading step-heading-small ">Add Another Existing mortgage </span>
+            </div> 
+    </div>
+ <div class="col-sm-6">   
+<div class="form-group question ques1" id=""  data-title="Applicant(s)">
+    <label  >Applicant(s)</label>
+   <div ng-repeat="applicantname in customers.applicants | limitTo: customers.no_of_applicants" ng-init="customers.applicants[0].selected_anotherexisting=true" > 
+ <span class="checkboxes"> 
+ <input type="checkbox"  ng-model="applicantname.selected_anotherexisting" ng-change="get_applicantindex($event,$index)" ng-value="{{applicantname.$index}}"> {{applicantname.forename}}
+ </span> 
+  </div>
+      
+      <!-- help text -->
+    
+    <div class="helptip icon-sprite speech" id=""> 
+        <h5>Help</h5>
+    </div>
+    
+    <!-- help text end -->
+</div>  
+</div>   
+<div class="col-sm-6">
+<div class="form-group question" id=""  data-title="Lenders ">
+    <label  >Lenders </label>
+    <div>
+         <span class="checkboxes"> <select class="form-control" ng-model="customers.lenders" name="existingmortgage.lenders" required>
+			            	<option value="">Please Select</option>
+			            	<option value="90">Accord Prime</option>
+							<option value="2">Aldermore Mortgages</option>
+							<option value="245">Axis Bank</option>
+							<option value="66">Bath Building Society</option>
+							<option value="70">Bluestone Mortgages</option>
+							<option value="6">BM Solutions</option>
+							<option value="229">Bridgewater </option>
+							<option value="15">Buckinghamshire Building Society</option>
+							<option value="4">Cambridge Building Society</option>
+							<option value="226">Castle Trust</option>
+							<option value="242">Cheshire</option>
+							<option value="59">Chorley Building Society</option>
+							<option value="140">Clydesdale Bank Plc</option>
+							<option value="88">Coventry</option>
+							<option value="60">Darlington BS</option>
+							<option value="218">Dragonfly</option>
+							<option value="12">Dudley Building Society</option>
+							<option value="233">Earl Shilton Building Society</option>
+							<option value="232">Fleet Mortgages</option>
+							<option value="238">Fluent Money</option>
+							<option value="234">Foundation Home Loans</option>
+							<option value="8">Furness</option>
+							<option value="86">Halifax</option>
+							<option value="64">Harpenden Building Society</option>
+							<option value="129">Hinckley and Rugby</option>
+							<option value="236">Holmesdale Building Society</option>
+							<option value="112">Ipswich BS</option>
+							<option value="106">Kensington</option>
+							<option value="154">Kent Reliance Building Society</option>
+							<option value="235">Keystone</option>
+							<option value="108">Leeds BS</option>
+							<option value="10">Leek United Building Society</option>
+							<option value="225">Magellan</option>
+							<option value="114">Manchester BS</option>
+							<option value="141">Mansfield BS</option>
+							<option value="248">Market Harborough BS</option>
+							<option value="125">Marsden BS</option>
+							<option value="116">MBS Lending</option>
+							<option value="58">Melton Mowbray Building Society</option>
+							<option value="230">Metro Bank</option>
+							<option value="63">Monmouthshire Building Society</option>
+							<option value="7">MortgageTrust</option>
+							<option value="118">National Counties BS</option>
+							<option value="83">Nationwide</option>
+							<option value="62">NatWest</option>
+							<option value="111">Newbury BS</option>
+							<option value="52">Newcastle Building Society</option>
+							<option value="219">Norton Home Loans</option>
+							<option value="126">Nottingham BS</option>
+							<option value="5">Paragon</option>
+							<option value="67">Pepper Homeloans</option>
+							<option value="13">Platform</option>
+							<option value="14">Precise Mortgages</option>
+							<option value="96">Principality</option>
+							<option value="56">Progressive Build Society</option>
+							<option value="105">Saffron BS</option>
+							<option value="120">Santander</option>
+							<option value="11">Scottish Building Society</option>
+							<option value="102">Scottish Widows</option>
+							<option value="89">Skipton</option>
+							<option value="3">Teachers Building Society</option>
+							<option value="115">The Mortgage Works </option>
+							<option value="57">Tipton and Coseley Building Society</option>
+							<option value="107">Virgin Money</option>
+							<option value="121">Woolwich</option> 
+
+			</select></span> 
+    </div>
+      
+      <!-- help text -->
+    
+    <div class="helptip icon-sprite speech" id=""> 
+        <h5>Help</h5>
+    </div>
+    
+    <!-- help text end -->
+</div> 
+</div>
+ <div class="clearfix"></div>
+<div class="col-sm-6">
+    
+ <div class="form-group question" id=""  data-title="MortgageType">
+    <label  >Current Repayment Type</label>
+    <div>
+         <span class="checkboxes"> <select class="form-control" ng-model="customers.repayment_type" 
+                                           name="customers.repayment_type" required>
+				<option value="">Please Select</option>
+				<option value="1">Interest Only</option>
+				<option value="2">Repayment</option>
+				<option value="3">Split</option>
+
+			</select></span> 
+    </div>
+      
+      <!-- help text -->
+    
+    <div class="helptip icon-sprite speech" id=""> 
+        <h5>Help</h5>
+    </div>
+    
+    <!-- help text end -->
+</div> 
+</div>
+<div class="col-sm-6">
+<div class="form-group question" id=""  data-title="MortgageType">
+    <label  >Mortgage Type</label>
+    <div>
+         <span class="checkboxes"> <select class="form-control" ng-model="customers.mortgage_type"   name="customers.mortgage_type" required>
+				<option value="">Please Select</option>
+				<option value="1">Residential</option>
+				<option value="2">BTL</option>
+
+			</select></span> 
+    </div>
+      
+      <!-- help text -->
+    
+    <div class="helptip icon-sprite speech" id=""> 
+        <h5>Help</h5>
+    </div>
+    
+    <!-- help text end -->
+</div> 
+</div>
+<div class="col-sm-6">
+ 
+<div class="form-group question" id=""  data-title="OutstandingMortgage">
+    <label  >Outstanding Mortgage</label>
+    <div>
+         <span class="checkboxes pound">  <input type="text"  class="form-control" ng-model="customers.outstanding_mortgage" name="customers.outstanding_mortgage" required numbers-only
+                                                 ng-focus="showTyping('outstanding_mortgage')" ng-blur="hideTyping('outstanding_mortgage')"> </span>
+    </div>
+      
+      <!-- help text -->
+
+    <div>
+        <div class="typing helptip icon-sprite speech" ng-show="customer.existing.outstanding_mortgage.typing && !local.customer.existing.outstanding_mortgage.typing" >
+            Typing ...
+        </div>
+        <div class="helptip icon-sprite speech" id="boxt10" ng-hide="customer.existing.outstanding_mortgage.typing && !local.customer.existing.outstanding_mortgage.typing">
+            <h5>Help</h5>
+        </div>
+    </div>
+    
+    <!-- help text end -->
+</div>  
+</div> 
+    <div ng-switch="customers.mortgage_type == '2'">
+                                 <div ng-switch-when="true">
+ 
+<div class="col-sm-6">                                    
+<div class="form-group question" id=""  data-title="RentalIncome"  ng-class="{ 'has-error' :   addothmortgages.RentalIncome.$invalid && !addothmortgages.RentalIncome.$pristine }">
+    <label  >Rental Income</label>
+    <div>
+         <span class="checkboxes pound">  <input type="text"  class="form-control" ng-model="customers.rental_income" name="customers.rental_income" required numbers-only
+                                                 ng-focus="showTyping('rental_income')" ng-blur="hideTyping('rental_income')"> </span>
+    </div>
+      
+      <!-- help text -->
+
+    <div>
+        <div class="typing helptip icon-sprite speech" ng-show="customer.existing.rental_income.typing && !local.customer.existing.rental_income.typing" >
+            Typing ...
+        </div>
+        <div class="helptip icon-sprite speech" id="boxt10" ng-hide="customer.existing.rental_income.typing && !local.customer.existing.rental_income.typing">
+            <h5>Help</h5>
+        </div>
+    </div>
+    
+    <!-- help text end -->
+</div> 
+</div>                                      
+        </div>
+    </div>
+    <div class="clearfix"></div>      
+    
+                        <div class="form-group"> <button type="submit" class="btn custom-btn pull-right"  >Save </button> </div>
+                   </div>     
+                        </form> </div></div>
+                         
+                   
+				     <div ng-if="anotherexistingdata.length>0">    
+           <div class="pull-right">
+      <button class="btn custom-btn" ng-click="showmeothermortgages();">Add More Existing Mortgage</button>
+    </div>   
+    
+      <div class="clearfix"> </div>
+      				<div ng-switch="showmeothermortgages1 ">
+                     <div ng-switch-when="true">
+    				<div class="tab-pane-border que-for">
+                        
+                        
+                        
+				         <form class="form-horizontal" name="addothmortgages">    
+<div style="border:1px solid #ddd; padding:8px 5px; margin-bottom:15px;">
+    <div >
+     <div class="form-group">
+                    <span class="step-heading step-heading-small ">Add Another Existing mortgage </span>
+            </div> 
+    </div>
+ <div class="col-sm-6">   
+<div class="form-group question ques1" id=""  data-title="Applicant(s)">
+    <label  >Applicant(s)</label>
+  <div ng-repeat="applicantname in customers.applicants | limitTo: customers.no_of_applicants"> 
+ <span class="checkboxes"> 
+ <input type="checkbox"  ng-model="applicantname.selected_anotherexisting" ng-change="get_applicantindex($event,$index)" ng-value="{{applicantname.$index}}"> {{applicantname.forename}}
+ </span> 
+  </div>
+      <!-- help text -->
+    
+    <div class="helptip icon-sprite speech" id=""> 
+        <h5>Help</h5>
+    </div>
+    
+    <!-- help text end -->
+</div>  
+</div>   
+<div class="col-sm-6">
+<div class="form-group question" id=""  data-title="Lenders ">
+    <label  >Lenders </label>
+    <div>
+         <span class="checkboxes"> <select class="form-control" ng-model="existingmortgage.lenders" name="existingmortgage.lenders" required>
+			            	<option value="">Please Select</option>
+			            	<option value="90">Accord Prime</option>
+							<option value="2">Aldermore Mortgages</option>
+							<option value="245">Axis Bank</option>
+							<option value="66">Bath Building Society</option>
+							<option value="70">Bluestone Mortgages</option>
+							<option value="6">BM Solutions</option>
+							<option value="229">Bridgewater </option>
+							<option value="15">Buckinghamshire Building Society</option>
+							<option value="4">Cambridge Building Society</option>
+							<option value="226">Castle Trust</option>
+							<option value="242">Cheshire</option>
+							<option value="59">Chorley Building Society</option>
+							<option value="140">Clydesdale Bank Plc</option>
+							<option value="88">Coventry</option>
+							<option value="60">Darlington BS</option>
+							<option value="218">Dragonfly</option>
+							<option value="12">Dudley Building Society</option>
+							<option value="233">Earl Shilton Building Society</option>
+							<option value="232">Fleet Mortgages</option>
+							<option value="238">Fluent Money</option>
+							<option value="234">Foundation Home Loans</option>
+							<option value="8">Furness</option>
+							<option value="86">Halifax</option>
+							<option value="64">Harpenden Building Society</option>
+							<option value="129">Hinckley and Rugby</option>
+							<option value="236">Holmesdale Building Society</option>
+							<option value="112">Ipswich BS</option>
+							<option value="106">Kensington</option>
+							<option value="154">Kent Reliance Building Society</option>
+							<option value="235">Keystone</option>
+							<option value="108">Leeds BS</option>
+							<option value="10">Leek United Building Society</option>
+							<option value="225">Magellan</option>
+							<option value="114">Manchester BS</option>
+							<option value="141">Mansfield BS</option>
+							<option value="248">Market Harborough BS</option>
+							<option value="125">Marsden BS</option>
+							<option value="116">MBS Lending</option>
+							<option value="58">Melton Mowbray Building Society</option>
+							<option value="230">Metro Bank</option>
+							<option value="63">Monmouthshire Building Society</option>
+							<option value="7">MortgageTrust</option>
+							<option value="118">National Counties BS</option>
+							<option value="83">Nationwide</option>
+							<option value="62">NatWest</option>
+							<option value="111">Newbury BS</option>
+							<option value="52">Newcastle Building Society</option>
+							<option value="219">Norton Home Loans</option>
+							<option value="126">Nottingham BS</option>
+							<option value="5">Paragon</option>
+							<option value="67">Pepper Homeloans</option>
+							<option value="13">Platform</option>
+							<option value="14">Precise Mortgages</option>
+							<option value="96">Principality</option>
+							<option value="56">Progressive Build Society</option>
+							<option value="105">Saffron BS</option>
+							<option value="120">Santander</option>
+							<option value="11">Scottish Building Society</option>
+							<option value="102">Scottish Widows</option>
+							<option value="89">Skipton</option>
+							<option value="3">Teachers Building Society</option>
+							<option value="115">The Mortgage Works </option>
+							<option value="57">Tipton and Coseley Building Society</option>
+							<option value="107">Virgin Money</option>
+							<option value="121">Woolwich</option> 
+
+			</select></span> 
+    </div>
+      
+      <!-- help text -->
+    
+    <div class="helptip icon-sprite speech" id=""> 
+        <h5>Help</h5>
+    </div>
+    
+    <!-- help text end -->
+</div> 
+</div>
+ <div class="clearfix"></div>
+<div class="col-sm-6">
+    
+ <div class="form-group question" id=""  data-title="MortgageType">
+    <label  >Current Repayment Type</label>
+    <div>
+         <span class="checkboxes"> <select class="form-control" ng-model="existingmortgage.repayment_type" 
+                                           name="existingmortgage.repayment_type" required>
+				<option value="">Please Select</option>
+				<option value="1">Interest Only</option>
+				<option value="2">Repayment</option>
+				<option value="3">Split</option>
+
+			</select></span> 
+    </div>
+      
+      <!-- help text -->
+    
+    <div class="helptip icon-sprite speech" id=""> 
+        <h5>Help</h5>
+    </div>
+    
+    <!-- help text end -->
+</div> 
+</div>
+<div class="col-sm-6">
+<div class="form-group question" id=""  data-title="MortgageType">
+    <label  >Mortgage Type</label>
+    <div>
+         <span class="checkboxes"> <select class="form-control" ng-model="existingmortgage.mortgage_type"   name="existingmortgage.mortgage_type" required>
+				<option value="">Please Select</option>
+				<option value="1">Residential</option>
+				<option value="2">BTL</option>
+
+			</select></span> 
+    </div>
+      
+      <!-- help text -->
+    
+    <div class="helptip icon-sprite speech" id=""> 
+        <h5>Help</h5>
+    </div>
+    
+    <!-- help text end -->
+</div> 
+</div>
+<div class="col-sm-6">
+ 
+<div class="form-group question" id=""  data-title="OutstandingMortgage">
+    <label  >Outstanding Mortgage</label>
+    <div>
+         <span class="checkboxes pound">  <input type="text"  class="form-control" ng-model="existingmortgage.outstanding_mortgage" name="existingmortgage.outstanding_mortgage" required numbers-only
+                                                 ng-focus="showTyping('outstanding_mortgage')" ng-blur="hideTyping('outstanding_mortgage')"> </span>
+    </div>
+      
+      <!-- help text -->
+
+    <div>
+        <div class="typing helptip icon-sprite speech" ng-show="customer.existing.outstanding_mortgage.typing && !local.customer.existing.outstanding_mortgage.typing" >
+            Typing ...
+        </div>
+        <div class="helptip icon-sprite speech" id="boxt10" ng-hide="customer.existing.outstanding_mortgage.typing && !local.customer.existing.outstanding_mortgage.typing">
+            <h5>Help</h5>
+        </div>
+    </div>
+    
+    <!-- help text end -->
+</div>  
+</div> 
+    <div ng-switch="existingmortgage.mortgage_type == '2'">
+                                 <div ng-switch-when="true">
+ 
+<div class="col-sm-6">                                    
+<div class="form-group question" id=""  data-title="RentalIncome"  ng-class="{ 'has-error' :   addothmortgages.RentalIncome.$invalid && !addothmortgages.RentalIncome.$pristine }">
+    <label  >Rental Income</label>
+    <div>
+         <span class="checkboxes pound">  <input type="text"  class="form-control" ng-model="existingmortgage.rental_income" name="existingmortgage.rental_income" required numbers-only
+                                                 ng-focus="showTyping('rental_income')" ng-blur="hideTyping('rental_income')"> </span>
+    </div>
+      
+      <!-- help text -->
+
+    <div>
+        <div class="typing helptip icon-sprite speech" ng-show="customer.existing.rental_income.typing && !local.customer.existing.rental_income.typing" >
+            Typing ...
+        </div>
+        <div class="helptip icon-sprite speech" id="boxt10" ng-hide="customer.existing.rental_income.typing && !local.customer.existing.rental_income.typing">
+            <h5>Help</h5>
+        </div>
+    </div>
+    
+    <!-- help text end -->
+</div> 
+</div>                                      
+        </div>
+    </div>
+    <div class="clearfix"></div>      
+    
+                        <div class="form-group"> <button type="submit" ng-click="createothermortgage(existingmortgage)" class="btn custom-btn pull-right"  >Save </button> </div>
+                   </div>     
+                        </form>
+             
+                        
+                        
+ 						</div>
+                        </div>
+ 						</div>
+                    
+   <!-- <div class="form-group form-sub" ng-if="customers.another_existing_mortgage == 0">
+    <div style="float:right;"> 
+        <input type="button" class="whi-btn2 btnPrevious" ng-click="previousstep()" value="&lt; BACK">
+       <input type="button" class="blue-btn5 btnNext" value="SAVE">
+    </div>
+    
+     </div> -->
+                
+                </div>
+
+
+
+        <div class="form-group">
+            <div class="pull-right">
+                <input type="button" ng-controller="ClientDashboardController" class="whi-btn2 btnPrevious ng-scope" ng-click="changeActiveTab('yourmortgagerequirement')" value="< BACK">
+                <button type="submit" class="blue-btn5" ng-click="submitForm();"> Save
+                </button>
+            </div>
+        </div>
+                    
+            
+            </div> 
+    
+</div>    
+        

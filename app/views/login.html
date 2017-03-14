@@ -1,0 +1,149 @@
+
+<div class="row" ng-controller="mainController">
+    <div class="home-content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-5">
+                    <div class="home-form-box">
+                        <h4>EXISTING USER </h4>
+                        <form class="form-horizontal" name="addlogin" ng-submit="addlogin.$valid && login(user)">
+                            <div class="form-group"><label for="inputName" class="col-md-3 control-label">Email Id</label>
+
+                                <div class="col-md-9">
+                                    <div class="input-icon right"><i class="fa fa-user"></i><input id="inputName" type="email"  placeholder="Email address" class="form-control" ng-model="user.emailid" required/></div>
+                                </div>
+                            </div>
+                            <div class="form-group"><label for="inputPassword" class="col-md-3 control-label" >Password</label>
+
+                                <div class="col-md-9">
+                                    <div class="input-icon right"><i class="fa fa-lock"></i><input id="inputPassword" type="password" placeholder="Password" class="form-control" ng-model="user.password" required/></div>
+                                </div>
+                            </div>
+                            <div class="form-actions pal">
+                                <div class="col-sm-offset-4 col-sm-8">
+                                    <button type="submit" class="btn btn-default blue-btn" >SUBMIT</button>
+                                    <button type="submit" class="btn btn-default blue-btn">FORGOT PASSWORD</button>
+                                </div>           
+                            </div>
+                            <p>
+                                If you are a new user - <a href="javascript:void(0)" ng-click="isNewUser = true">Register here</a>
+                            </p>
+                        </form>
+                    </div>	
+
+                    <br>
+                    <br>                   
+
+                    <div class="home-form-box" ng-controller="signupController" ng-show="isNewUser">
+                        <h4>NEW USER</h4><form class="form-horizontal" name="addlogin" ng-submit="addlogin.$valid && login(user)">
+                            <div class="form-group"><label for="inputName" class="col-md-3 control-label">Email Id</label>
+                                <div class="col-md-9"> <div class="input-icon right"><i class="fa fa-envelope"></i><input id="inputName" type="text" placeholder="Email address" class="form-control"/> </div></div> </div>
+                            <div class="form-group"><label for="inputPassword" class="col-md-3 control-label">Password</label>
+                                <div class="col-md-9"> <div class="input-icon right"><i class="fa fa-lock"></i><input id="inputPassword" type="password" placeholder="Password" class="form-control"/></div></div> </div>
+                            <div class="form-group"><label for="inputConfirmPassword" class="col-md-3 control-label">Confirm Password</label>
+                                <div class="col-md-9"> <div class="input-icon right"><i class="fa fa-lock"></i><input id="inputConfirmPassword" type="password" placeholder="Confirm Password" class="form-control"/></div></div> </div>
+                            <div class="form-group"><label for="inputTelephoneNumber" class="col-md-3 control-label">Telephone Number</label>
+                                <div class="col-md-9"> <div class="input-icon right"><i class="fa fa-phone"></i><input id="inputTelephoneNumber" type="text" placeholder="Telephone Number" class="form-control"/></div></div> </div>
+                            <div class="form-group"><label for="inputMobileNumber" class="col-md-3 control-label">Mobile Number</label>
+                                <div class="col-md-9"> <div class="input-icon right"><i class="fa fa-phone"></i><input id="inputMobileNumber" type="text" placeholder="Mobile Number" class="form-control"/></div></div> </div>
+                            <div class="form-group">
+                                <div class="col-sm-offset-4 col-sm-8">
+                                    <div class="checkbox"><label><input tabindex="5" type="checkbox"/>&nbsp;
+                                            Confirm with Agreement</label></div></div></div>
+                            <div class="clearfix"></div>
+                            <div class="form-group">
+
+                                <div class="col-sm-offset-4 col-sm-8">
+                                    <button type="submit" class="btn btn-default blue-btn">SUBMIT</button>
+                                </div></div>
+                        </form>
+                        <div class="clearfix"></div>
+                    </div>   
+                </div>
+                <div class="col-md-7" >
+                    <div class="home-form-box mar-bt30">
+                        <h4>WHAT OUR CLIENT SAYS</h4>
+                        <div class="container-fluid">
+                            <div id="tcb-testimonial-carousel" class="carousel slide" data-ride="carousel">
+                                <!-- Indicators -->
+                                <ol class="carousel-indicators">
+                                    <li data-target="#tcb-testimonial-carousel" data-slide-to="0" class="active"></li>
+                                    <li data-target="#tcb-testimonial-carousel" data-slide-to="1"></li>
+                                    <li data-target="#tcb-testimonial-carousel" data-slide-to="2"></li>
+                                </ol>
+                                <!-- Wrapper for slides -->
+                                <div class="carousel-inner">
+                                    <div class="item active">
+                                        <div class="row">
+                                            <div class="col-xs-12">
+                                                <figure class="clearfix">
+                                                    <div class="col-md-2 col-sm-2 col-xs-12"><img src="images/testi.png" width="109" height="109" class="img-responsive img-circle"> </div>
+                                                    <div class="col-md-10 col-sm-10 col-xs-12">
+                                                        <figcaption class="caption">
+                                                            <p class="text-brand lead no-margin">I can't wait to test this out.</p>
+                                                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and.</p>
+                                                            <blockquote class="no-margin">
+                                                                <p>Someone Famous</p>  </blockquote>
+                                                        </figcaption>
+                                                    </div>
+                                                </figure>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="item">
+                                        <div class="item active">
+                                            <div class="row">
+                                                <div class="col-xs-12">
+                                                    <figure class="clearfix">
+                                                        <div class="col-md-2 col-sm-2 col-xs-12"><img src="images/testi.png" width="109" height="109" class="img-responsive img-circle"> </div>
+                                                        <div class="col-md-10 col-sm-10 col-xs-12">
+                                                            <figcaption class="caption">
+                                                                <p class="text-brand lead no-margin">I can't wait to test this out.</p>
+                                                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and.</p>
+                                                                <blockquote class="no-margin">
+                                                                    <p>Someone Famous</p>  </blockquote>
+                                                            </figcaption>
+                                                        </div>
+                                                    </figure>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="item">
+                                        <div class="item active">
+                                            <div class="row">
+                                                <div class="col-xs-12">
+                                                    <figure class="clearfix">
+                                                        <div class="col-md-2 col-sm-2 col-xs-12"><img src="images/testi.png" width="109" height="109" class="img-responsive img-circle"> </div>
+                                                        <div class="col-md-10 col-sm-10 col-xs-12">
+                                                            <figcaption class="caption">
+                                                                <p class="text-brand lead no-margin">I can't wait to test this out.</p>
+                                                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and.</p>
+                                                                <blockquote class="no-margin">
+                                                                    <p>Someone Famous</p>  </blockquote>
+                                                            </figcaption>
+                                                        </div>
+                                                    </figure>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Controls -->
+                                <a class="left carousel-control" href="#tcb-testimonial-carousel" data-slide="prev"> <span class="glyphicon glyphicon-chevron-left"></span> </a>
+                                <a class="right carousel-control" href="#tcb-testimonial-carousel" data-slide="next"> <span class="glyphicon glyphicon-chevron-right"></span> </a>        </div>
+                        </div>
+                    </div>
+                    <div class="home-form-box">
+                        <h4>VIDEO EXPLAINING HOW EASY THE NEW FACTFIND APPROACH IS</h4>
+                        <div align="center"><img src="images/VIDEO-1.png" width="501" height="281" class="img-responsive"><br>
+                            <br>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>     
+</div>
+</div>
+<!--END CONTENT-->

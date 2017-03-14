@@ -1,0 +1,424 @@
+.cdeals-textarea {box-shadow: none;}
+@import url(https://fonts.googleapis.com/css?family=Oswald:400,300);
+@import url(https://fonts.googleapis.com/css?family=Open+Sans);
+
+.cdeals-chat_box .chat_message_wrapper ul.chat_message > li + li {
+    margin-top: 4px;
+}
+.cdeals-popup-box-on {
+    display: block !important;
+}
+
+.cdeals-popup-head-left.pull-left h1 {
+    color: #fff;
+    float: left;
+    font-family: oswald;
+    font-size: 18px;
+    margin: 2px 0 0 5px;
+
+}
+.cdeals-popup-head-left a small {
+    display: table;
+    font-size: 11px;
+    color: #fff;
+    line-height: 4px;
+    height:70px;
+    opacity: 0.5;
+    padding: 0 0 0 7px;
+}
+.cdeals-chat-header-button {
+    background: transparent none repeat scroll 0 0;
+    border: 1px solid #fff;
+    border-radius: 5px;
+    font-size: 15px;
+    height: 26px;
+    opacity: 0.9;
+    padding: 0;
+    text-align: center;
+    width: 26px;
+}
+.cdeals-popup-head-right {
+    margin: 9px 0 0;
+}
+.cdeals-popup-head .btn-group {
+    margin: -5px 3px 0 -1px;
+}
+
+.cdeals-dm .dropdown-menu li a span {
+    border: 1px solid;
+    border-radius: 50px;
+    display: list-item;
+    font-size: 19px;
+    height: 40px;
+    line-height: 36px;
+    margin: auto;
+    text-align: center;
+    width: 40px;
+}
+.cdeals-dm .dropdown-menu li {
+    float: left;
+    text-align: center;
+    width: 33%;
+}
+.cdeals-dm .dropdown-menu li a {
+    border-radius: 7px;
+    font-family: oswald;
+    padding: 3px;
+    transition: all 0.3s ease-in-out 0s;
+}
+.cdeals-dm .dropdown-menu li a:hover {
+    background:#304445 none repeat scroll 0 0 !important;
+    color: #fff;
+}
+.cdeals-popup-head {
+    background: #1c2b36 none repeat scroll 0 0 !important;
+    border-bottom: 3px solid #ccc;
+    color: #fff;
+    display: table;
+    width: 100%;
+    padding: 8px;
+}
+.cdeals-popup-head .md-user-image {
+    border: 2px solid #5a7172;
+    border-radius: 12px;
+    float: left;
+    width: 44px;
+}
+.cdeals-uk-input-group-addon .glyphicon.glyphicon-send {
+    color: #ffffff;
+    font-size: 21px;
+    line-height: 36px;
+    padding: 0 6px;
+}
+.cdeals-chat_box_wrapper.chat_box_small.chat_box_active {
+
+    height: 270px;
+    overflow: auto;
+    width: 316px;
+    padding-bottom:10px;
+
+}
+cdeals-aside {
+    background-attachment: fixed;
+    background-clip: border-box;
+    background-color: rgba(0, 0, 0, 0);
+    background:#fff;
+    background-origin: padding-box;
+    background-position: center top;
+    background-repeat: repeat;
+    border: 1px solid #d8d8d8;
+    bottom: 25px;
+    display: none;
+    /*  height:400px;*/
+    position: fixed;
+    right: 70px;
+    /*  width: 300px;*/
+    font-family: 'Open Sans', sans-serif;
+}
+.cdeals-chat_box {
+    padding: 16px;
+}
+.cdeals-chat_box .chat_message_wrapper::after {
+    clear: both;
+}
+.cdeals-chat_box .chat_message_wrapper::after, .chat_box .chat_message_wrapper::before {
+    content: " ";
+    display: table;
+}
+.cdeals-chat_box .chat_message_wrapper .chat_user_avatar {
+    float: left;
+}
+.cdeals-chat_box .chat_message_wrapper {
+    margin-bottom: 32px;
+}
+.md-user-image {
+    border-radius: 50%;
+    width: 34px;
+}
+.cdeals-chatbox.img {
+    border: 0 none;
+    box-sizing: border-box;
+    height: auto;
+    max-width: 100%;
+    vertical-align: middle;
+}
+.cdeals-chat_box .chat_message_wrapper ul.chat_message, .chat_box .chat_message_wrapper ul.chat_message > li {
+    list-style: outside none none;
+    padding: 0;
+}
+.cdeals-chat_box .chat_message_wrapper ul.chat_message {
+    float: left;
+    margin: 0 0 0 20px;
+    max-width: 77%;
+}
+.cdeals-chat_box.chat_box_colors_a .chat_message_wrapper ul.chat_message > li:first-child::before {
+    border-right-color: #616161;
+}
+.cdeals-chat_box .chat_message_wrapper ul.chat_message > li:first-child::before {
+    border-color: transparent #ededed transparent transparent;
+    border-style: solid;
+    border-width: 0 16px 16px 0;
+    content: "";
+    height: 0;
+    left: -14px;
+    position: absolute;
+    top: 0;
+    width: 0;
+}
+
+.cdeals-chat_box.chat_box_colors_a .chat_message_wrapper ul.chat_message > li {
+    background: #ffe0f0 none repeat scroll 0 0;
+    color: #000000;
+}
+.cdeals-chat-box-open-btn {
+    border: 2px solid #0ca5d6;
+    border-radius: 32px;
+    color: #0ca5d6 !important;
+    display: inline-block;
+    margin: 10px 0 0;
+    padding: 9px 16px;
+    text-decoration: none !important;
+    text-transform: uppercase;
+}
+.cdeals-chat_box .chat_message_wrapper ul.chat_message > li {
+    background: #ededed none repeat scroll 0 0;
+    border-radius: 4px;
+    clear: both;
+    color: #212121;
+    display: block;
+    float: left;
+    font-size: 13px;
+    padding: 8px 16px;
+    position: relative;
+    word-break: break-all;
+}
+.cdeals-chat_box .chat_message_wrapper ul.chat_message, cdeals-chat_box .chat_message_wrapper ul.chat_message > li {
+    list-style: outside none none;
+    padding: 0;
+}
+.cdeals-chat_box .chat_message_wrapper ul.chat_message > li {
+    margin: 0;
+}
+.cdeals-chat_box .chat_message_wrapper ul.chat_message > li p {
+    margin: 0;
+}
+.chat_box.chat_box_colors_a .chat_message_wrapper ul.chat_message > li .chat_message_time {
+    color:#7c7c7c;
+}
+.cdeals-chat_box .chat_message_wrapper ul.chat_message > li .chat_message_time {
+    display: block;
+    font-size: 11px;
+    padding-top: 2px;
+    color:#000;
+    text-transform: uppercase;
+}
+.cdeals-chat_box .chat_message_wrapper.chat_message_right .chat_user_avatar {
+    float: right;
+}
+.cdeals-chat_box .chat_message_wrapper.chat_message_right ul.chat_message {
+    float: right;
+    margin-left: 0 !important;
+    margin-right: 24px !important;
+}
+.cdeals-chat_box.chat_box_colors_a .chat_message_wrapper.chat_message_right ul.chat_message > li:first-child::before {
+    border-left-color: #c6f1ff;
+}
+.cdeals-chat_box.chat_box_colors_a .chat_message_wrapper ul.chat_message > li:first-child::before {
+    border-right-color: #ffe0f0;
+}
+.cdeals-chat_box .chat_message_wrapper.chat_message_right ul.chat_message > li:first-child::before {
+    border-color: transparent transparent transparent #ededed;
+    border-width: 0 0 29px 29px;
+    left: auto;
+    right: -14px;
+}
+.cdeals-chat_box .chat_message_wrapper ul.chat_message > li:first-child::before {
+    border-color: transparent #ededed transparent transparent;
+    border-style: solid;
+    border-width: 0 29px 29px 0;
+    content: "";
+    height: 0;
+    left: -14px;
+    position: absolute;
+    top: 0;
+    width: 0;
+}
+.cdeals-chat_box.chat_box_colors_a .chat_message_wrapper.chat_message_right ul.chat_message > li {
+    background: #c6f1ff none repeat scroll 0 0;
+}
+.cdeals-chat_box .chat_message_wrapper ul.chat_message > li {
+    background: #ededed none repeat scroll 0 0;
+    border-radius: 12px;
+    clear: both;
+    color: #212121;
+    display: block;
+    float: left;
+    font-size: 13px;
+    line-height:18px;
+    padding: 8px 16px;
+    position: relative;
+}
+.cdeals-chat-box {
+    background: #fff none repeat scroll 0 0;
+    border-radius: 5px;
+    float: left;
+    padding: 3px;
+
+}
+.cdeals-aside {
+    background-attachment: fixed;
+    background-clip: border-box;
+    background-color: rgba(0, 0, 0, 0);
+    background-image: url("https://scontent.fixc1-1.fna.fbcdn.net/v/t1.0-9/12670232_624826600991767_3547881030871377118_n.jpg?oh=92b8b3e25bdd56df4af5dc466feb46ce&oe=57CC10E7");
+    background-origin: padding-box;
+    background-position: center top;
+    background-repeat: repeat;
+    border: 1px solid #304445;
+    bottom: 0;
+    display: none;
+    height: 466px;
+    position: fixed;
+    right: 70px;
+    width: 300px;
+    font-family: 'Open Sans', sans-serif;
+}
+#cdeals-submit_message {
+    background: transparent none repeat scroll 0 0;
+    border: medium none;
+    padding: 4px;
+
+}
+.cdeals-chat-box i {
+    color: #333;
+    font-size: 21px;
+    line-height: 1px;
+}
+.cdeals-chat_submit_box {
+    bottom: 0px;
+    box-sizing: border-box;
+    left: 0;
+    overflow: hidden;
+    padding: 10px;
+    /* position: absolute;*/
+    width: 100%;
+
+    background:#818487;
+}
+.cdeals-uk-input-group {
+    border-collapse: separate;
+    display: table;
+    position: relative;
+}
+
+
+[animate-on-change] {
+    transition: all 1s;
+    -webkit-transition: all 1s;
+}
+.changed {
+    background-color: red;
+    transition: none;
+    -webkit-transition: none;
+}
+
+#chatbox
+{
+    width:225px;
+    height:80px;
+    /*margin-left:-50px;*/
+    padding:0px;
+    border-color:white;
+
+}
+.minimize-color
+{
+    background-color:#1c2833;	
+}
+.typing_sel
+{
+    /*background:red;*/
+    width: 50%;
+}
+.chat_edit{
+    background-color:yellow;
+}
+
+.chat_edit_unselect{
+    background-color:#ffe0f0;
+}
+.activetab:
+{
+    background-color:#ffe0f0;
+}
+
+[scroll-glue-top],
+[scroll-glue-bottom],
+[scroll-glue]{
+    width:100%;
+    height: 350px;
+    overflow-y: scroll;
+    /* border: 0px solid gray;*/
+}
+
+div.filp {
+    display: none;
+}	
+.name {
+
+    background: transparent none repeat scroll 0 0;
+    border: 1px solid #fff;
+    border-radius: 5px;
+    font-size: 15px;
+    height: 26px;
+    opacity: 0.9;
+    padding: 0;
+    text-align: center;
+    width: 26px;
+    background:#1c2b36;
+}
+.monthlist li {
+    background: #3ac4a9;
+    color: white;
+    display: inline-block;
+    list-style: outside none none;
+    margin: 2px;
+    padding: 5px 10px;
+    width: 16%;
+    position: relative;
+    z-index: 11;
+}
+.monthlist label {
+    cursor: pointer;
+    display: block;
+}
+.monthlist li input[type=radio], .monthlist li input[type=checkbox] {
+    display: none;
+}
+.monthlist input[type=radio]:checked + label:before {
+    content: "\2713";
+    color: #f3f3f3;
+    font-size: 18px;
+    text-align: right;
+    line-height: 18px;
+    padding: 2px;
+    /* background: red; */
+    z-index: -1;
+    box-shadow: 0 0 90px 2px red inset;
+}
+.monthlist label:before {
+    content: "";
+    display: inline-block;
+    position: absolute;
+    left: 0;
+    bottom: 0px;
+    width: 100%;
+    height: 100%;
+}
+.form-group .checkboxes.pound::before {
+    position: absolute;
+    top: 32px;
+    content: "£";
+    left: 20px;
+    color: rgb(85, 85, 85);
+    font-size: 12px;
+}
